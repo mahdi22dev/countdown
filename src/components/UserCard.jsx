@@ -19,6 +19,7 @@ const UserCard = () => {
             <a
               className='m-0 flex gap-2 py-2 btn-ghost text-[15px] px-2'
               id={link.id}
+              key={link.id}
               href=''
             >
               {link.icon} {link.name}
