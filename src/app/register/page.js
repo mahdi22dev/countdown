@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { headers } from "../../../next.config";
 
-export default function page() {
+export default function Page() {
   const [data, setData] = useState({ username: "", email: "", password: "" });
   const [message, setMessage] = useState("");
   const router = useRouter();

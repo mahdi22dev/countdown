@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { headers } from "../../../next.config";
 import { signIn } from "next-auth/react";
 
-export default function page() {
+export default function Page() {
   const [data, setData] = useState({ email: "", password: "" });
   const router = useRouter();
   const [message, setMessage] = useState("");
