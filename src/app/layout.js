@@ -14,8 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en' data-theme='dark'>
       <body className={inter.className}>
-        <Navbar />
-        <Provider>{children}</Provider>
+        <Provider>
+          <Navbar />
+          {children}
+        </Provider>
       </body>
     </html>
   );

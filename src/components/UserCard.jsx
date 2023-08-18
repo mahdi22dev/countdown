@@ -1,8 +1,9 @@
 import { links } from "@/config/constans";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { BiLogOutCircle } from "react-icons/bi";
+import Button from "./ui/Button";
 
 const UserCard = () => {
   return (
@@ -29,9 +30,17 @@ const UserCard = () => {
       </ul>
       <div className='divider m-0'></div>
       {/* LogOut button */}
-      <Link className=' flex gap-2 px-2 py-2 btn-ghost text-[15px] ' href={"/"}>
+      <button
+        className='flex gap-2 px-2 py-2 w-full btn-ghost text-[15px]'
+        onClick={() => {
+          signOut();
+          setTimeout(() => {
+            location.href = "/";
+          }, 2000);
+        }}
+      >
         {<BiLogOutCircle />} Log Out
-      </Link>
+      </button>
     </div>
   );
 };
