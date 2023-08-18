@@ -1,9 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { headers } from "../../../next.config";
 import { signIn } from "next-auth/react";
 
+export const metadata = {
+  title: "Login",
+  description: "Login to your account",
+};
 export default function Page() {
   const [data, setData] = useState({ email: "", password: "" });
   const router = useRouter();
@@ -12,7 +15,17 @@ export default function Page() {
   const handleSumbit = async (e) => {
     e.preventDefault();
     setMessage("");
-    signIn("credentials", { ...data });
+    signIn("credentials", { ...data, redirect: false }).then((callback) => {
+      if (callback?.error) {
+        setMessage("password wrong");
+      }
+      if (callback?.ok && !callback?.error) {
+        setMessage("redirect...");
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
+      }
+    });
   };
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 '>
@@ -32,7 +45,7 @@ export default function Page() {
           message ? "flex" : "hidden"
         } min-h-6 text-center justify-center w-full m-4`}
       >
-        <p className='text-red-900'> {message}</p>
+        <p className='text-red-900'>{message}</p>
       </div>
       <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
         <form className='space-y-6' onSubmit={handleSumbit}>

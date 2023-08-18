@@ -2,13 +2,10 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import UserCard from "./UserCard";
-import UiButton from "./ui/UiButton";
-import OutlineBtn from "./ui/OutlineBtn";
 import Link from "next/link";
-
+import Button from "./ui/Button";
 const Navbar = () => {
   const [islogin, setislogin] = useState(false);
-  const email = "idrissimahdi2020@gmail.com";
   return (
     <div className='navbar  bg-base-200 h-[70px] sticky top-0 justify-between'>
       <div>
@@ -30,11 +27,11 @@ const Navbar = () => {
       ) : (
         <div className='flex gap-2'>
           <Link href={"/register"}>
-            <OutlineBtn variant={"primary"} text={"sing up"}></OutlineBtn>
+            <Button variant='primary_outline' text={"sing up"}></Button>
           </Link>
 
           <Link href={"/login"}>
-            <button className='btn btn-primary'>Sign In</button>
+            <Button variant='primary' text={"Sign In"}></Button>
           </Link>
         </div>
       )}
