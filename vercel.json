@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/deploy",
+      "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/deploy",
+      "schedule": "0 14 * * *"
+    }
+  ]
+}
