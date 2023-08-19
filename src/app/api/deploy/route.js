@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
   // make env variable later
   const res = await fetch(
-    "hhttps://api.vercel.com/v12/projects/prj_85twJD33MR5a4HemL6NZA4nJhHa9/deployments"
+    "https://api.vercel.com/v1/integrations/deploy/prj_85twJD33MR5a4HemL6NZA4nJhHa9/a2I6UqQLY9"
   );
-  return NextResponse.json({ succes: "true", res }, { status: 200 });
+  const data = await res.json();
+  return NextResponse.json({ succes: "true", data }, { status: 200 });
 }
