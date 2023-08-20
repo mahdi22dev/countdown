@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextResponse } from "next/server";
-
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -16,6 +15,7 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+        console.log(credentials);
         if (!credentials.email || !credentials.password) {
           return NextResponse.json(
             { message: "correct the required data" },

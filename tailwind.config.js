@@ -19,11 +19,11 @@ module.exports = {
     themes: [
       {
         dark: {
-          primary: "#a3e635",
-          secondary: "#22c55e",
-          accent: "#14b8a6",
+          primary: "#9fc78e",
+          secondary: "#dfecd9",
+          accent: "#6ca752",
           neutral: "#2a323c",
-          "base-100": "#1d232a",
+          "base-100": "#0f180c",
           info: "#3abff8",
           success: "#36d399",
           warning: "#fbbd23",
@@ -32,11 +32,11 @@ module.exports = {
       },
       {
         light: {
-          primary: "#a3e635",
-          secondary: "#22c55e",
-          accent: "#14b8a6",
+          primary: "#9fc78e",
+          secondary: "#dfecd9",
+          accent: "#6ca752",
           neutral: "#2a323c",
-          "base-100": "#fff",
+          "base-100": "#f9fcf8",
           info: "#3abff8",
           success: "#36d399",
           warning: "#fbbd23",

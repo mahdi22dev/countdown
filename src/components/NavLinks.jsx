@@ -4,7 +4,7 @@ import React from "react";
 
 const NavLinks = ({ className }) => {
   return (
-    <ul className={`p-3 bg-accent-focus ${className}`}>
+    <ul className={`p-3 base-100 ${className}`}>
       {navlinks.map((link) => {
         return (
           <Link

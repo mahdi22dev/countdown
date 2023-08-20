@@ -12,12 +12,28 @@ export const navlinks = [
   // build page for each category
   {
     id: 3,
-    name: "Page3",
-    path: "/",
+    name: "Trending",
+    path: "/trending",
   },
   {
     id: 3,
-    name: "Page4",
-    path: "/",
+    name: "Movies",
+    path: "/movies",
+  },
+
+  {
+    id: 4,
+    name: "TV",
+    path: "/tv",
+  },
+  {
+    id: 5,
+    name: "Anime",
+    path: "/anime",
+  },
+  {
+    id: 6,
+    name: "Games",
+    path: "/game",
   },
 ];
