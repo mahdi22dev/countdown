@@ -6,6 +6,7 @@ import { SlMenu } from "react-icons/sl";
 import { useSession } from "next-auth/react";
 import NavAuthLinks from "./NavAuthLinks";
 import NavLinks from "./NavLinks";
+import DropDown from "./DropDown";
 
 const Navbar = () => {
   const [islogin, setislogin] = useState(false);
@@ -61,19 +62,24 @@ const Navbar = () => {
         </div>
         <div className='drawer-side'>
           <label htmlFor='my-drawer' className='drawer-overlay'></label>
-          <ul className='menu p-4 w-[50%] h-full bg-base-200 text-base-content'>
+          <ul className='menu p-4 w-[50%] h-full bg-base-200 text-base-content items-end'>
             {/* the same in desktop but with flex reverse from hiden */}
             {islogin ? (
               // chnage to deffernet user component styles
-              <DropDown className={"flex md:hidden"} />
+              <DropDown
+                session={session}
+                className={" right-0 md:hidden self-end "}
+              />
             ) : authLoading ? (
-              <span className='loading loading-ring bg-primary loading-lg hidden md:flex'></span>
+              <span className='loading loading-ring bg-primary loading-lg hidden md:flex '></span>
             ) : (
               <>
-                <NavAuthLinks className={"flex md:hidden"} />
+                <NavAuthLinks
+                  className={"flex md:hidden justify-center w-full mb-5"}
+                />
               </>
             )}
-            <NavLinks className={"flex flex-col gap-2 md:hidden"} />
+            <NavLinks className={"flex flex-col gap-2 md:hidden  w-[100%]"} />
             {/* social */}
           </ul>
         </div>
