@@ -4,9 +4,9 @@ import Button from "./ui/Button";
 const NavAuthLinks = ({ className }) => {
   return (
     <div className={`flex gap-2 ${className}`}>
-      <Link href={"/register"}>
+      {/* <Link href={"/register"}>
         <Button variant='primary_outline' text={"sing up"}></Button>
-      </Link>
+      </Link> */}
       <Link href={"/login"}>
         <Button variant='primary' text={"Sign In"}></Button>
       </Link>

@@ -20,9 +20,14 @@ const buttonVariants = cva("btn", {
   },
 });
 
-export default function Button({ variant, size, text, ...props }) {
+export default function Button({ variant, size, text, className, ...props }) {
+  const combinedClassName = `${buttonVariants({
+    variant,
+    size,
+  })} ${className}`;
+
   return (
-    <button {...props} className={buttonVariants({ variant, size })}>
+    <button {...props} className={combinedClassName}>
       {text}
     </button>
   );

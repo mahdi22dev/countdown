@@ -52,12 +52,12 @@ const Navbar = () => {
       </div>
 
       {/* drawer for mobile copient all content like user drop down and resue it */}
-      <div className='drawer drawer-end  w-auto flex md:hidden'>
+      <div className='drawer drawer-end  w-auto flex md:hidden mr-4'>
         <input id='my-drawer' type='checkbox' className='drawer-toggle' />
         <div className='drawer-content '>
           {/* Page content here */}
-          <label htmlFor='my-drawer' className='cursor-pointer'>
-            <SlMenu />
+          <label htmlFor='my-drawer' className='cursor-pointer '>
+            <SlMenu className='text-3xl text-primary hover:text-secondary duration-200 hover:scale-125' />
           </label>
         </div>
         <div className='drawer-side'>

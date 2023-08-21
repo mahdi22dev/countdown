@@ -1,8 +1,7 @@
 "use client";
-// Need to be edited
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,7 +9,8 @@ const LoginForm = () => {
   const [Loading, setLoading] = useState(false);
   const router = useRouter();
   const [message, setMessage] = useState("");
-
+  const { data } = useSession();
+  console.log(data);
   // schema validation
   const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -32,7 +32,7 @@ const LoginForm = () => {
     console.log(data);
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
       if (callback?.error) {
-        setMessage("password wrong");
+        setMessage("Password wrong or the email doesn't exist");
         setLoading(false);
       }
       if (callback?.ok && !callback?.error) {
@@ -107,7 +107,6 @@ const LoginForm = () => {
                   name='password'
                   control={control}
                   defaultValue=''
-                  rules={{ required: "Password is required" }}
                   render={({ field }) => (
                     <input
                       id='password'
@@ -145,8 +144,10 @@ const LoginForm = () => {
           <div className='divider'>OR</div>
           <div>
             <button
-              type='submit'
               className={`btn-secondary btn min-h-[35px] h-2 max-h-2 rounded-sm  w-full  flex justify-center items-center`}
+              onClick={() => {
+                signIn("google");
+              }}
             >
               Sign in with google
             </button>

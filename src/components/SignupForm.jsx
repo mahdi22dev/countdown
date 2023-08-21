@@ -1,16 +1,19 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
-// Need to be edited
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
+import { IoEye } from "react-icons/io5";
+import Button from "./ui/Button";
 
 const SignupForm = () => {
-  const [data, setData] = useState({ username: "", email: "", password: "" });
   const [message, setMessage] = useState("");
   const router = useRouter();
   const [Loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setConfirmPassword] = useState(false);
+  // schema
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     username: yup.string().required(),
@@ -29,10 +32,9 @@ const SignupForm = () => {
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-
-  const onSumbit = async (e, data) => {
-    console.log(data);
-    e.preventDefault();
+  const test = (data) => console.log(data);
+  // handle sumbit
+  const onSumbit = async (data) => {
     setMessage("");
     setLoading(true);
     const res = await fetch("/api/register", {
@@ -42,7 +44,6 @@ const SignupForm = () => {
       },
       body: JSON.stringify({ data }),
     });
-    console.log(res.status);
     setLoading(false);
     const jsonResponse = await res.json();
     if (!jsonResponse) {
@@ -92,6 +93,8 @@ const SignupForm = () => {
                 <Controller
                   name='username'
                   control={control}
+                  defaultValue=''
+                  rules={{ required: "username is required" }}
                   render={({ field }) => (
                     <input
                       autoComplete='username'
@@ -101,7 +104,7 @@ const SignupForm = () => {
                     />
                   )}
                 />
-                {errors.email && (
+                {errors.username && (
                   <p className='text-red-500 mt-3 font-light text-sm'>
                     {errors.username.message}
                   </p>
@@ -120,6 +123,7 @@ const SignupForm = () => {
                 <Controller
                   name='email'
                   control={control}
+                  rules={{ required: "Email is required" }}
                   render={({ field }) => (
                     <input
                       autoComplete='email'
@@ -148,16 +152,24 @@ const SignupForm = () => {
                 <Controller
                   name='password'
                   control={control}
+                  rules={{ required: "Password is required" }}
                   render={({ field }) => (
-                    <input
-                      autoComplete='current-password'
-                      className='input input-accent w-full rounded-sm'
-                      {...field}
-                    />
+                    <div className='relative'>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        autoComplete='current-password'
+                        className='input input-accent w-full rounded-sm '
+                        {...field}
+                      />
+                      <IoEye
+                        onClick={() => setShowPassword(!showPassword)}
+                        className='absolute right-5 top-[30%] text-2xl cursor-pointer hover:text-primary duration-500'
+                      />
+                    </div>
                   )}
                 />
-                {errors.email && (
-                  <p className='text-red-500 mt-3 font-light text-sm'>
+                {errors.password && (
+                  <p className='text-red-500 mt-3 font-light text-sm '>
                     {errors.password.message}
                   </p>
                 )}
@@ -177,14 +189,27 @@ const SignupForm = () => {
                 <Controller
                   name='confirmPassword'
                   control={control}
+                  rules={{ required: "Password is required" }}
                   render={({ field }) => (
-                    <input
-                      className='input input-accent w-full rounded-sm'
-                      {...field}
-                    />
+                    <>
+                      <div className='relative'>
+                        <input
+                          type={showConfirmPassword ? "text" : "password"}
+                          className='input input-accent w-full rounded-sm'
+                          {...field}
+                          autoComplete='new-password'
+                        />
+                        <IoEye
+                          onClick={() =>
+                            setConfirmPassword(!showConfirmPassword)
+                          }
+                          className='absolute right-5 top-[30%] text-2xl cursor-pointer hover:text-primary duration-500'
+                        />
+                      </div>
+                    </>
                   )}
                 />
-                {errors.email && (
+                {errors.confirmPassword && (
                   <p className='text-red-500 mt-3 font-light text-sm'>
                     {errors.confirmPassword.message}
                   </p>
@@ -208,15 +233,15 @@ const SignupForm = () => {
               </button>
             </div>
           </form>
+          {/* divider */}
           <div className='divider'>OR</div>
           {/* google auth */}
           <div>
-            <button
-              type='submit'
-              className={`btn-secondary btn min-h-[35px] h-2 max-h-2 rounded-sm  w-full  flex justify-center items-center`}
-            >
-              Sign up with google
-            </button>
+            <Button
+              variant={"secondary"}
+              text={"Sign up with google"}
+              className={`min-h-[35px] h-2 max-h-2 rounded-sm w-full flex justify-center items-center`}
+            />
           </div>
           <p className='mt-10 text-center text-sm '>
             Already a member?{" "}
