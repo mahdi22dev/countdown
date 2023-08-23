@@ -5,9 +5,11 @@ import React from "react";
 import { BiLogOutCircle } from "react-icons/bi";
 import Button from "./ui/Button";
 
-const UserCard = () => {
+const UserCard = ({ childClass }) => {
   return (
-    <div className='w-full text-sm h-full p-3  mt-3 z-50 bg-base-200 border border-primary border-opacity-10 rounded-xl'>
+    <div
+      className={`${childClass} w-full text-sm h-full p-3 z-50 bg-base-200 border border-primary border-opacity-10 rounded-xl`}
+    >
       <div className='px-2'>
         <p className='text-secondary text-[15px] font-bold'>Mahdi idrissi</p>
         <p className='text-[10px] opacity-60'>idrissimahdi2020@gmail.com</p>

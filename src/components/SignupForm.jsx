@@ -2,10 +2,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import * as yup from "yup";
+
 import { Controller, useForm } from "react-hook-form";
 import { IoEye } from "react-icons/io5";
 import Button from "./ui/Button";
+import { SingUpschema } from "@/lib/validaion";
 
 const SignupForm = () => {
   const [message, setMessage] = useState("");
@@ -14,15 +15,6 @@ const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
   // schema
-  const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    username: yup.string().required(),
-    password: yup.string().required(),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Passwords must match")
-      .required(),
-  });
 
   // react hook form
   const {
@@ -31,7 +23,7 @@ const SignupForm = () => {
     watch,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(SingUpschema) });
   const test = (data) => console.log(data);
   // handle sumbit
   const onSumbit = async (data) => {

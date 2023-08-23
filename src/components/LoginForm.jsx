@@ -1,35 +1,28 @@
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Controller, useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SignInschema } from "@/lib/validaion";
 const LoginForm = () => {
   const [Loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const router = useRouter();
   const [message, setMessage] = useState("");
   const { data } = useSession();
-  console.log(data);
-  // schema validation
-  const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().required(),
-  });
-  // react hook form
   const {
     register,
     handleSubmit,
     watch,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(SignInschema) });
 
   // handlesumbit
   const onSubmit = (data) => {
     setMessage("");
     setLoading(true);
-    console.log(data);
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
       if (callback?.error) {
         setMessage("Password wrong or the email doesn't exist");
@@ -132,7 +125,7 @@ const LoginForm = () => {
                   Loading
                     ? " btn-disabled btn-primary btn-outline"
                     : "btn-primary"
-                } btn min-h-[40px] h-3 max-h-3 rounded-sm  w-full text-white flex justify-center items-center`}
+                } btn min-h-[40px] h-3 max-h-3 rounded-sm w-full text-white flex justify-center items-center`}
               >
                 {Loading && (
                   <span className='loading loading-spinner text-primary'></span>
@@ -144,11 +137,19 @@ const LoginForm = () => {
           <div className='divider'>OR</div>
           <div>
             <button
-              className={`btn-secondary btn min-h-[35px] h-2 max-h-2 rounded-sm  w-full  flex justify-center items-center`}
+              className={`${
+                googleLoading
+                  ? "btn-disabled btn-secondary btn-outline"
+                  : "btn-secondary"
+              } btn min-h-[35px] h-2 max-h-2 rounded-sm w-full flex justify-center items-center`}
               onClick={() => {
-                signIn("google");
+                signIn("github");
+                setGoogleLoading(true);
               }}
             >
+              {googleLoading && (
+                <span className='loading loading-spinner text-primary'></span>
+              )}
               Sign in with google
             </button>
           </div>

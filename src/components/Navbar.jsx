@@ -14,7 +14,6 @@ const Navbar = () => {
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
   useEffect(() => {
-    console.log(status);
     if (status === "authenticated") {
       setislogin(true);
       setAuthLoading(false);
@@ -46,7 +45,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between'>
+    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 '>
       <div>
         <p className='text-3xl'>Logo</p>
       </div>
@@ -66,10 +65,7 @@ const Navbar = () => {
             {/* the same in desktop but with flex reverse from hiden */}
             {islogin ? (
               // chnage to deffernet user component styles
-              <DropDown
-                session={session}
-                className={" right-0 md:hidden self-end "}
-              />
+              <DropDown childClass={"mt-5"} className={" md:hidden  "} />
             ) : authLoading ? (
               <span className='loading loading-ring bg-primary loading-lg hidden md:flex '></span>
             ) : (
@@ -89,9 +85,9 @@ const Navbar = () => {
       {/* hidden md:flex */}
       <NavLinks className={"hidden md:flex"} />
       {islogin ? (
-        <DropDown className={"hidden md:flex"} />
+        <DropDown childClass={"mt-72"} className={"hidden md:flex"} />
       ) : authLoading ? (
-        <span className='loading loading-ring bg-primary loading-lg hidden md:flex'></span>
+        <span className='loading loading-ring bg-primary loading-lg hidden md:flex mt-'></span>
       ) : (
         <>
           <NavAuthLinks className={"hidden md:flex"} />
