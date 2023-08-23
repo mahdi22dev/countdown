@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [googleLoading, setGoogleLoading] = useState(false);
   const router = useRouter();
   const [message, setMessage] = useState("");
-  const { data } = useSession();
+
   const {
     register,
     handleSubmit,
