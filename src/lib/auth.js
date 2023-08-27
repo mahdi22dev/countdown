@@ -20,7 +20,6 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials);
         if (!credentials.email || !credentials.password) {
           return NextResponse.json(
             { message: "correct the required data" },

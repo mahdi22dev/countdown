@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import UserCard from "./UserCard";
 import { SlMenu } from "react-icons/sl";
 import { useSession } from "next-auth/react";
 import NavAuthLinks from "./NavAuthLinks";
@@ -13,6 +11,7 @@ const Navbar = () => {
   const [authLoading, setAuthLoading] = useState(true);
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
+  console.log(sessionUser);
   useEffect(() => {
     if (status === "authenticated") {
       setislogin(true);
