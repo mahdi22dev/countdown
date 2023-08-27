@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Button from "../../ui/Button";
 import UserCountdownButtons from "./UserCountdownButtons";
 import SingleUserCountdown from "./SingleUserCountdown";
+import { animeReleases } from "@/config/testData";
 
 const UserCountdown = () => {
   const [islogin, setislogin] = useState(false);
@@ -56,35 +57,25 @@ const UserCountdown = () => {
       </div>
     );
   }
+
+  const currentDate = new Date();
+  const FilterAnimetest = animeReleases.filter((anime) => {
+    const releasDate = new Date(anime.date);
+    return releasDate >= currentDate;
+  });
+
   return (
     <section className='w-full h-80 '>
       {/* button list */}
       <UserCountdownButtons />
       <ul className='max-w-7xl h-full mx-auto scroll-smooth flex justify-start  border-orange-400 border py-2 overflow-x-auto '>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
-        <li>
-          <SingleUserCountdown />
-        </li>
+        {FilterAnimetest?.map((countdown, index) => {
+          return (
+            <li key={anime.id}>
+              <SingleUserCountdown countdown={countdown} />
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

@@ -12,9 +12,7 @@ const UserCard = ({ childClass, data }) => {
     >
       <div className='px-2'>
         <p className='text-secondary text-[15px] font-bold'>{name ?? "user"}</p>
-        <p className='text-[10px] opacity-60'>
-          {email ?? "idrissimahdi2020@gmail.com"}
-        </p>
+        <p className='text-[10px] opacity-60'>{email ?? "email@gmail.com"}</p>
       </div>
       <div className='divider m-0'></div>
       {/* Links */}
