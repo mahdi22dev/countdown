@@ -71,7 +71,7 @@ const UserCountdown = () => {
       <ul className='max-w-7xl h-full mx-auto scroll-smooth flex justify-start  border-orange-400 border py-2 overflow-x-auto '>
         {FilterAnimetest?.map((countdown, index) => {
           return (
-            <li key={anime.id}>
+            <li key={countdown.id}>
               <SingleUserCountdown countdown={countdown} />
             </li>
           );
