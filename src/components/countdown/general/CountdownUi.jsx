@@ -3,8 +3,6 @@ import { calculateTime } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
 const CountdownUi = ({ eventtime }) => {
-  // actual event time
-  const tomorrow = new Date("2023-09-06");
   // asign countdown value to usestate
   const [remainingTime, setRemainingTime] = useState(calculateTime(eventtime));
   // use effect to change and update countdown values
@@ -12,7 +10,6 @@ const CountdownUi = ({ eventtime }) => {
     const interval = setInterval(() => {
       const newRemainingTime = calculateTime(eventtime);
       setRemainingTime(newRemainingTime);
-      console.log(remainingTime);
     }, 1000);
 
     return () => {
