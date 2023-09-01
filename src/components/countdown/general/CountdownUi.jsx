@@ -21,25 +21,25 @@ const CountdownUi = ({ eventtime }) => {
 
   return (
     <div className='grid grid-flow-col gap-5 text-center auto-cols-max mx-auto '>
-      <div className='flex flex-col p-2 bg-neutral rounded-box text-neutral-content'>
+      <div className='flex flex-col p-2 bg-primary rounded-box text-neutral-content'>
         <span className='countdown font-mono text-2xl'>
           <span style={{ "--value": days ?? "1" }}></span>
         </span>
         days
       </div>
-      <div className='flex flex-col p-2 bg-neutral rounded-box text-neutral-content'>
+      <div className='flex flex-col p-2 bg-primary rounded-box text-neutral-content'>
         <span className='countdown font-mono text-2xl'>
           <span style={{ "--value": hours ?? "23" }}></span>
         </span>
         hours
       </div>
-      <div className='flex flex-col p-2 bg-neutral rounded-box text-neutral-content'>
+      <div className='flex flex-col p-2 bg-primary rounded-box text-neutral-content'>
         <span className='countdown font-mono text-2xl'>
           <span style={{ "--value": minutes ?? "59" }}></span>
         </span>
         min
       </div>
-      <div className='flex flex-col p-2 bg-neutral rounded-box text-neutral-content'>
+      <div className='flex flex-col p-2 bg-primary rounded-box text-neutral-content'>
         <span className='countdown font-mono text-2xl'>
           <span style={{ "--value": seconds ?? "59" }}></span>
         </span>

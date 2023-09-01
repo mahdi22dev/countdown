@@ -44,6 +44,17 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  countdowns    Countdown[]
+
+}
+model Countdown {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  targetDate DateTime
+  createdAt  DateTime? @default(now())
+  category String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId // relation scalar field  (used in the `@relation` attribute above)
 }
 
 
