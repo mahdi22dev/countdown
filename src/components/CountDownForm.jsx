@@ -29,17 +29,7 @@ const CountDownForm = () => {
   };
 
   const [selectedImage, setSelectedImage] = useState(null);
-  const handleImageClick = (id) => {
-    const updatedImages = images.map((image) => {
-      if (image.id === id) {
-        return { ...image, selected: true };
-      } else {
-        return { ...image, selected: false };
-      }
-    });
 
-    setSelectedImage(id);
-  };
   return (
     <form onSubmit={handleSubmit(Submit)} className='sm:w-2/4 w-3/4 mx-auto'>
       <p className='text-red-900'>{message}</p>
