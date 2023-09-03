@@ -1,3 +1,4 @@
+import { MyDrawer } from "@/components/Mydrawer";
 import UserCountdown from "@/components/countdown/user/UserCountdown";
 
 export default function Home() {

@@ -12,9 +12,7 @@ const LoginForm = () => {
   const [message, setMessage] = useState("");
 
   const {
-    register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(SignInschema) });

@@ -44,7 +44,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 '>
+    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 z-50'>
       <div>
         <p className='text-3xl'>Logo</p>
       </div>

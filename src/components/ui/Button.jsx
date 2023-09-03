@@ -8,6 +8,7 @@ const buttonVariants = cva("btn", {
       primary_outline: "btn-primary btn-outline",
       secondary: "btn-secondary",
       ghost: "btn-ghost",
+      disabled: "bbtn-disabled",
     },
     size: {
       default: "h-3 py-2 px-4",

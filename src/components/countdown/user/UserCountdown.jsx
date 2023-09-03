@@ -94,7 +94,7 @@ const UserCountdown = () => {
       <UserCountdownButtons />
       <Carousel
         responsive={responsive}
-        className='w-full max-w-7xl h-[340px] cursor-pointer  mx-auto bg-base-100 border border-primary p-1 rounded-md'
+        className='w-full max-w-7xl h-[340px] cursor-pointer  mx-auto bg-base-100 border border-primary p-1 rounded-md -z-0'
         sliderClass='w-full h-full scroll-smooth flex justify-start items-start overflow-hiddenr  p-2 gap-2'
         itemClass=' w-full h-full m-2 flex flex-col justify-between px-2 py-4'
       >

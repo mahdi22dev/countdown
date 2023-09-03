@@ -12,3 +12,30 @@ export const SignInschema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
+
+export const AddCountDownSchema = yup.object().shape({
+  title: yup.string().required(),
+  date: yup
+    .date()
+    .transform((value, originalValue) => {
+      // Attempt to parse the input value as a date
+      const parsedDate = new Date(originalValue);
+
+      // Check if the parsedDate is a valid date
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate;
+      }
+
+      // Return undefined if the input is not a valid date
+      return undefined;
+    })
+    .required("Target date is required")
+    .test("is-future-date", "Target date must be in the future", (value) => {
+      // Ensure the value is not undefined (meaning it's a valid date)
+      // and that it's greater than or equal to 24 hours from now
+      if (value && value >= new Date().getTime() + 24 * 60 * 60 * 1000) {
+        return true;
+      }
+      return false;
+    }),
+});
