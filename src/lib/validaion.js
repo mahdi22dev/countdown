@@ -15,6 +15,7 @@ export const SignInschema = yup.object().shape({
 
 export const AddCountDownSchema = yup.object().shape({
   title: yup.string().required(),
+  descripe: yup.string(),
   date: yup
     .date()
     .transform((value, originalValue) => {

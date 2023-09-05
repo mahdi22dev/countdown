@@ -13,7 +13,7 @@ export async function GET() {
   });
 
   if (!existingUser) {
-    console.error("User not found");
+    return NextResponse.json({ success: false }, { status: 200 });
   } else {
     const newCountdown = await prisma.userCountdown.create({
       data: {
@@ -24,5 +24,5 @@ export async function GET() {
 
     console.log("Countdown added to the user:", newCountdown);
   }
-  return NextResponse.json({ data: "data" }, { status: 200 });
+  return NextResponse.json({ success: true, data: "data" }, { status: 200 });
 }
