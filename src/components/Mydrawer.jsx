@@ -2,18 +2,10 @@
 import { Drawer } from "vaul";
 import Button from "./ui/Button";
 import CountDownForm from "./CountDownForm";
-const images = [
-  { id: 1, url: "/movies.jpg", selected: false },
-  { id: 2, url: "/movies.jpg", selected: false },
-  { id: 3, url: "/movies.jpg", selected: false },
-  { id: 4, url: "/movies.jpg", selected: false },
-  { id: 5, url: "/movies.jpg", selected: false },
-  { id: 6, url: "/movies.jpg", selected: false },
-];
 
 export function MyDrawer() {
   return (
-    <Drawer.Root shouldScaleBackground>
+    <Drawer.Root>
       <Drawer.Trigger asChild>
         <Button
           size={"sm"}
@@ -22,10 +14,15 @@ export function MyDrawer() {
         />
       </Drawer.Trigger>
       <Drawer.Portal>
-        <Drawer.Overlay className='fixed inset-0 bg-black/70 ' />
-        <Drawer.Content className='flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0 z-50'>
-          <div className='p-4 rounded-t-[10px] flex-1 bg-secondary'>
-            <div className='mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-primary mb-8 cursor-pointer' />
+        <Drawer.Overlay className='fixed inset-0 bg-secondary ' />
+        <Drawer.Content className='flex flex-col rounded-t-[10px] h-[100%] mt-24 fixed bottom-0 left-0 right-0  overflow-auto '>
+          <div className='p-4 rounded-t-[10px] flex-1 bg-secondary  '>
+            <div className='mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-primary mb-2 cursor-pointer'></div>
+            <p className='text-xs w-full text-center'> drag down to close</p>
+            <p className=' w-full text-center text-lg lg:text-2xl my-1 text-primary-content'>
+              {" "}
+              Create Your Countdown
+            </p>
             <CountDownForm />
           </div>
         </Drawer.Content>
