@@ -137,9 +137,9 @@ const CountDownForm = () => {
 
       <button
         type='submit'
-        className={`btn flex justify-center items-center mx-auto mt-2 ${
-          isPending ? "btn-disabled btn-accent" : "btn-primary"
-        }`}
+        className={` ${
+          isPending ? "btn-disabled btn-primary btn-outline" : "btn-primary"
+        } btn flex justify-center items-center mx-auto mt-2`}
       >
         {isPending && (
           <span className='loading loading-spinner text-primary loading-xs '></span>

@@ -8,7 +8,7 @@ function delay(ms) {
 }
 
 export async function onCreate(formData) {
-  await delay(1000);
+  await delay(5000);
   console.log("from server");
   console.table(formData);
   return formData;
