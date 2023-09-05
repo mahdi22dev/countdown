@@ -18,7 +18,7 @@ const ImageGrid = ({ images, setSelectedImage, selectedImage }) => {
             height={250}
             style={{ zIndex: -1111 }}
             onClick={() => handleImageClick(image.id)}
-            className={`cursor-pointer relative -z-50 hover:border-opacity-100 border-4 border-accent rounded-md mx-auto ${
+            className={`cursor-pointer relative  hover:border-opacity-100 border-4 border-accent rounded-md mx-auto index ${
               image.id == selectedImage
                 ? "border-opacity-100 opacity-90"
                 : "border-opacity-40"

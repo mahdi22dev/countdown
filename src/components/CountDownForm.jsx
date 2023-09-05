@@ -68,18 +68,18 @@ const CountDownForm = () => {
       <div className=' mb-2'>
         <div className='mb-1'>
           <label
-            htmlFor={"descreption"}
+            htmlFor={"description"}
             className='capitalize text-primary-content'
           >
-            {"Descreption"}
+            {"Descreition"}
           </label>
         </div>
         <Controller
-          name={"descreption"}
+          name={"description"}
           control={control}
           render={({ field }) => (
             <textarea
-              placeholder='descripe your countdown'
+              placeholder='describe your countdown'
               className='textarea textarea-bordered textarea-lg w-full max-w-xs'
               {...field}
             ></textarea>
@@ -116,6 +116,7 @@ const CountDownForm = () => {
               selected={targetDate}
               onSelect={(date) => setTargetDate(date)}
               style={{ zIndex: 1000 }}
+              showPopperArrow
               value={targetDate}
               {...field}
             />
