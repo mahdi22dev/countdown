@@ -11,7 +11,10 @@ const SingleUserCountdown = ({ countdown }) => {
         <p>tags</p>
         <div>delete icon</div>
       </div>
-      <p className='my-2 text-center z-10 text-primary'> {countdown.title}</p>
+      <p className='my-2 text-center z-10 text-primary capitalize'>
+        {" "}
+        {countdown.title}
+      </p>
       <CountdownUi eventtime={countdown.targetDate} />
     </div>
   );
