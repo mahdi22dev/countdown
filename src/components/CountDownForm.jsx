@@ -9,19 +9,6 @@ import ImageGrid from "./ImageGrid";
 import { onCreate } from "@/server-actions/add-countdown";
 import { useRouter } from "next/navigation";
 
-const images = [
-  { id: 1, url: "/movies.jpg" },
-  { id: 2, url: "/movies.jpg" },
-  { id: 3, url: "/movies.jpg" },
-  { id: 4, url: "/movies.jpg" },
-  { id: 5, url: "/movies.jpg" },
-  { id: 6, url: "/movies.jpg" },
-  { id: 7, url: "/movies.jpg" },
-  { id: 8, url: "/movies.jpg" },
-  { id: 9, url: "/movies.jpg" },
-  { id: 10, url: "/movies.jpg" },
-];
-
 const CountDownForm = () => {
   const [isPending, setIsPending] = useState(false);
   const inputRef = useRef(null);
@@ -65,7 +52,7 @@ const CountDownForm = () => {
       setMessage(res.message.tryagain);
       router.push(`/`);
     }
-
+    setSelectedImage("");
     setIsPending(false);
   };
 
@@ -134,7 +121,6 @@ const CountDownForm = () => {
         {/* Theme Picker */}
         <p className='mb-2 text-primary-content'>Pick a Theme</p>
         <ImageGrid
-          images={images}
           setSelectedImage={setSelectedImage}
           selectedImage={selectedImage}
         />

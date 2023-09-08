@@ -20,7 +20,7 @@ const CountdownUi = ({ eventtime }) => {
   const { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
 
   return (
-    <div className='grid grid-flow-col gap-5 text-center auto-cols-max mx-auto '>
+    <div className='grid grid-flow-col gap-5 text-center auto-cols-max mx-auto z-50'>
       <div className='flex flex-col p-2 bg-primary rounded-box text-neutral-content'>
         <span className='countdown font-mono text-2xl'>
           <span style={{ "--value": days ?? "1" }}></span>
