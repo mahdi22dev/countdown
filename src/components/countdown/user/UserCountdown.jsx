@@ -8,6 +8,8 @@ import SingleUserCountdown from "./SingleUserCountdown";
 import { animeReleases } from "@/config/testData";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import AuthLoading from "@/components/loading/AuthLoading";
+import IsLoginLoading from "@/components/loading/IsLoginLoading";
 
 const responsive = {
   desktop: {
@@ -50,7 +52,6 @@ const UserCountdown = () => {
   }, [status]);
 
   useEffect(() => {
-    console.log(status);
     setAuthLoading(true);
     if (status === "authenticated") {
       setislogin(true);
@@ -67,19 +68,11 @@ const UserCountdown = () => {
   }, []);
 
   if (authLoading) {
-    return (
-      <span className='loading loading-dots text-primary loading-lg'></span>
-    );
+    return <AuthLoading />;
   }
 
   if (!authLoading && !islogin) {
-    return (
-      <div className='w-full h-80 border-orange-400 border p-1 flex justify-center items-center'>
-        <Link href={"/login"}>
-          <Button variant='primary' text={"Sign In"}></Button>
-        </Link>
-      </div>
-    );
+    return <IsLoginLoading />;
   }
 
   const currentDate = new Date();
@@ -90,7 +83,7 @@ const UserCountdown = () => {
   });
 
   return (
-    <section className='w-full h-80 '>
+    <section className='w-full  p-5'>
       <UserCountdownButtons />
       <Carousel
         responsive={responsive}
