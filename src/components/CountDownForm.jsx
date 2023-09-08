@@ -8,11 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import ImageGrid from "./ImageGrid";
 import { onCreate } from "@/server-actions/add-countdown";
 import { useRouter } from "next/navigation";
+import Toast from "./ui/Toast";
 
 const CountDownForm = () => {
   const [isPending, setIsPending] = useState(false);
   const inputRef = useRef(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
   const [targetDate, setTargetDate] = useState(new Date());
   const [selectedImage, setSelectedImage] = useState(1);
   const router = useRouter();
@@ -28,7 +29,7 @@ const CountDownForm = () => {
 
   const Submit = async (data) => {
     // handle errors
-    setMessage("");
+    setMessage(null);
     setIsPending(true);
     const UserCountdownObject = { ...data, imageId: selectedImage };
     const res = await onCreate(UserCountdownObject);
@@ -65,7 +66,7 @@ const CountDownForm = () => {
       onSubmit={handleSubmit(Submit)}
       className='sm:w-3/4 w-[90%] h-full mx-auto p-2 pt-0'
     >
-      <p className='text-red-900 min-h-6 text-center'>{message}</p>
+      {message && <Toast message={message} type={"success"} />}
 
       <div className='inputs'>
         {" "}
