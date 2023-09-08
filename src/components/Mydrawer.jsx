@@ -14,8 +14,8 @@ export function MyDrawer() {
         />
       </Drawer.Trigger>
       <Drawer.Portal>
-        <Drawer.Overlay className='fixed inset-0 bg-secondary' />
-        <Drawer.Content className='flex flex-col rounded-t-[10px] h-[100%] mt-24 fixed bottom-0 left-0 right-0  overflow-auto '>
+        <Drawer.Overlay className='fixed inset-0 bg-secondary z-[1000]' />
+        <Drawer.Content className='flex flex-col rounded-t-[10px] h-[100%] mt-24 fixed bottom-0 left-0 right-0  overflow-auto z-[1001] '>
           <div className='p-4 rounded-t-[10px] flex-1 bg-secondary  '>
             <div className='mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-primary mb-2 cursor-pointer'></div>
             <p className='text-xs w-full text-center'> drag down to close</p>

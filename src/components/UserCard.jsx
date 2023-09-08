@@ -8,7 +8,7 @@ const UserCard = ({ childClass, data }) => {
   const { name, email } = data?.user;
   return (
     <div
-      className={`${childClass} w-full text-sm h-full p-3 z-50 bg-base-200 border border-primary border-opacity-10 rounded-xl`}
+      className={`${childClass} w-full text-sm h-full p-3 bg-base-200 border border-primary border-opacity-10 rounded-xl`}
     >
       <div className='px-2'>
         <p className='text-secondary text-[15px] font-bold'>{name ?? "user"}</p>

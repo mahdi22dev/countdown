@@ -11,7 +11,6 @@ const Navbar = () => {
   const [authLoading, setAuthLoading] = useState(true);
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
-  console.log(sessionUser);
   useEffect(() => {
     if (status === "authenticated") {
       setislogin(true);
@@ -44,7 +43,7 @@ const Navbar = () => {
     }
   }, []);
   return (
-    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 z-0'>
+    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 z-50'>
       <div>
         <p className='text-3xl'>Logo</p>
       </div>
