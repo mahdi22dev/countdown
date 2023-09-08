@@ -4,7 +4,7 @@ export const links = [
   {
     id: 1,
     name: "Show Profile",
-    path: "/profile",
+    path: "/user/profile",
     icon: <IoEye className='text-sm' />,
   },
   {

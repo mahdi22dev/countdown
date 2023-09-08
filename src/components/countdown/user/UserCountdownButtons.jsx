@@ -1,12 +1,6 @@
 "use client";
-import { MyDrawer } from "@/components/Mydrawer";
-import Button from "@/components/ui/Button";
 
-async function addCountdown() {
-  const res = await fetch("http://localhost:3000/api/add");
-  const data = await res.json();
-  return data;
-}
+import { MyDrawer } from "@/components/Mydrawer";
 
 const UserCountdownButtons = () => {
   return (

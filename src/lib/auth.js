@@ -48,10 +48,24 @@ export const authOptions = {
       },
     }),
   ],
+
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
     error: "/api/auth/error",
   },
   debug: process.env.NODE_ENV !== "production",
+  callbacks: {
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = user?.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user.id = token.id;
+      return session;
+    },
+  },
 };

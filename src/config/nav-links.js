@@ -7,7 +7,7 @@ export const navlinks = [
   {
     id: 2,
     name: "My countdwons",
-    path: "/profile",
+    path: "/user/profile",
   },
   // build page for each category
   {

@@ -2,12 +2,12 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AddCountDownSchema } from "@/lib/validaion";
-import { useEffect, useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ImageGrid from "./ImageGrid";
-import Button from "./ui/Button";
 import { onCreate } from "@/server-actions/add-countdown";
+import { useRouter } from "next/navigation";
 
 const images = [
   { id: 1, url: "/movies.jpg" },
@@ -24,23 +24,53 @@ const images = [
 
 const CountDownForm = () => {
   const [isPending, setIsPending] = useState(false);
+  const inputRef = useRef(null);
   const [message, setMessage] = useState("");
   const [targetDate, setTargetDate] = useState(new Date());
   const [selectedImage, setSelectedImage] = useState(1);
+  const router = useRouter();
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm({ resolver: yupResolver(AddCountDownSchema) });
 
   // handlesumbit
+
   const Submit = async (data) => {
+    // handle errors
+    setMessage("");
     setIsPending(true);
     const UserCountdownObject = { ...data, imageId: selectedImage };
     const res = await onCreate(UserCountdownObject);
-    console.table(res);
+
+    if (res.message.success) {
+      setMessage(res.message.success);
+      router.push(`/user/countdowns/${res.message.newCountdown.id}`);
+    }
+    if (res.message.Notfound) {
+      setMessage(res.message.success);
+      setMessage(res.message.Notfound);
+      router.push(`/register`);
+    }
+    if (res.message.login) {
+      setMessage(res.message.success);
+      setMessage(res.message.login);
+      router.push(`/login`);
+    }
+    if (res.message.tryagain) {
+      setMessage(res.message.success);
+      setMessage(res.message.tryagain);
+      router.push(`/`);
+    }
+
     setIsPending(false);
+  };
+
+  const handleChangeDate = (date) => {
+    inputRef.current.focus();
   };
 
   return (
@@ -48,7 +78,7 @@ const CountDownForm = () => {
       onSubmit={handleSubmit(Submit)}
       className='sm:w-3/4 w-[90%] h-full mx-auto p-2 pt-0'
     >
-      <p className='text-red-900 min-h-6'>{}</p>
+      <p className='text-red-900 min-h-6 text-center'>{message}</p>
 
       <div className='inputs'>
         {" "}
@@ -116,7 +146,7 @@ const CountDownForm = () => {
             </label>
           </div>
           <Controller
-            name={"date"}
+            name={"targetDate"}
             control={control}
             render={({ field }) => (
               <DatePicker
@@ -124,6 +154,8 @@ const CountDownForm = () => {
                 selected={targetDate}
                 onSelect={(date) => setTargetDate(date)}
                 style={{ zIndex: 1000 }}
+                onChange={handleChangeDate}
+                ref={inputRef}
                 showPopperArrow
                 value={targetDate}
                 {...field}
