@@ -6,7 +6,7 @@ const IsLoginLoading = () => {
   return (
     <section className='w-full h-80 flex flex-col justify-center items-center bg-primary/50'>
       <p className='mb-4'>Please sign in to add your countdowns.</p>
-      <Link href={"/login"}>
+      <Link href={"/auth/login"}>
         <Button variant='primary' text={"Sign In"}></Button>
       </Link>
     </section>
