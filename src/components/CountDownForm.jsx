@@ -41,12 +41,12 @@ const CountDownForm = () => {
     if (res.message.Notfound) {
       setMessage(res.message.success);
       setMessage(res.message.Notfound);
-      router.push(`/register`);
+      router.push(`/auth/register`);
     }
     if (res.message.login) {
       setMessage(res.message.success);
       setMessage(res.message.login);
-      router.push(`/login`);
+      router.push(`/auth/login`);
     }
     if (res.message.tryagain) {
       setMessage(res.message.success);

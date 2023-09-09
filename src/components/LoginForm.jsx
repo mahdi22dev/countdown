@@ -153,7 +153,7 @@ const LoginForm = () => {
           </div>
           <p className='mt-10 text-center text-sm '>
             Not a member?{" "}
-            <a href='/register' className='link link-primary '>
+            <a href='/auth/register' className='link link-primary '>
               create new account
             </a>
           </p>

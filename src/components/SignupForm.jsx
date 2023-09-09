@@ -237,7 +237,7 @@ const SignupForm = () => {
           </div>
           <p className='mt-10 text-center text-sm '>
             Already a member?{" "}
-            <a href='/login' className='link link-primary '>
+            <a href='/auth/login' className='link link-primary '>
               sign in
             </a>
           </p>
