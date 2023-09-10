@@ -1,8 +1,6 @@
 "use client";
 import { calculateTime } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Variants } from "../../../../variants/variants";
 import MotionAnimateTime from "./MotionAnimateTime";
 
 const CountdownUi = ({ eventtime }) => {

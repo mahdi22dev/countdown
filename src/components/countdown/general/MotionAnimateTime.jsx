@@ -1,13 +1,14 @@
+"use client";
 import { motion } from "framer-motion";
 import { Variants } from "../../../../variants/variants";
-const MotionAnimateTime = ({ time }) => {
+const MotionAnimateTime = ({ time, size }) => {
   return (
     <motion.p
       layout
       variants={Variants}
       initial={"initial"}
       animate={"animate"}
-      className='font-extrabold'
+      className={`font-extrabold text-${size || "xs"}`}
       key={time}
     >
       {time}

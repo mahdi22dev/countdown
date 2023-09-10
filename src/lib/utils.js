@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const calculateTime = (eventTime) => {
   const now = new Date();
   const eventDate = new Date(eventTime);
@@ -21,4 +23,8 @@ export const calculateTime = (eventTime) => {
   } else {
     return null; // Event already passed
   }
+};
+
+export const formatDate = (date) => {
+  return moment(date).format("D MMMM, YYYY");
 };
