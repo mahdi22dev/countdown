@@ -28,7 +28,7 @@ export default async function Page({ params }) {
   return (
     <main className='w-full min-h-screen relative'>
       <div className='center-item z-30 w-full '>
-        <p className='text-5xl font-extrabold uppercase text-primary'>
+        <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary'>
           {title}
         </p>
         <Divider date={date} />

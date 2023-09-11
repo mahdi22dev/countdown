@@ -8,7 +8,7 @@ const MotionAnimateTime = ({ time, size }) => {
       variants={Variants}
       initial={"initial"}
       animate={"animate"}
-      className={`font-extrabold text-${size || "xs"}`}
+      className={`font-extrabold ${size}`}
       key={time}
     >
       {time}
