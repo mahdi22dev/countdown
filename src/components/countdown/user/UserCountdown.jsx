@@ -16,6 +16,7 @@ const UserCountdown = () => {
   const [authLoading, setAuthLoading] = useState(true);
   const [isPending, setIspending] = useState(false);
   const [countdowns, setCountdowns] = useState([]);
+  const [refetch, setReFetch] = useState(false);
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
 
@@ -41,7 +42,7 @@ const UserCountdown = () => {
       setislogin(false);
       setAuthLoading(true);
     }
-  }, [status]);
+  }, [status, refetch]);
 
   useEffect(() => {
     setAuthLoading(true);
@@ -94,7 +95,10 @@ const UserCountdown = () => {
           {countdowns?.map((countdown) => {
             return (
               <li key={countdown.id}>
-                <SingleUserCountdown countdown={countdown} />
+                <SingleUserCountdown
+                  countdown={countdown}
+                  setReFetch={setReFetch}
+                />
               </li>
             );
           })}
