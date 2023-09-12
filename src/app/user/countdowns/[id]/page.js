@@ -23,7 +23,7 @@ export default async function Page({ params }) {
   if (user.countdowns.length == 0) {
     return notFound();
   }
-  const { id, title, targetDate, imageId, description } = user.countdowns[0];
+  const { title, targetDate, imageId } = user.countdowns[0];
   const date = formatDate(targetDate);
   return (
     <main className='w-full min-h-screen relative'>
@@ -31,6 +31,7 @@ export default async function Page({ params }) {
         <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary'>
           {title}
         </p>
+
         <Divider date={date} />
         <CountdownUiPage eventtime={targetDate} />
       </div>

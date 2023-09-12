@@ -64,7 +64,7 @@ const CountDownForm = () => {
   return (
     <form
       onSubmit={handleSubmit(Submit)}
-      className='sm:w-3/4 w-[90%] h-full mx-auto p-2 pt-0'
+      className=' w-[100%] h-full mx-auto p-2 pt-0'
     >
       {message && <Toast message={message} type={"success"} />}
 
@@ -97,7 +97,7 @@ const CountDownForm = () => {
           )}
         </div>
         {/* descreption */}
-        <div className=' mb-2'>
+        {/* <div className=' mb-2'>
           <div className='mb-1'>
             <label
               htmlFor={"description"}
@@ -117,7 +117,7 @@ const CountDownForm = () => {
               ></textarea>
             )}
           />
-        </div>
+        </div> */}
         {/* form inputs */}
         {/* Theme Picker */}
         <p className='mb-2 text-primary-content'>Pick a Theme</p>

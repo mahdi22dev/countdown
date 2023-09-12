@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Variants } from "../../../../variants/variants";
+import { Variants } from "../../../variants/variants";
 const MotionAnimateTime = ({ time, size }) => {
   return (
     <motion.p

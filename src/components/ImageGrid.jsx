@@ -5,22 +5,23 @@ import React from "react";
 
 const ImageGrid = ({ setSelectedImage, selectedImage }) => {
   const handleImageClick = (id) => {
-    console.log(selectedImage);
     setSelectedImage(id);
-    console.log(id);
   };
 
   return (
-    <div className='grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-1 grid bg-primary (remove bg color) rounded-sm -z-50 '>
+    <div className='grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-1 gap-y-2 grid rounded-sm -z-50 bg-primary/20 xl:w-[90%] mr-auto md:w-full'>
       {images.map((image) => (
-        <div key={image.id} className={`z-40 p-2  w-60 h-40 relative `}>
+        <div
+          key={image.id}
+          className={`z-40 p-2 w-[80%] h-24 sm:w-56 sm:h-28 md:w-60 md:h-40 relative mx-auto  `}
+        >
           <Image
             src={image.url}
             alt={`Image `}
             fill
             style={{ zIndex: -1111 }}
             onClick={() => handleImageClick(image.id)}
-            className={`cursor-pointer relative  hover:border-opacity-100 border-4 border-accent rounded-md mx-auto  ${
+            className={`cursor-pointer relative  hover:border-opacity-100 border-4 border-accent rounded-md  ${
               image.id == selectedImage
                 ? "border-opacity-100 opacity-60"
                 : "border-opacity-40"
