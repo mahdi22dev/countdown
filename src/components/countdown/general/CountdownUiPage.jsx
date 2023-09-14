@@ -18,8 +18,14 @@ const CountdownUiPage = ({ eventtime }) => {
     };
   }, [eventtime]);
 
-  const { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
-
+  let { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
+  let date1 = new Date();
+  if (eventtime < date1) {
+    days = 0;
+    hours = 0;
+    seconds = 0;
+    minutes = 0;
+  }
   return (
     <div className='grid grid-flow-col gap-1 text-center auto-cols-max z-50 mx-auto mt-3 justify-center items-center'>
       <div className='flex flex-col p-2 bg-primary rounded-lg  justify-center items-center w-24 h-16 md:w-40 md:h-24'>

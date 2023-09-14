@@ -51,22 +51,23 @@ const Modal = ({ className, countdownid, setReFetch }) => {
               {/* if there is a button in form, it will close the modal */}
               <div className=' flex gap-2 justify-center items-center w-full'>
                 {/* delete button */}
-                <div
-                  onClick={() => {
-                    handledelete(countdownid);
-                  }}
-                  className={` ${
-                    isPending
-                      ? "btn-disabled btn-primary btn-outline"
-                      : "btn-primary"
-                  } btn flex justify-center items-center mx-auto mb-0 mt-0`}
-                >
-                  {isPending && (
-                    <span className='loading loading-spinner text-primary loading-xs  '></span>
-                  )}
-                  delete
+                <div className='tooltip' data-tip='hello'>
+                  <div
+                    onClick={() => {
+                      handledelete(countdownid);
+                    }}
+                    className={` ${
+                      isPending
+                        ? "btn-disabled btn-primary btn-outline"
+                        : "btn-primary"
+                    } btn flex justify-center items-center mx-auto mb-0 mt-0`}
+                  >
+                    {isPending && (
+                      <span className='loading loading-spinner text-primary loading-xs  '></span>
+                    )}
+                    delete
+                  </div>
                 </div>
-
                 {/* cancel button */}
                 <button className='btn btn-primary  btn-outline'>cancel</button>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { SlMenu } from "react-icons/sl";
+import { SlMenu, SlClose } from "react-icons/sl";
 import { useSession } from "next-auth/react";
 import NavAuthLinks from "./NavAuthLinks";
 import NavLinks from "./NavLinks";
@@ -59,7 +59,13 @@ const Navbar = () => {
         </div>
         <div className='drawer-side'>
           <label htmlFor='my-drawer' className='drawer-overlay'></label>
-          <ul className='menu p-4 w-[50%] h-full bg-base-200 text-base-content items-end'>
+          <ul className='menu p-4 w-[100%] sm:w-[50%] h-full bg-base-200 text-base-content items-end'>
+            <label
+              htmlFor='my-drawer'
+              className='cursor-pointer absolute  right-[80%] top-[3%]'
+            >
+              <SlClose className='text-3xl text-primary hover:text-secondary duration-200 hover:scale-125' />
+            </label>
             {/* the same in desktop but with flex reverse from hiden */}
             {islogin ? (
               // chnage to deffernet user component styles

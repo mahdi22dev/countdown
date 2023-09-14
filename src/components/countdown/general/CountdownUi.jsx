@@ -18,27 +18,35 @@ const CountdownUi = ({ eventtime }) => {
     };
   }, [eventtime]);
 
-  const { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
-
+  let { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
+  let date1 = new Date();
+  if (eventtime < date1) {
+    days = 0;
+    hours = 0;
+    seconds = 0;
+    minutes = 0;
+  }
   return (
-    <div className='grid grid-flow-col gap-1 text-center auto-cols-max mx-auto z-50'>
-      <div className='flex flex-col p-2 bg-primary rounded-lg w-16 '>
-        <MotionAnimateTime time={days} />
-        <p className='text-xs'>days</p>
+    <>
+      <div className='grid grid-flow-col gap-1 flex-row text-center auto-cols-max mx-auto z-50'>
+        <div className='flex flex-col p-2 bg-primary rounded-lg w-16 '>
+          <MotionAnimateTime time={days} />
+          <p className='text-xs'>days</p>
+        </div>
+        <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
+          <MotionAnimateTime time={hours} />
+          <p className='text-xs'>hours</p>
+        </div>
+        <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
+          <MotionAnimateTime time={minutes} />
+          <p className='text-xs'>minutes</p>
+        </div>
+        <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
+          <MotionAnimateTime time={seconds} />
+          <p className='text-xs'>seconds</p>
+        </div>
       </div>
-      <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
-        <MotionAnimateTime time={hours} />
-        <p className='text-xs'>hours</p>
-      </div>
-      <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
-        <MotionAnimateTime time={minutes} />
-        <p className='text-xs'>minutes</p>
-      </div>
-      <div className='flex flex-col p-2 bg-primary rounded-lg  w-16'>
-        <MotionAnimateTime time={seconds} />
-        <p className='text-xs'>seconds</p>
-      </div>
-    </div>
+    </>
   );
 };
 

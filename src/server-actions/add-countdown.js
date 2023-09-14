@@ -3,15 +3,19 @@ import { messages } from "@/config/messages";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth";
+import { test } from "./test";
 
 export async function onCreate(formData) {
   const session = await getServerSession(authOptions);
+
   if (!session) {
     return { message: { login: messages.login } };
   }
   const existingUser = await prisma.user.findUnique({
     where: { id: session?.user?.id },
   });
+
+  // await test(session?.user?.id);
 
   if (!existingUser) {
     return { message: { Notfound: messages.Notfound } };
