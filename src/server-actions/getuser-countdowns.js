@@ -18,7 +18,6 @@ export async function getAllUserCountdowns(skip, size) {
     where: { userId: userId },
     take: size,
     skip: skip,
-    // orderBy: { createdAt: "desc" },
   });
   return userWithCountdowns;
 }

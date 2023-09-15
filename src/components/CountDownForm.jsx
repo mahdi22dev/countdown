@@ -22,7 +22,6 @@ const CountDownForm = () => {
     handleSubmit,
     control,
     formState: { errors },
-    reset,
   } = useForm({ resolver: yupResolver(AddCountDownSchema) });
 
   // handlesumbit
@@ -33,7 +32,6 @@ const CountDownForm = () => {
     setIsPending(true);
     const UserCountdownObject = { ...data, imageId: selectedImage };
     const res = await onCreate(UserCountdownObject);
-
     if (res.message.success) {
       setMessage(res.message.success);
       router.push(`/user/countdowns/${res.message.newCountdown.id}`);
@@ -66,7 +64,6 @@ const CountDownForm = () => {
       {message && <Toast message={message} type={"success"} />}
 
       <div className='inputs'>
-        {" "}
         {/* form inputs */}
         <div className=' mb-2'>
           <div className='mb-1'>
@@ -146,9 +143,9 @@ const CountDownForm = () => {
               />
             )}
           />
-          {errors.date && (
+          {errors.targetDate && (
             <p className='text-red-500 mt-3 font-light text-sm'>
-              {errors.date.message}
+              {errors.targetDate.message}
             </p>
           )}
         </div>

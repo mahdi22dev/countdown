@@ -2,8 +2,9 @@ import React from "react";
 import CountdownUi from "../general/CountdownUi";
 import Image from "next/image";
 import Link from "next/link";
-
 import Modal from "@/components/Modal";
+import { IoEye } from "react-icons/io5";
+
 const SingleUserCountdown = ({ countdown, setReFetch }) => {
   const referenceDate = new Date();
   referenceDate.setHours(0, 0, 0, 0);
@@ -11,7 +12,13 @@ const SingleUserCountdown = ({ countdown, setReFetch }) => {
     <>
       <div className='flex flex-col justify-between w-72 h-72 max-w-[288px] border border-primary px-2 py-4 bg-neutral rounded-md relative '>
         <Image src={`/themes/${countdown.imageId}.jpg`} fill alt='image' />
-        <div className='flex justify-end w-full z-10 relative'>
+        <div className='flex justify-end items-center w-full z-10 relative'>
+          <div className='tooltip' data-tip='view countdown'>
+            <Link href={`/user/countdowns/${countdown.id}`}>
+              <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />
+            </Link>
+          </div>
+
           <Modal
             className={""}
             countdownid={countdown.id}
