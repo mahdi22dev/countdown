@@ -18,13 +18,11 @@ const SignupForm = () => {
 
   // react hook form
   const {
-    register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(SingUpschema) });
-  const test = (data) => console.log(data);
+
   // handle sumbit
   const onSumbit = async (data) => {
     setMessage("");
@@ -36,7 +34,9 @@ const SignupForm = () => {
       },
       body: JSON.stringify({ data }),
     });
+
     setLoading(false);
+
     const jsonResponse = await res.json();
     if (!jsonResponse) {
       throw new Error("error");

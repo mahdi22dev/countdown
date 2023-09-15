@@ -9,6 +9,7 @@ export async function getAllUserCountdowns(skip, size) {
   const user = await prisma.user.findUnique({
     where: { id: userId },
   });
+
   if (!user) {
     return null;
   }
@@ -24,6 +25,10 @@ export async function getAllUserCountdowns(skip, size) {
 
 export async function getCountOfUserCountdowns() {
   const session = await getServerSession(authOptions);
+  if (!session) {
+    return null;
+  }
+
   const userId = session.user.id;
   const count = await prisma.userCountdown.count({
     where: { userId: userId },

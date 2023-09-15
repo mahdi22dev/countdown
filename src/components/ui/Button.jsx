@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const buttonVariants = cva("btn text-xs sm:text-sm", {
   variants: {
     variant: {
-      primary: " btn-primary",
+      primary: "btn-primary",
       primary_outline: "btn-primary btn-outline",
       secondary: "btn-secondary",
       ghost: "btn-ghost",

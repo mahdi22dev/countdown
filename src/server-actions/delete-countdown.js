@@ -16,12 +16,12 @@ export const deleteCountdown = async (countdownId) => {
     if (!deletedCountdown) {
       return {
         message: {
-          tryagain: "failed, please try again later",
+          tryagain: messages.tryagain,
           deletedCountdown,
         },
       };
     }
-    return { message: { success: "countdown deleted", deletedCountdown } };
+    return { message: { success: messages.deleted, deletedCountdown } };
   } catch (error) {
     return { message: { error: error } };
   }

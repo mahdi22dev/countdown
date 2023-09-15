@@ -15,7 +15,7 @@ export async function onCreate(formData) {
     where: { id: session?.user?.id },
   });
 
-  // await test(session?.user?.id);
+  await test(session?.user?.id);
 
   if (!existingUser) {
     return { message: { Notfound: messages.Notfound } };
