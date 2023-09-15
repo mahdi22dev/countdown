@@ -26,7 +26,6 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
       setShowCreate(true);
     }
     PaginationSkip = 20;
-
     grabAllcountdowns();
   }, []);
 
@@ -45,7 +44,6 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
     try {
       setIspending(true);
       PaginationSkip = PaginationSkip + 20;
-
       const size = 20;
       const data = await getAllUserCountdowns(PaginationSkip, size);
 
@@ -65,7 +63,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
   return (
     <section>
       {countdowns.map((countdown) => {
-        return <div>{countdown.title}</div>;
+        return <div key={countdown.id}>{countdown.title}</div>;
       })}
       {showSeeBtn && (
         <button
