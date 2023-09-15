@@ -11,7 +11,11 @@ const UserCountdownButtons = () => {
       <div className='flex gap-2'>
         <MyDrawer />
         <Link href={"/user/profile"}>
-          <Button text={"View All"} variant={"primary"} />
+          <Button
+            text={"View All"}
+            variant={"primary"}
+            className={"text-xs sm:text-sm md:text-base"}
+          />
         </Link>
       </div>
     </div>

@@ -43,7 +43,7 @@ export const authOptions = {
         if (!passwordsMatch) {
           return null;
         }
-        console.log("matched");
+
         return existingUser;
       },
     }),

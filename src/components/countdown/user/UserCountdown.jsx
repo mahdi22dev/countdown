@@ -20,9 +20,11 @@ const UserCountdown = () => {
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
 
-  const grabAllcountdowns = async (id) => {
+  const grabAllcountdowns = async () => {
     setIspending(true);
-    const data = await getAllUserCountdowns(id);
+    const skip = 0;
+    const size = 12;
+    const data = await getAllUserCountdowns(skip, size);
     setislogin(true);
     setAuthLoading(false);
     setCountdowns(data);
@@ -32,7 +34,7 @@ const UserCountdown = () => {
 
   useEffect(() => {
     if (status === "authenticated") {
-      grabAllcountdowns(session.user.id);
+      grabAllcountdowns();
     }
     if (status === "unauthenticated") {
       setislogin(false);
@@ -47,7 +49,7 @@ const UserCountdown = () => {
   useEffect(() => {
     setAuthLoading(true);
     if (status === "authenticated") {
-      grabAllcountdowns(session.user.id);
+      grabAllcountdowns();
     }
     if (status === "unauthenticated") {
       setislogin(false);

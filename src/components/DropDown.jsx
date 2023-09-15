@@ -1,10 +1,6 @@
-"use client";
-import React from "react";
 import UserCard from "./UserCard";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-const DropDown = ({ className, childClass }) => {
-  const { data } = useSession();
+const DropDown = ({ className, childClass, session }) => {
   return (
     <div className={`dropdown dropdown-end ${className}`}>
       <label
@@ -14,7 +10,7 @@ const DropDown = ({ className, childClass }) => {
         <Image fill src={"/profile.png"}></Image>
       </label>
       <div tabIndex={0} className='dropdown-content mr-3 w-52'>
-        <UserCard data={data} childClass={childClass} />
+        <UserCard session={session} childClass={childClass} />
       </div>
     </div>
   );

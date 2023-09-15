@@ -4,8 +4,8 @@ import { signOut } from "next-auth/react";
 import React from "react";
 import { BiLogOutCircle } from "react-icons/bi";
 
-const UserCard = ({ childClass, data }) => {
-  const { name, email } = data?.user;
+const UserCard = ({ childClass, session }) => {
+  const { name, email } = session;
   return (
     <div
       className={`${childClass} w-full text-sm h-full p-3 bg-base-200 border border-primary border-opacity-10 rounded-xl`}
@@ -15,7 +15,6 @@ const UserCard = ({ childClass, data }) => {
         <p className='text-[10px] opacity-60'>{email ?? "email@gmail.com"}</p>
       </div>
       <div className='divider m-0'></div>
-      {/* Links */}
       <ul className='flex flex-col justify-center'>
         {links.map((link) => {
           return (

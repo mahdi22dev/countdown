@@ -1,3 +1,3 @@
 export default async function page() {
-  return <div></div>;
+  return <div>Bookmark</div>;
 }

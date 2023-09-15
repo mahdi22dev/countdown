@@ -1,7 +1,7 @@
 "use client";
 import { cva } from "class-variance-authority";
 
-const buttonVariants = cva("btn", {
+const buttonVariants = cva("btn text-xs sm:text-sm", {
   variants: {
     variant: {
       primary: " btn-primary",

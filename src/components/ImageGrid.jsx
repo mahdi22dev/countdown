@@ -13,7 +13,7 @@ const ImageGrid = ({ setSelectedImage, selectedImage }) => {
       {images.map((image) => (
         <div
           key={image.id}
-          className={`z-40 p-2 w-[80%] h-24 sm:w-56 sm:h-28 md:w-60 md:h-40 relative mx-auto  `}
+          className={`z-40 p-2 w-[80%] h-56 sm:w-56 sm:h-28 md:w-60 md:h-40 relative mx-auto  `}
         >
           <Image
             src={image.url}

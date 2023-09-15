@@ -7,7 +7,7 @@ const NavAuthLinks = ({ className }) => {
       {/* <Link href={"/register"}>
         <Button variant='primary_outline' text={"sing up"}></Button>
       </Link> */}
-      <Link href={"/login"}>
+      <Link href={"/auth/login"}>
         <Button variant='primary' text={"Sign In"}></Button>
       </Link>
     </div>
