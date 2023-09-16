@@ -1,6 +1,4 @@
 import ProfileCountdowns from "@/components/ProfileCountdowns";
-import Tabs from "@/components/Tabs";
-import { filter } from "@/lib/utils";
 import {
   getAllUserCountdowns,
   getCountOfUserCountdowns,

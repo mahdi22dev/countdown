@@ -1,4 +1,3 @@
-import { formatDate } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 import CountdownUi from "../general/CountdownUi";
@@ -16,7 +15,7 @@ const ProfileSingleCountdown = ({ countdown }) => {
       </figure>
       <div className='card-body justify-between flex-col'>
         <h2 className='card-title'>{countdown.title}</h2>
-        <CountdownUi eventtime={countdown.targetDate} />
+        <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />
       </div>
     </div>
   );

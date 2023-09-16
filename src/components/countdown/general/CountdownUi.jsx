@@ -31,19 +31,27 @@ const CountdownUi = ({ eventtime, ChildclassName, className }) => {
       <div
         className={`grid grid-flow-col gap-1 flex-row text-center auto-cols-max mx-auto z-50 ${className}`}
       >
-        <div className={`flex flex-col p-2 bg-primary rounded-lg w-16`}>
+        <div
+          className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
+        >
           <MotionAnimateTime time={days} />
           <p className='text-xs'>days</p>
         </div>
-        <div className={`flex flex-col p-2 bg-primary rounded-lg w-16`}>
+        <div
+          className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
+        >
           <MotionAnimateTime time={hours} />
           <p className='text-xs'>hours</p>
         </div>
-        <div className={`flex flex-col p-2 bg-primary rounded-lg w-16`}>
+        <div
+          className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
+        >
           <MotionAnimateTime time={minutes} />
           <p className='text-xs'>minutes</p>
         </div>
-        <div className={`flex flex-col p-2 bg-primary rounded-lg w-16`}>
+        <div
+          className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
+        >
           <MotionAnimateTime time={seconds} />
           <p className='text-xs'>seconds</p>
         </div>

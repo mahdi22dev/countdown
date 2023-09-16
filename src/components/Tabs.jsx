@@ -1,11 +1,15 @@
 "use client";
+import { useState } from "react";
 import { MyDrawer } from "./Mydrawer";
 import { filters } from "@/config/filters";
 
-const Tabs = ({ count, setFilterOption, filterOption }) => {
-  const handlefilterchange = (filteroption) => {
+const Tabs = ({ count, filterFetch }) => {
+  const [active, setAactive] = useState(1);
+  const handlefilterchange = async (filteroption, id) => {
+    setAactive(id);
     console.log(filteroption);
-    setFilterOption({ filter: filteroption });
+    const result = await filterFetch(filteroption);
+    console.log(result);
   };
 
   return (
@@ -22,10 +26,10 @@ const Tabs = ({ count, setFilterOption, filterOption }) => {
             <button
               key={filter.id}
               onClick={() => {
-                handlefilterchange(filter.filter);
+                handlefilterchange(filter.filter, filter.id);
               }}
               className={`tab text-xs sm:text-sm md:text-base capitalize  ${
-                filter.filter == filterOption.filter && "tab-active"
+                filter.id == active && "tab-active"
               }`}
             >
               {filter.filter}

@@ -22,15 +22,19 @@ const UserCountdown = () => {
   const { data: session, status } = sessionUser;
 
   const grabAllcountdowns = async () => {
-    setIspending(true);
-    const skip = 0;
-    const size = 12;
-    const data = await getAllUserCountdowns(skip, size, "all");
-    setislogin(true);
-    setAuthLoading(false);
-    setCountdowns(data);
-    setIspending(false);
-    return data;
+    try {
+      setIspending(true);
+      const skip = 0;
+      const size = 12;
+      const data = await getAllUserCountdowns(skip, size, "all");
+      setislogin(true);
+      setAuthLoading(false);
+      setCountdowns(data);
+      setIspending(false);
+      return data;
+    } catch (error) {
+      setIsError(true);
+    }
   };
 
   useEffect(() => {

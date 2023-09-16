@@ -30,7 +30,7 @@ const SingleUserCountdown = ({ countdown, setReFetch }) => {
             {countdown.title}
           </p>
         </Link>
-        <CountdownUi eventtime={countdown.targetDate} />
+        <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />
       </div>
     </>
   );
