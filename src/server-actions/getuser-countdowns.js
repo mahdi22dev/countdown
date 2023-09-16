@@ -29,8 +29,7 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
       skip: skip,
     });
     return userWithCountdowns;
-  }
-  if (filterOption == "all") {
+  } else if (filterOption == "all") {
     const userWithCountdowns = await prisma.UserCountdown.findMany({
       where: {
         userId: userId,

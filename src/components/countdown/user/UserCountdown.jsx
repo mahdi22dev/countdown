@@ -17,6 +17,7 @@ const UserCountdown = () => {
   const [isPending, setIspending] = useState(false);
   const [countdowns, setCountdowns] = useState([]);
   const [refetch, setReFetch] = useState(false);
+  const [isError, setIsError] = useState(false);
   const sessionUser = useSession();
   const { data: session, status } = sessionUser;
 
@@ -24,7 +25,7 @@ const UserCountdown = () => {
     setIspending(true);
     const skip = 0;
     const size = 12;
-    const data = await getAllUserCountdowns(skip, size);
+    const data = await getAllUserCountdowns(skip, size, "all");
     setislogin(true);
     setAuthLoading(false);
     setCountdowns(data);

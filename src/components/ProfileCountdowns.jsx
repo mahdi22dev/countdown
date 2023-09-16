@@ -10,7 +10,7 @@ let PaginationSkip = 20;
 const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [isPending, setIspending] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [countdowns, setCountdowns] = useState(data);
+  const [countdowns, setCountdowns] = useState(data || []);
   const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
   const [showcreate, setShowCreate] = useState(showCreateBtn);
   const [filterOption, setFilterOption] = useState({ filter: "all" });
