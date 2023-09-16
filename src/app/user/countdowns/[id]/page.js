@@ -1,15 +1,11 @@
 import Divider from "@/components/Divider";
-import CountdownUi from "@/components/countdown/general/CountdownUi";
 import CountdownUiPage from "@/components/countdown/general/CountdownUiPage";
 import { authOptions } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
-
 import { getCountdown } from "@/server-actions/get-countdown";
-import moment from "moment/moment";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { date } from "yup";
 
 export default async function Page({ params }) {
   const session = await getServerSession(authOptions);

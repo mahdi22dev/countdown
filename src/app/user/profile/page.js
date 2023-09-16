@@ -1,5 +1,6 @@
 import ProfileCountdowns from "@/components/ProfileCountdowns";
 import Tabs from "@/components/Tabs";
+import { filter } from "@/lib/utils";
 import {
   getAllUserCountdowns,
   getCountOfUserCountdowns,
@@ -7,8 +8,10 @@ import {
 export default async function page() {
   const skip = 0;
   const size = 20;
+  const filterOption = "all";
+
   const count = await getCountOfUserCountdowns();
-  const data = await getAllUserCountdowns(skip, size);
+  const data = await getAllUserCountdowns(skip, size, filterOption);
   let showCreateBtn = false;
   let showSeeMorebtn = true;
   if (data.length == 0) {
@@ -20,9 +23,9 @@ export default async function page() {
   }
   return (
     <main>
-      <Tabs count={count} />
       <ProfileCountdowns
         data={data}
+        count={count}
         showCreateBtn={showCreateBtn}
         showSeeMorebtn={showSeeMorebtn}
       />

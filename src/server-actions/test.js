@@ -10,7 +10,14 @@ export const test = async (id) => {
       for (let i = 1; i <= 2000; i++) {
         const title = `Countdown ${i}`;
         const currentDate = new Date();
-        const targetDate = new Date(currentDate.getTime() + i * 20 * 60000);
+        const minDays = 1;
+        const maxDays = 80;
+        const randomDays =
+          Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
+        const targetDate = new Date(
+          currentDate.getTime() + randomDays * 24 * 60 * 60 * 1000
+        );
+
         const min = 1;
         const max = 10;
         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;

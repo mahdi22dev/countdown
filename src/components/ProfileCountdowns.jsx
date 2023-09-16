@@ -3,13 +3,17 @@
 import { useEffect, useState } from "react";
 import { getAllUserCountdowns } from "@/server-actions/getuser-countdowns";
 import { MyDrawer } from "./Mydrawer";
-let PaginationSkip = 20;
+import Tabs from "./Tabs";
+import ProfileSingleCountdown from "./countdown/user/ProfileSingleCountdown";
 
-const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
+let PaginationSkip = 20;
+const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [isPending, setIspending] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [countdowns, setCountdowns] = useState(data);
   const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
   const [showcreate, setShowCreate] = useState(showCreateBtn);
+  const [filterOption, setFilterOption] = useState({ filter: "all" });
 
   const grabAllcountdowns = async () => {
     const skip = 0;
@@ -21,17 +25,16 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
 
   useEffect(() => {
     if (countdowns.length == 0) {
-      console.log(countdowns);
       setShowSeeBtn(false);
       setShowCreate(true);
     }
     PaginationSkip = 20;
-    grabAllcountdowns();
+    // grabAllcountdowns();
   }, []);
 
+  // controll show/hide ui elements
   useEffect(() => {
     if (countdowns.length == 0) {
-      console.log(countdowns);
       setShowSeeBtn(false);
       setShowCreate(true);
     } else {
@@ -45,16 +48,23 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
       setIspending(true);
       PaginationSkip = PaginationSkip + 20;
       const size = 20;
-      const data = await getAllUserCountdowns(PaginationSkip, size);
+
+      const data = await getAllUserCountdowns(
+        PaginationSkip,
+        size,
+        filterOption.filter
+      );
 
       if (data.length > 0) {
-        setCountdowns((prevCountdowns) => [...prevCountdowns, ...data]);
+        const allCountdowns = [...countdowns, ...data];
+        setCountdowns(allCountdowns);
       } else {
         setShowSeeBtn(false);
       }
       return data;
     } catch (error) {
-      console.log("error fetching");
+      console.log(error);
+      setIsError(true);
     } finally {
       setIspending(false);
     }
@@ -62,9 +72,20 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
 
   return (
     <section>
-      {countdowns.map((countdown) => {
-        return <div key={countdown.id}>{countdown.title}</div>;
-      })}
+      <Tabs
+        filterOption={filterOption}
+        setFilterOption={setFilterOption}
+        count={count}
+      />
+
+      <div className='grid  grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
+        {countdowns?.map((countdown) => {
+          return (
+            <ProfileSingleCountdown countdown={countdown} key={countdown.id} />
+          );
+        })}
+      </div>
+
       {showSeeBtn && (
         <button
           onClick={() => {
@@ -72,7 +93,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn }) => {
           }}
           className={` ${
             isPending ? "btn-disabled btn-primary btn-outline" : "btn-primary"
-          } btn flex justify-center items-center mx-auto mb-0 mt-0`}
+          } btn flex justify-center items-center mx-auto mb-0 mt-0 `}
         >
           {isPending && (
             <span className='loading loading-spinner text-primary loading-xs  '></span>

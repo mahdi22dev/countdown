@@ -3,9 +3,10 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth";
 
-export async function getAllUserCountdowns(skip, size) {
+export async function getAllUserCountdowns(skip, size, filterOption) {
   const session = await getServerSession(authOptions);
   const userId = session.user.id;
+
   const user = await prisma.user.findUnique({
     where: { id: userId },
   });
@@ -14,12 +15,31 @@ export async function getAllUserCountdowns(skip, size) {
     return null;
   }
 
-  const userWithCountdowns = await prisma.UserCountdown.findMany({
-    where: { userId: userId },
-    take: size,
-    skip: skip,
-  });
-  return userWithCountdowns;
+  if (filterOption == "soon") {
+    const soonEndingThreshold = new Date();
+    soonEndingThreshold.setDate(soonEndingThreshold.getDate() + 7);
+    const userWithCountdowns = await prisma.UserCountdown.findMany({
+      where: {
+        userId: userId,
+        targetDate: {
+          lte: soonEndingThreshold,
+        },
+      },
+      take: size,
+      skip: skip,
+    });
+    return userWithCountdowns;
+  }
+  if (filterOption == "all") {
+    const userWithCountdowns = await prisma.UserCountdown.findMany({
+      where: {
+        userId: userId,
+      },
+      take: size,
+      skip: skip,
+    });
+    return userWithCountdowns;
+  }
 }
 
 export async function getCountOfUserCountdowns() {
