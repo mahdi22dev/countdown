@@ -1,6 +1,5 @@
 import Divider from "@/components/Divider";
 import CountdownUi from "@/components/countdown/general/CountdownUi";
-import CountdownUiPage from "@/components/countdown/general/CountdownUiPage";
 import { authOptions } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
 import { getCountdown } from "@/server-actions/get-countdown";
@@ -31,7 +30,14 @@ export default async function Page({ params }) {
         </p>
 
         <Divider date={date} />
-        <CountdownUiPage eventtime={targetDate} />
+        <CountdownUi
+          eventtime={targetDate}
+          className={"mx-auto mt-3 justify-center items-center"}
+          ChildclassName={
+            "justify-center items-center w-24 h-16 md:w-40 md:h-24"
+          }
+          animateClass={"md:text-2xl text-md"}
+        />
       </div>
 
       <Image
