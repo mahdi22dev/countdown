@@ -1,4 +1,5 @@
 import Divider from "@/components/Divider";
+import CountdownUi from "@/components/countdown/general/CountdownUi";
 import CountdownUiPage from "@/components/countdown/general/CountdownUiPage";
 import { authOptions } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
@@ -16,9 +17,10 @@ export default async function Page({ params }) {
   const countdownId = params.id;
 
   const user = await getCountdown(userId, countdownId);
-  if (user.countdowns.length == 0) {
+  if (!user.countdowns) {
     return notFound();
   }
+
   const { title, targetDate, imageId } = user.countdowns[0];
   const date = formatDate(targetDate);
   return (

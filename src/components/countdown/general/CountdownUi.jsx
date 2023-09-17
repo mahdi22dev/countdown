@@ -3,7 +3,12 @@ import { calculateTime } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import MotionAnimateTime from "./MotionAnimateTime";
 
-const CountdownUi = ({ eventtime, ChildclassName, className }) => {
+const CountdownUi = ({
+  eventtime,
+  ChildclassName,
+  className,
+  animateClass,
+}) => {
   // asign countdown value to usestate
   const [remainingTime, setRemainingTime] = useState(calculateTime(eventtime));
   // use effect to change and update countdown values
@@ -34,26 +39,26 @@ const CountdownUi = ({ eventtime, ChildclassName, className }) => {
         <div
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
         >
-          <MotionAnimateTime time={days} />
-          <p className='text-xs'>days</p>
+          <MotionAnimateTime time={days} size={animateClass} />
+          <p className={`text-xs ${animateClass}`}>days</p>
         </div>
         <div
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
         >
-          <MotionAnimateTime time={hours} />
-          <p className='text-xs'>hours</p>
+          <MotionAnimateTime time={hours} size={animateClass} />
+          <p className={`text-xs ${animateClass}`}>hours</p>
         </div>
         <div
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
         >
-          <MotionAnimateTime time={minutes} />
-          <p className='text-xs'>minutes</p>
+          <MotionAnimateTime time={minutes} size={animateClass} />
+          <p cclassName={`text-xs ${animateClass}`}>minutes</p>
         </div>
         <div
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
         >
-          <MotionAnimateTime time={seconds} />
-          <p className='text-xs'>seconds</p>
+          <MotionAnimateTime time={seconds} size={animateClass} />
+          <p className={`text-xs ${animateClass}`}>seconds</p>
         </div>
       </div>
     </>

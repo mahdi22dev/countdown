@@ -1,4 +1,4 @@
 export const filters = [
-  { id: 1, filter: "all" },
-  { id: 2, filter: "soon" },
+  { id: 1, filter: "all", title: "All" },
+  { id: 2, filter: "soon", title: "Ending Soon" },
 ];

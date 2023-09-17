@@ -7,9 +7,7 @@ const Tabs = ({ count, filterFetch }) => {
   const [active, setAactive] = useState(1);
   const handlefilterchange = async (filteroption, id) => {
     setAactive(id);
-    console.log(filteroption);
-    const result = await filterFetch(filteroption);
-    console.log(result);
+    await filterFetch(filteroption);
   };
 
   return (
@@ -32,7 +30,7 @@ const Tabs = ({ count, filterFetch }) => {
                 filter.id == active && "tab-active"
               }`}
             >
-              {filter.filter}
+              {filter.title}
             </button>
           );
         })}

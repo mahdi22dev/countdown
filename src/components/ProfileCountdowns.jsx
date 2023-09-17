@@ -88,12 +88,15 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
       }
       return data;
     } catch (error) {
-      console.log(error);
       setIsError(true);
     } finally {
       setFilterLoading(false);
     }
   };
+
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <section className=''>
       <Tabs count={count} filterFetch={filterFetch} />
