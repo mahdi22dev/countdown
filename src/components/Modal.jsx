@@ -2,21 +2,29 @@
 import { deleteCountdown } from "@/server-actions/delete-countdown";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
-const Modal = ({ className, countdownid, setReFetch }) => {
+
+let ModalId = "";
+const Modal = ({ className, id, setReFetch }) => {
+  console.log(id);
   const [isPending, setIsPending] = useState(false);
+
   const handledelete = async () => {
     setIsPending(true);
-    const res = await deleteCountdown(countdownid);
+    const res = await deleteCountdown(ModalId);
     setIsPending(false);
-    setReFetch(countdownid);
-    return res;
+    setReFetch(res);
   };
+
   return (
     <>
       <div className='tooltip' data-tip='delete'>
         <FaTrash
           className={`hover:text-primary duration-300 ${className}`}
-          onClick={() => document.getElementById("my_modal_5").showModal()}
+          onClick={() => {
+            ModalId = id;
+            console.log(ModalId);
+            document.getElementById("my_modal_5").showModal();
+          }}
         />
       </div>
 
@@ -30,7 +38,7 @@ const Modal = ({ className, countdownid, setReFetch }) => {
                 {/* delete button */}
                 <div
                   onClick={() => {
-                    handledelete(countdownid);
+                    handledelete();
                   }}
                   className={` ${
                     isPending
@@ -39,7 +47,7 @@ const Modal = ({ className, countdownid, setReFetch }) => {
                   } btn flex justify-center items-center mx-auto mb-0 mt-0`}
                 >
                   {isPending && (
-                    <span className='loading loading-spinner text-primary loading-xs  '></span>
+                    <span className='loading loading-spinner text-primary loading-xs'></span>
                   )}
                   delete
                 </div>

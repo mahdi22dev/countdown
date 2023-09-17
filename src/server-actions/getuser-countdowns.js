@@ -30,7 +30,8 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
       skip: skip,
     });
     return userWithCountdowns;
-  } else if (filterOption == "all") {
+  }
+  if (filterOption == "all") {
     console.log(filterOption);
     const userWithCountdowns = await prisma.UserCountdown.findMany({
       where: {

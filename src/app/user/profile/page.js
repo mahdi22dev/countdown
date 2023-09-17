@@ -1,4 +1,4 @@
-import ProfileCountdowns from "@/components/ProfileCountdowns";
+import ProfileCountdowns from "@/components/countdown/user/ProfileCountdowns";
 import {
   getAllUserCountdowns,
   getCountOfUserCountdowns,

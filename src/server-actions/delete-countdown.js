@@ -5,18 +5,16 @@ import { getServerSession } from "next-auth";
 
 export const deleteCountdown = async (countdownId) => {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return;
-    }
+    console.log("deleted id: " + countdownId);
+
     const deletedCountdown = await prisma.UserCountdown.delete({
       where: { id: countdownId },
     });
     if (!deletedCountdown) {
-      return;
+      throw new Error("Countdown not found");
     }
     return deletedCountdown;
   } catch (error) {
-    return;
+    throw new Error("Failed to delete countdown: " + error.message);
   }
 };

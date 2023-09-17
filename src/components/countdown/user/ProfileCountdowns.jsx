@@ -1,31 +1,45 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllUserCountdowns } from "@/server-actions/getuser-countdowns";
-import { MyDrawer } from "./Mydrawer";
-import Tabs from "./Tabs";
-import ProfileSingleCountdown from "./countdown/user/ProfileSingleCountdown";
-import FilterLoading from "./loading/FilterLoading";
+import { MyDrawer } from "../../Mydrawer";
+import Tabs from "../../Tabs";
+import ProfileSingleCountdown from "./ProfileSingleCountdown";
+import FilterLoading from "../../loading/FilterLoading";
 
 let PaginationSkip = 20;
 let GlobalfilterOption = "all";
 const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [isPending, setIspending] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
-
+  const [refetch, setReFetch] = useState(false);
   const [isError, setIsError] = useState(false);
   const [countdowns, setCountdowns] = useState(data || []);
   const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
   const [showcreate, setShowCreate] = useState(showCreateBtn);
-  // const [filterOption, setFilterOption] = useState({ filter: "all" });
+  const initialRef = useRef(true);
 
-  const grabAllcountdowns = async () => {
-    const skip = 0;
-    const size = 20;
-    const data = await getAllUserCountdowns(skip, size);
-    setCountdowns(data);
-    return data;
+  const refetchAfterdelete = async () => {
+    try {
+      setFilterLoading(true);
+      const skip = 0;
+      const size = 20;
+      const data = await getAllUserCountdowns(skip, size, GlobalfilterOption);
+      setCountdowns(data);
+      setFilterLoading(false);
+      console.log(refetch2);
+      return data;
+    } catch (error) {
+      setIsError(true);
+    }
   };
+  useEffect(() => {
+    if (initialRef) {
+      initialRef.current = false;
+      return;
+    }
+    refetchAfterdelete();
+  }, [refetch]);
 
   useEffect(() => {
     if (countdowns.length == 0) {
@@ -36,7 +50,6 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
     // grabAllcountdowns();
   }, []);
 
-  // controll show/hide ui elements
   useEffect(() => {
     if (countdowns.length == 0) {
       setShowSeeBtn(false);
@@ -108,6 +121,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
             {countdowns?.map((countdown) => {
               return (
                 <ProfileSingleCountdown
+                  setReFetch={setReFetch}
                   countdown={countdown}
                   key={countdown.id}
                 />
