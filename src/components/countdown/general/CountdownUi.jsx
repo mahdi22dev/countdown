@@ -9,9 +9,8 @@ const CountdownUi = ({
   className,
   animateClass,
 }) => {
-  // asign countdown value to usestate
   const [remainingTime, setRemainingTime] = useState(calculateTime(eventtime));
-  // use effect to change and update countdown values
+
   useEffect(() => {
     const interval = setInterval(() => {
       const newRemainingTime = calculateTime(eventtime);
@@ -24,6 +23,7 @@ const CountdownUi = ({
   }, [eventtime]);
 
   let { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
+
   let date1 = new Date();
   if (eventtime < date1) {
     days = 0;
