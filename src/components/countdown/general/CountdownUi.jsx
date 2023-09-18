@@ -52,7 +52,7 @@ const CountdownUi = ({
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}
         >
           <MotionAnimateTime time={minutes} size={animateClass} />
-          <p cclassName={`text-xs ${animateClass}`}>minutes</p>
+          <p className={`text-xs ${animateClass}`}>minutes</p>
         </div>
         <div
           className={`flex flex-col p-2 bg-primary rounded-lg ${ChildclassName}`}

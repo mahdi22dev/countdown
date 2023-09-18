@@ -14,9 +14,18 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
   if (!user) {
     return null;
   }
+  if (filterOption == "all") {
+    const userWithCountdowns = await prisma.UserCountdown.findMany({
+      where: {
+        userId: userId,
+      },
+      take: size,
+      skip: skip,
+    });
+    return userWithCountdowns;
+  }
 
   if (filterOption == "soon") {
-    console.log(filterOption);
     const soonEndingThreshold = new Date();
     soonEndingThreshold.setDate(soonEndingThreshold.getDate() + 7);
     const userWithCountdowns = await prisma.UserCountdown.findMany({
@@ -25,17 +34,6 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
         targetDate: {
           lte: soonEndingThreshold,
         },
-      },
-      take: size,
-      skip: skip,
-    });
-    return userWithCountdowns;
-  }
-  if (filterOption == "all") {
-    console.log(filterOption);
-    const userWithCountdowns = await prisma.UserCountdown.findMany({
-      where: {
-        userId: userId,
       },
       take: size,
       skip: skip,

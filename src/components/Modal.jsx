@@ -1,11 +1,11 @@
 "use client";
+import { addtoBookmark } from "@/server-actions/addto-favourites";
 import { deleteCountdown } from "@/server-actions/delete-countdown";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 let ModalId = "";
 const Modal = ({ className, id, setReFetch }) => {
-  console.log(id);
   const [isPending, setIsPending] = useState(false);
 
   const handledelete = async () => {

@@ -61,6 +61,11 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   }, [countdowns]);
 
   const userPagination = async () => {
+    if (countdowns.length == count) {
+      //testing
+      setShowSeeBtn(false);
+      return;
+    }
     try {
       setIspending(true);
       PaginationSkip = PaginationSkip + 20;
@@ -79,7 +84,6 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
       }
       return data;
     } catch (error) {
-      console.log(error);
       setIsError(true);
     } finally {
       setIspending(false);
