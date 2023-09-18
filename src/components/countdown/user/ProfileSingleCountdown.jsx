@@ -18,11 +18,9 @@ const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
         />
       </figure>
       <div className='card-body justify-between flex-col'>
-        <div className='card-title'>
-          <h2 className=''>
-            {countdown.title}:{countdown.id}
-          </h2>
-          <div className='flex justify-end items-center w-full z-50 relative'>
+        <div className='card-title justify-between'>
+          <h2 className='text-sm md:text-base lg:text-lg'>{countdown.title}</h2>
+          <div className='flex justify-end items-center  z-50 relative'>
             <div className='tooltip' data-tip='view countdown'>
               <Link href={`/user/countdowns/${countdown.id}`}>
                 <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />

@@ -22,7 +22,7 @@ const SingleUserCountdown = ({ countdown, setReFetch }) => {
         </div>
         <Link className='z-50' href={`/user/countdowns/${countdown.id}`}>
           <p className='my-2 text-center z-10 capitalize text-xs sm:text-xl cursor-pointer hover:text-primary '>
-            {countdown.title}:{countdown.id}
+            {countdown.title}
           </p>
         </Link>
         <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />

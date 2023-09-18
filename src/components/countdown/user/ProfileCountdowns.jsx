@@ -17,7 +17,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [countdowns, setCountdowns] = useState(data || []);
   const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
   const [showcreate, setShowCreate] = useState(showCreateBtn);
-  const initialRef = useRef(true);
+  const isInitialRender = useRef(true);
 
   const refetchAfterdelete = async () => {
     try {
@@ -26,16 +26,16 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
       const size = 20;
       const data = await getAllUserCountdowns(skip, size, GlobalfilterOption);
       setCountdowns(data);
-      setFilterLoading(false);
-      console.log(refetch2);
       return data;
     } catch (error) {
       setIsError(true);
+    } finally {
+      setFilterLoading(false);
     }
   };
   useEffect(() => {
-    if (initialRef) {
-      initialRef.current = false;
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
       return;
     }
     refetchAfterdelete();

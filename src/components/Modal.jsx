@@ -19,10 +19,9 @@ const Modal = ({ className, id, setReFetch }) => {
     <>
       <div className='tooltip' data-tip='delete'>
         <FaTrash
-          className={`hover:text-primary duration-300 ${className}`}
+          className={`hover:text-primary duration-300 ${className} z-50 cursor-pointer`}
           onClick={() => {
             ModalId = id;
-            console.log(ModalId);
             document.getElementById("my_modal_5").showModal();
           }}
         />
