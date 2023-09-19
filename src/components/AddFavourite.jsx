@@ -1,26 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import { addtoFavouritesk } from "../server-actions/addto-favourites";
+
 import { notifyError } from "@/lib/Toast";
+import { addtoFavorites } from "@/server-actions/addto-favorites";
 
 const AddFavourite = ({ countdown }) => {
-  const [isFavourite, setFavourite] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (countdown.Favourite.length) {
-      setFavourite(true);
+      setFavorite(true);
     }
   }, []);
 
   const addToFavourutes = async () => {
     try {
-      setFavourite(!isFavourite);
-      const res = await addtoFavouritesk(countdown.id);
+      setFavorite(!isFavorite);
+      const res = await addtoFavorites(countdown.id);
       return res;
     } catch (error) {
-      setFavourite(false);
+      setFavorite(false);
       setIsError(true);
     }
   };
@@ -31,12 +32,12 @@ const AddFavourite = ({ countdown }) => {
     <div
       className='tooltip'
       data-tip={`${
-        isFavourite ? "remove from to favourites" : "add to favourites"
+        isFavorite ? "remove from to Favorites" : "add to Favorites"
       }`}
     >
       <FaHeart
         className={`${
-          isFavourite && "text-primary"
+          isFavorite && "text-primary"
         } mx-1 text-xl hover:text-primary duration-75`}
         onClick={() => {
           addToFavourutes();

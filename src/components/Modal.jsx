@@ -1,5 +1,5 @@
 "use client";
-import { addtoBookmark } from "@/server-actions/addto-favourites";
+import { addtoBookmark } from "@/server-actions/addto-Favorites";
 import { deleteCountdown } from "@/server-actions/delete-countdown";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
