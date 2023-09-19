@@ -22,7 +22,7 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
         take: size,
         skip: skip,
         orderBy: {
-          createdAt: "desc", // Use 'desc' for descending order
+          createdAt: "desc",
         },
       });
       return userWithCountdowns;
