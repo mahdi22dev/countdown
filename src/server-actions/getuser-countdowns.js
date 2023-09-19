@@ -6,39 +6,45 @@ import { getServerSession } from "next-auth";
 export async function getAllUserCountdowns(skip, size, filterOption) {
   const session = await getServerSession(authOptions);
   const userId = session.user.id;
-
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-  });
-
-  if (!user) {
-    return null;
-  }
-  if (filterOption == "all") {
-    const userWithCountdowns = await prisma.UserCountdown.findMany({
-      where: {
-        userId: userId,
-      },
-      take: size,
-      skip: skip,
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
     });
-    return userWithCountdowns;
-  }
 
-  if (filterOption == "soon") {
-    const soonEndingThreshold = new Date();
-    soonEndingThreshold.setDate(soonEndingThreshold.getDate() + 7);
-    const userWithCountdowns = await prisma.UserCountdown.findMany({
-      where: {
-        userId: userId,
-        targetDate: {
-          lte: soonEndingThreshold,
+    if (!user) {
+      return null;
+    }
+    if (filterOption == "all") {
+      const userWithCountdowns = await prisma.UserCountdown.findMany({
+        where: {
+          userId: userId,
         },
-      },
-      take: size,
-      skip: skip,
-    });
-    return userWithCountdowns;
+        take: size,
+        skip: skip,
+        orderBy: {
+          createdAt: "desc", // Use 'desc' for descending order
+        },
+      });
+      return userWithCountdowns;
+    }
+
+    if (filterOption == "soon") {
+      const soonEndingThreshold = new Date();
+      soonEndingThreshold.setDate(soonEndingThreshold.getDate() + 7);
+      const userWithCountdowns = await prisma.UserCountdown.findMany({
+        where: {
+          userId: userId,
+          targetDate: {
+            lte: soonEndingThreshold,
+          },
+        },
+        take: size,
+        skip: skip,
+      });
+      return userWithCountdowns;
+    }
+  } catch (error) {
+    return error;
   }
 }
 

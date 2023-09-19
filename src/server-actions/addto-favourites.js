@@ -31,7 +31,7 @@ export async function addtoFavouritesk(userCountdownId) {
     }
 
     // Check if the countdown is already in the user's favorites
-    console.log(existingFavourites);
+
     const isCountdownInFavorites =
       existingFavourites.UserCountdowns && // Check if favorites.countdowns is defined
       existingFavourites.UserCountdowns.some(
@@ -39,7 +39,6 @@ export async function addtoFavouritesk(userCountdownId) {
       );
     console.log(isCountdownInFavorites);
     if (isCountdownInFavorites) {
-      console.log("isCountdownInFavorites");
       const updatedFavorites = await prisma.Favourites.update({
         where: { id: existingFavourites.id },
         data: {
@@ -48,7 +47,7 @@ export async function addtoFavouritesk(userCountdownId) {
           },
         },
       });
-      console.log("Countdown removed from favorites");
+
       return updatedFavorites;
     } else {
       const updatedFavorites = await prisma.Favourites.update({
@@ -60,7 +59,6 @@ export async function addtoFavouritesk(userCountdownId) {
         },
       });
 
-      console.log("Countdown added to favorites");
       return updatedFavorites;
     }
   } catch (error) {

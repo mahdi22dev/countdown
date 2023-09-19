@@ -8,10 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import ImageGrid from "./ImageGrid";
 import { onCreate } from "@/server-actions/add-countdown";
 import { useRouter } from "next/navigation";
-import Toast from "./ui/Toast";
+import { notifySuccess } from "@/lib/Toast";
 
 const CountDownForm = () => {
   const [isPending, setIsPending] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   const inputRef = useRef(null);
   const [message, setMessage] = useState(null);
   const [targetDate, setTargetDate] = useState(new Date());
@@ -28,40 +30,47 @@ const CountDownForm = () => {
 
   const Submit = async (data) => {
     // handle errors
-    setMessage(null);
-    setIsPending(true);
-    const UserCountdownObject = { ...data, imageId: selectedImage };
-    const res = await onCreate(UserCountdownObject);
-    if (res.message.success) {
-      setMessage(res.message.success);
-      router.push(`/user/countdowns/${res.message.newCountdown.id}`);
+    try {
+      setMessage(null);
+      setIsPending(true);
+      const UserCountdownObject = { ...data, imageId: selectedImage };
+      const res = await onCreate(UserCountdownObject);
+      if (res.message.success) {
+        setMessage(res.message.success);
+        router.push(`/user/countdowns/${res.message.newCountdown.id}`);
+      }
+      if (res.message.Notfound) {
+        setMessage(res.message.Notfound);
+        router.push(`/auth/register`);
+      }
+      if (res.message.login) {
+        setMessage(res.message.login);
+        router.push(`/auth/login`);
+      }
+      if (res.message.tryagain) {
+        setMessage(res.message.tryagain);
+        router.push(`/`);
+      }
+      setSelectedImage("");
+      setIsPending(false);
+    } catch (error) {
+      setIsError(true);
     }
-    if (res.message.Notfound) {
-      setMessage(res.message.Notfound);
-      router.push(`/auth/register`);
-    }
-    if (res.message.login) {
-      setMessage(res.message.login);
-      router.push(`/auth/login`);
-    }
-    if (res.message.tryagain) {
-      setMessage(res.message.tryagain);
-      router.push(`/`);
-    }
-    setSelectedImage("");
-    setIsPending(false);
   };
 
-  const handleChangeDate = (date) => {
+  const handleChangeDate = () => {
     inputRef.current.focus();
   };
 
+  if (isError) {
+    return <div>error</div>;
+  }
   return (
     <form
       onSubmit={handleSubmit(Submit)}
       className=' w-[100%] h-full mx-auto p-2 pt-0'
     >
-      {message && <Toast message={message} type={"success"} />}
+      {message && notifySuccess(message)}
 
       <div className='inputs'>
         {/* form inputs */}

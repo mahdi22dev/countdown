@@ -74,6 +74,9 @@ const UserCountdown = () => {
     return <IsLoginLoading />;
   }
 
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <section className='w-full p-5'>
       <UserCountdownButtons />

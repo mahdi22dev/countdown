@@ -2,8 +2,11 @@
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { addtoFavouritesk } from "../server-actions/addto-favourites";
+import { notifyError } from "@/lib/Toast";
+
 const AddFavourite = ({ countdown }) => {
   const [isFavourite, setFavourite] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (countdown.Favourite.length) {
@@ -14,14 +17,16 @@ const AddFavourite = ({ countdown }) => {
   const addToFavourutes = async () => {
     try {
       setFavourite(!isFavourite);
-      console.log("add to favourite");
       const res = await addtoFavouritesk(countdown.id);
       return res;
     } catch (error) {
       setFavourite(false);
+      setIsError(true);
     }
   };
-
+  if (isError) {
+    notifyError("an error occurred when adding your favorite");
+  }
   return (
     <div
       className='tooltip'
