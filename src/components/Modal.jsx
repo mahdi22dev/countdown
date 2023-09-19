@@ -7,13 +7,21 @@ import { FaTrash } from "react-icons/fa";
 let ModalId = "";
 const Modal = ({ className, id, setReFetch }) => {
   const [isPending, setIsPending] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handledelete = async () => {
-    setIsPending(true);
-    const res = await deleteCountdown(ModalId);
-    setIsPending(false);
-    setReFetch(res);
+    try {
+      setIsPending(true);
+      const res = await deleteCountdown(ModalId);
+      setIsPending(false);
+      setReFetch(res);
+    } catch (error) {
+      setIsError(true);
+    }
   };
+  if (isError) {
+    return <div>erro</div>;
+  }
 
   return (
     <>

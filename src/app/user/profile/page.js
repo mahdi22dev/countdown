@@ -10,6 +10,11 @@ export default async function page() {
 
   const count = await getCountOfUserCountdowns();
   const data = await getAllUserCountdowns(skip, size, filterOption);
+
+  if (!data) {
+    return <div>error</div>;
+  }
+
   let showCreateBtn = false;
   let showSeeMorebtn = true;
   if (data.length == 0) {
@@ -19,8 +24,9 @@ export default async function page() {
     showSeeMorebtn = true;
     showCreateBtn = false;
   }
+
   return (
-    <main>
+    <main className=' w-full min-h-[95%]'>
       <ProfileCountdowns
         data={data}
         count={count}

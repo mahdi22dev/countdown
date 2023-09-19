@@ -2,9 +2,6 @@
 import Image from "next/image";
 import React from "react";
 import CountdownUi from "../general/CountdownUi";
-import Modal from "@/components/Modal";
-import NavigationLink from "@/components/NavigationLink";
-import AddFavourite from "@/components/AddFavourite";
 import EditingButtons from "@/components/EditingButtons";
 
 const ProfileSingleCountdown = ({ countdown, setReFetch }) => {

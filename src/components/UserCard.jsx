@@ -1,6 +1,7 @@
 "use client";
-import { links } from "@/config/constans";
+import { links } from "@/config/links";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 import { BiLogOutCircle } from "react-icons/bi";
 
@@ -18,13 +19,13 @@ const UserCard = ({ childClass, session }) => {
       <ul className='flex flex-col justify-center'>
         {links.map((link) => {
           return (
-            <a
+            <Link
               className='m-0 flex gap-2 py-2 btn-ghost text-[15px] px-2'
               key={link.id}
-              href=''
+              href={link.path}
             >
               {link.icon} {link.name}
-            </a>
+            </Link>
           );
         })}
       </ul>

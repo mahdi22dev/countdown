@@ -9,7 +9,7 @@ import FilterLoading from "../../loading/FilterLoading";
 
 let PaginationSkip = 20;
 let GlobalfilterOption = "all";
-const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
+const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [isPending, setIspending] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
   const [refetch, setReFetch] = useState(false);
@@ -157,4 +157,4 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   );
 };
 
-export default ProfileCountdowns;
+export default Favorites;
