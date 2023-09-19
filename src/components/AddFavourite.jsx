@@ -30,7 +30,7 @@ const AddFavourite = ({ countdown }) => {
   }
   return (
     <div
-      className='tooltip'
+      className='tooltip cursor-pointer'
       data-tip={`${
         isFavorite ? "remove from to Favorites" : "add to Favorites"
       }`}

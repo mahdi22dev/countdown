@@ -1,16 +1,12 @@
 import Modal from "@/components/Modal";
-import Link from "next/link";
-import { IoEye } from "react-icons/io5";
-const EditingButtons = ({ setReFetch, id }) => {
+import NavigationLink from "./NavigationLink";
+import AddFavourite from "./AddFavourite";
+const EditingButtons = ({ setReFetch, countdown }) => {
   return (
     <div className='flex justify-end items-center w-full z-10 relative'>
-      <div className='tooltip' data-tip='view countdown'>
-        <Link href={`/user/countdowns/${id}`}>
-          <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />
-        </Link>
-      </div>
-
-      <Modal className={""} id={id} setReFetch={setReFetch} />
+      <AddFavourite countdown={countdown} />
+      <NavigationLink id={countdown.id} />
+      <Modal className={""} id={countdown.id} setReFetch={setReFetch} />
     </div>
   );
 };

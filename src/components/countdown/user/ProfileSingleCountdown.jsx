@@ -4,6 +4,8 @@ import React from "react";
 import CountdownUi from "../general/CountdownUi";
 import Modal from "@/components/Modal";
 import NavigationLink from "@/components/NavigationLink";
+import AddFavourite from "@/components/AddFavourite";
+import EditingButtons from "@/components/EditingButtons";
 
 const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
   return (
@@ -19,10 +21,7 @@ const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
       <div className='card-body justify-between flex-col'>
         <div className='card-title justify-between'>
           <h2 className='text-sm md:text-base lg:text-lg'>{countdown.title}</h2>
-          <div className='flex justify-end items-center  z-50 relative'>
-            <NavigationLink id={countdown.id} />
-            <Modal className={""} id={countdown.id} setReFetch={setReFetch} />
-          </div>
+          <EditingButtons countdown={countdown} setReFetch={setReFetch} />
         </div>
         <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />
       </div>
