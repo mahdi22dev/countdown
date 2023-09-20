@@ -10,18 +10,15 @@ export async function addtoFavorites(userCountdownId) {
     if (!session) {
       throw new Error("User not found");
     }
-    let existingFavorites;
-    let newFavorites;
 
-    existingFavorites = await prisma.Favorites.findFirst({
+    const existingFavorites = await prisma.Favorites.findFirst({
       where: {
         userId: session?.user?.id,
       },
     });
 
     if (!existingFavorites) {
-      // If the user doesn't have an existing bookmark, create a new one
-      newFavorites = await prisma.Favorites.create({
+      const newFavorites = await prisma.Favorites.create({
         data: {
           userId: session?.user?.id,
           countdowns: { connect: { id: userCountdownId } },
@@ -30,13 +27,12 @@ export async function addtoFavorites(userCountdownId) {
       return newFavorites;
     }
 
-    // Check if the countdown is already in the user's favorites
-
     const isCountdownInFavorites =
-      existingFavorites.UserCountdowns && // Check if favorites.countdowns is defined
+      existingFavorites.UserCountdowns &&
       existingFavorites.UserCountdowns.some(
         (countdown) => countdown === userCountdownId
       );
+
     console.log(isCountdownInFavorites);
     if (isCountdownInFavorites) {
       const updatedFavorites = await prisma.Favorites.update({
@@ -62,6 +58,6 @@ export async function addtoFavorites(userCountdownId) {
       return updatedFavorites;
     }
   } catch (error) {
-    throw new Error(`Failed to add bookmark: ${error.message}`);
+    throw new Error(`Failed to add favorite: ${error.message}`);
   }
 }

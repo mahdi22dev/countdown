@@ -12,8 +12,8 @@ export const navlinks = [
   // build page for each category
   {
     id: 3,
-    name: "Favourites",
-    path: "/user/favourites",
+    name: "Favorites",
+    path: "/user/favorites",
   },
   {
     id: 4,

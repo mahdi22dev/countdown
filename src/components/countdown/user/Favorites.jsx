@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getAllUserCountdowns } from "@/server-actions/getuser-countdowns";
 import { MyDrawer } from "../../Mydrawer";
-import Tabs from "../../Tabs";
 import ProfileSingleCountdown from "./ProfileSingleCountdown";
 import FilterLoading from "../../loading/FilterLoading";
+import { getUserFavorites } from "@/server-actions/get-userfavorites";
 
-let PaginationSkip = 20;
-let GlobalfilterOption = "all";
 const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [isPending, setIspending] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
@@ -19,26 +16,11 @@ const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   const [showcreate, setShowCreate] = useState(showCreateBtn);
   const isInitialRender = useRef(true);
 
-  const refetchAfterdelete = async () => {
-    try {
-      setFilterLoading(true);
-      const skip = 0;
-      const size = 20;
-      const data = await getAllUserCountdowns(skip, size, GlobalfilterOption);
-      setCountdowns(data);
-      return data;
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setFilterLoading(false);
-    }
-  };
   useEffect(() => {
     if (isInitialRender.current) {
       isInitialRender.current = false;
       return;
     }
-    refetchAfterdelete();
   }, [refetch]);
 
   useEffect(() => {
@@ -46,78 +28,23 @@ const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
       setShowSeeBtn(false);
       setShowCreate(true);
     }
-    PaginationSkip = 20;
-    // grabAllcountdowns();
   }, []);
 
   useEffect(() => {
     if (countdowns.length == 0) {
-      setShowSeeBtn(false);
       setShowCreate(true);
     } else {
-      setShowSeeBtn(true);
       setShowCreate(false);
     }
   }, [countdowns]);
-
-  const userPagination = async () => {
-    if (countdowns.length == count) {
-      //testing
-      setShowSeeBtn(false);
-      return;
-    }
-    try {
-      setIspending(true);
-      PaginationSkip = PaginationSkip + 20;
-      const size = 20;
-      const data = await getAllUserCountdowns(
-        PaginationSkip,
-        size,
-        GlobalfilterOption
-      );
-
-      if (data.length > 0) {
-        const allCountdowns = [...countdowns, ...data];
-        setCountdowns(allCountdowns);
-      } else {
-        setShowSeeBtn(false);
-      }
-      return data;
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIspending(false);
-    }
-  };
-
-  const filterFetch = async (filteroption) => {
-    GlobalfilterOption = filteroption;
-    try {
-      setFilterLoading(true);
-      setCountdowns([]);
-      const size = 20;
-      const data = await getAllUserCountdowns(0, size, GlobalfilterOption);
-
-      if (data.length > 0) {
-        setCountdowns(data);
-      } else {
-        setShowSeeBtn(false);
-      }
-      return data;
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setFilterLoading(false);
-    }
-  };
 
   if (isError) {
     return <div>Error</div>;
   }
   return (
     <section className='w-full h-full'>
-      <Tabs count={count} filterFetch={filterFetch} />
-      {filterLoading ? (
+      {/* <Tabs count={count} filterFetch={filterFetch} /> */}
+      {isPending ? (
         <FilterLoading />
       ) : (
         <>
@@ -133,23 +60,6 @@ const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
             })}
           </div>
 
-          {showSeeBtn && (
-            <button
-              onClick={() => {
-                userPagination();
-              }}
-              className={` ${
-                isPending
-                  ? "btn-disabled btn-primary btn-outline"
-                  : "btn-primary"
-              } btn flex justify-center items-center mx-auto my-2   `}
-            >
-              {isPending && (
-                <span className='loading loading-spinner text-primary loading-xs'></span>
-              )}
-              see more
-            </button>
-          )}
           {showcreate && <MyDrawer />}
         </>
       )}

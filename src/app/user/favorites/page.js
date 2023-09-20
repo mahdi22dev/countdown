@@ -1,4 +1,6 @@
+import Favorites from "@/components/countdown/user/Favorites";
 import ProfileCountdowns from "@/components/countdown/user/ProfileCountdowns";
+import { getUserFavorites } from "@/server-actions/get-userfavorites";
 import {
   getAllUserCountdowns,
   getCountOfUserCountdowns,
@@ -8,9 +10,8 @@ export default async function page() {
   const size = 20;
   const filterOption = "all";
 
-  const count = await getCountOfUserCountdowns();
-  const data = await getAllUserCountdowns(skip, size, filterOption);
-
+  const data = await getUserFavorites();
+  console.log(data.favorites);
   if (!data) {
     return <div>error</div>;
   }
@@ -28,13 +29,7 @@ export default async function page() {
   return (
     <main className=' w-full min-h-[95%]'>
       <h1>favorites</h1>
-      <ProfileCountdowns
-        data={data}
-        count={count}
-        showCreateBtn={showCreateBtn}
-        showSeeMorebtn={showSeeMorebtn}
-        title={"favorites countdown"}
-      />
+      <Favorites data={data.favorites} count={data.count} />
     </main>
   );
 }
