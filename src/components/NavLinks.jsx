@@ -6,7 +6,17 @@ const NavLinks = ({ className }) => {
   return (
     <ul className={`p-3 base-100 ${className}`}>
       {navlinks.map((link) => {
-        return (
+        return link.name == "Favorites" ? (
+          // hard navigation
+          <a
+            className='m-0 flex gap-2 py-2 btn-ghost text-[15px] px-2'
+            key={link.id}
+            href={link.path}
+          >
+            {link.name}
+          </a>
+        ) : (
+          // soft navigation
           <Link
             className='m-0 flex gap-2 py-2 btn-ghost text-[15px] px-2'
             key={link.id}

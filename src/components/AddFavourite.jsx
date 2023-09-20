@@ -6,7 +6,9 @@ import { notifyError } from "@/lib/Toast";
 import { addtoFavorites } from "@/server-actions/addto-favorites";
 
 const AddFavourite = ({ countdown }) => {
-  const [isFavorite, setFavorite] = useState(false);
+  const [isFavorite, setFavorite] = useState(
+    countdown.Favourite.length ? true : false
+  );
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {

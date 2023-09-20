@@ -2,7 +2,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth";
 
-export async function getUserFavorites() {
+export async function grabUserFavorites() {
   try {
     const session = await getServerSession(authOptions);
 
@@ -14,13 +14,11 @@ export async function getUserFavorites() {
         userId: session?.user?.id,
       },
       include: {
-        countdowns: true, // Include the countdowns associated with favorites
+        countdowns: true,
       },
     });
 
-    const favoritesCount = userFavorites.countdowns.length; // Get the count
-
-    return { favorites: userFavorites.countdowns, count: favoritesCount };
+    return userFavorites;
   } catch (error) {
     return error;
   }

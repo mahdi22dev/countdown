@@ -1,70 +1,45 @@
-"use client";
+import { MyDrawer } from "@/components/Mydrawer";
+import FavoritesSingleCountdown from "./FavoritesSingleCountdown";
+import Link from "next/link";
 
-import { useEffect, useRef, useState } from "react";
-import { MyDrawer } from "../../Mydrawer";
-import ProfileSingleCountdown from "./ProfileSingleCountdown";
-import FilterLoading from "../../loading/FilterLoading";
-import { getUserFavorites } from "@/server-actions/get-userfavorites";
-
-const Favorites = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
-  const [isPending, setIspending] = useState(false);
-  const [filterLoading, setFilterLoading] = useState(false);
-  const [refetch, setReFetch] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [countdowns, setCountdowns] = useState(data || []);
-  const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
-  const [showcreate, setShowCreate] = useState(showCreateBtn);
-  const isInitialRender = useRef(true);
-
-  useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      return;
-    }
-  }, [refetch]);
-
-  useEffect(() => {
-    if (countdowns.length == 0) {
-      setShowSeeBtn(false);
-      setShowCreate(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (countdowns.length == 0) {
-      setShowCreate(true);
-    } else {
-      setShowCreate(false);
-    }
-  }, [countdowns]);
-
-  if (isError) {
-    return <div>Error</div>;
-  }
+export default function Favorites({ data }) {
   return (
-    <section className='w-full h-full'>
-      {/* <Tabs count={count} filterFetch={filterFetch} /> */}
-      {isPending ? (
-        <FilterLoading />
+    <main>
+      <div className='tabs tabs-boxed flex-col md:flex-row gap-5 md:gap-0 items-center justify-between p-4'>
+        <div>
+          <p className='text-primary text-xs sm:text-sm md:text-base'>
+            You have {data?.countdowns?.length ?? "0"} favorites countdown
+          </p>
+        </div>
+        <div>
+          <MyDrawer />
+        </div>
+      </div>
+
+      {data?.countdowns?.length == 0 ? (
+        <div className='w-full min-h-[84vh] flex flex-col justify-center items-center gap-3'>
+          <h1>
+            Create new countdown or
+            <span>
+              <Link href={"/user/profile"} className='link link-primary'>
+                add favorites
+              </Link>
+            </span>
+          </h1>
+          <MyDrawer />
+        </div>
       ) : (
-        <>
-          <div className='grid  grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
-            {countdowns?.map((countdown) => {
-              return (
-                <ProfileSingleCountdown
-                  setReFetch={setReFetch}
-                  countdown={countdown}
-                  key={countdown.id}
-                />
-              );
-            })}
-          </div>
-
-          {showcreate && <MyDrawer />}
-        </>
+        <div className='grid rid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
+          {data?.countdowns.map((countdown) => {
+            return (
+              <FavoritesSingleCountdown
+                countdown={countdown}
+                key={countdown.id}
+              />
+            );
+          })}
+        </div>
       )}
-    </section>
+    </main>
   );
-};
-
-export default Favorites;
+}
