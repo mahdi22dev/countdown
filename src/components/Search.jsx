@@ -78,7 +78,7 @@ const Search = ({ data }) => {
               setValue={setValue}
               handleonChnage={handleonChnage}
             />
-            <div>search results : </div>
+
             <SearchResults countdowns={countdowns} isPending={isPending} />
           </form>
         </div>

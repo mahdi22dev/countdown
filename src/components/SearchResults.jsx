@@ -8,6 +8,7 @@ const SearchResults = ({ countdowns, isPending }) => {
         "Loading..."
       ) : (
         <>
+          <div>Search results : </div>
           {countdowns?.map((countdown) => {
             const date = formatDate(countdown.targetDate);
             return (
