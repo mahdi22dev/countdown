@@ -17,9 +17,12 @@ const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
       </figure>
       <div className='card-body justify-between flex-col'>
         <div className='card-title justify-between w-full'>
-          <h2 className='text-sm md:text-base lg:text-lg w-2/4 bg-orange-400 truncate max-w-xs line-clamp-3'>
-            {countdown.title}
-          </h2>
+          <div className='tooltip w-2/4' data-tip={countdown.title}>
+            <h2 className='text-sm md:text-base lg:text-lg truncate max-w-[150px] '>
+              {countdown.title}
+            </h2>
+          </div>
+
           <EditingButtons countdown={countdown} setReFetch={setReFetch} />
         </div>
         <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />

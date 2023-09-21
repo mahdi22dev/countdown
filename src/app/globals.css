@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-x: hidden;
+}
 .react-datepicker-popper {
   z-index: 100 !important;
 }

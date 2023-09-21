@@ -17,9 +17,11 @@ const FavoritesSingleCountdown = ({ countdown }) => {
       </figure>
       <div className='card-body justify-between flex-col'>
         <div className='card-title justify-between'>
-          <h2 className='text-sm md:text-base lg:text-lg truncate max-w-md'>
-            {countdown.title}
-          </h2>
+          <div className='tooltip w-2/4' data-tip={countdown.title}>
+            <h2 className='text-sm md:text-base lg:text-lg truncate max-w-[150px] '>
+              {countdown.title}
+            </h2>
+          </div>
           <div className='flex justify-end items-center w-full z-10 relative'>
             <AddFavourite countdown={countdown} />
             <NavigationLink id={countdown.id} />
