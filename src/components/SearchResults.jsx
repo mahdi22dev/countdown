@@ -12,7 +12,10 @@ const SearchResults = ({ countdowns, isPending }) => {
           {countdowns?.map((countdown) => {
             const date = formatDate(countdown.targetDate);
             return (
-              <div className='p-2 bg-base-200 flex justify-between items-center rounded-md gap-1 flex-wrap'>
+              <div
+                key={countdown.id}
+                className='p-2 bg-base-200 flex justify-between items-center rounded-md gap-1 flex-wrap'
+              >
                 <Link
                   className='btn btn-link'
                   href={`/user/countdowns/${countdown.id}`}
