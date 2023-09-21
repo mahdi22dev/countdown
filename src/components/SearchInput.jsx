@@ -17,7 +17,7 @@ const SearchInput = ({ value, handleonChnage }) => {
         type='sumbit'
         className='absolute right-2 top-2 mt-3 mr-4 cursor-pointer hover:text-primary hover:scale-125 duration-200'
       >
-        <ImSearch className='' />
+        <ImSearch />
       </button>
     </div>
   );
