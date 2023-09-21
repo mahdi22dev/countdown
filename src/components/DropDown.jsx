@@ -7,7 +7,7 @@ const DropDown = ({ className, childClass, session }) => {
         tabIndex={0}
         className='btn m-1 relative rounded-full border w-12 ring ring-primary ring-offset-base-100 ring-offset-2'
       >
-        <Image fill src={"/profile.png"} alt={session.name}></Image>
+        <Image fill src={"/profile.png"} alt={"user image"}></Image>
       </label>
       <div tabIndex={0} className='dropdown-content mr-3  w-52'>
         <UserCard session={session} childClass={childClass} />
