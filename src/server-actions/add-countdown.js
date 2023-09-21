@@ -31,6 +31,8 @@ export async function onCreate(formData) {
       return { message: { success: messages.success, newCountdown } };
     } catch (error) {
       return { message: { tryagain: messages.tryagain } };
+    } finally {
+      await prisma.$disconnect();
     }
   }
 }

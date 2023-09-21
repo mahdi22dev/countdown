@@ -13,5 +13,7 @@ export const getCountdown = async (userId, countdownId) => {
     return user;
   } catch (error) {
     return error;
+  } finally {
+    await prisma.$disconnect();
   }
 };

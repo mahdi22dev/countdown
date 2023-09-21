@@ -45,18 +45,25 @@ export async function getAllUserCountdowns(skip, size, filterOption) {
     }
   } catch (error) {
     return error;
+  } finally {
+    await prisma.$disconnect();
   }
 }
 
 export async function getCountOfUserCountdowns() {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return null;
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return null;
+    }
+    const userId = session.user.id;
+    const count = await prisma.userCountdown.count({
+      where: { userId: userId },
+    });
+    return count;
+  } catch (error) {
+    return error;
+  } finally {
+    await prisma.$disconnect();
   }
-
-  const userId = session.user.id;
-  const count = await prisma.userCountdown.count({
-    where: { userId: userId },
-  });
-  return count;
 }

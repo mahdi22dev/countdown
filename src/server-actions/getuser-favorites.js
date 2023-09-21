@@ -21,5 +21,7 @@ export async function grabUserFavorites() {
     return userFavorites;
   } catch (error) {
     return error;
+  } finally {
+    await prisma.$disconnect();
   }
 }

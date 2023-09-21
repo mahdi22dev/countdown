@@ -116,7 +116,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   }
   return (
     <section className='w-full h-full'>
-      <Tabs count={count} filterFetch={filterFetch} />
+      <Tabs count={count} filterFetch={filterFetch} data={data} />
       {filterLoading ? (
         <FilterLoading />
       ) : (

@@ -14,7 +14,7 @@ const SingleUserCountdown = ({ countdown, setReFetch }) => {
         <Image src={`/themes/${countdown.imageId}.jpg`} fill alt='image' />
         <EditingButtons setReFetch={setReFetch} countdown={countdown} />
         <Link className='z-50' href={`/user/countdowns/${countdown.id}`}>
-          <p className='my-2 text-center z-10 capitalize text-xs sm:text-xl cursor-pointer hover:text-primary '>
+          <p className='my-2 text-center z-10 capitalize text-xs sm:text-xl cursor-pointer hover:text-primary truncate max-w-xs '>
             {countdown.title}
           </p>
         </Link>

@@ -3,7 +3,7 @@ import NavigationLink from "./NavigationLink";
 import AddFavourite from "./AddFavourite";
 const EditingButtons = ({ setReFetch, countdown }) => {
   return (
-    <div className='flex justify-end items-center w-full z-10 relative'>
+    <div className='flex justify-end items-center w-2/4 z-10 relative'>
       <AddFavourite countdown={countdown} />
       <NavigationLink id={countdown.id} />
       <Modal className={""} id={countdown.id} setReFetch={setReFetch} />

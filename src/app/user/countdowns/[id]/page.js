@@ -25,7 +25,7 @@ export default async function Page({ params }) {
   return (
     <main className='w-full min-h-screen relative'>
       <div className='center-item z-30 w-full '>
-        <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary'>
+        <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto'>
           {title}
         </p>
 

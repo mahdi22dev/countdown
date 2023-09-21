@@ -2,9 +2,13 @@
 import { useState } from "react";
 import { MyDrawer } from "./Mydrawer";
 import { filters } from "@/config/filters";
+import Search from "./Search";
 
-const Tabs = ({ count, filterFetch, title }) => {
+import { data } from "autoprefixer";
+
+const Tabs = ({ count, filterFetch, data }) => {
   const [active, setAactive] = useState(1);
+
   const handlefilterchange = async (filteroption, id) => {
     setAactive(id);
     await filterFetch(filteroption);
@@ -35,7 +39,8 @@ const Tabs = ({ count, filterFetch, title }) => {
           );
         })}
       </div>
-      <div>
+      <div className='flex gap-4 justify-between items-center'>
+        <Search data={data} />
         <MyDrawer />
       </div>
     </div>

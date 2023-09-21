@@ -15,6 +15,8 @@ export const deleteCountdown = async (countdownId) => {
     }
     return deletedCountdown;
   } catch (error) {
-    throw new Error("Failed to delete countdown: " + error.message);
+    return error;
+  } finally {
+    await prisma.$disconnect();
   }
 };

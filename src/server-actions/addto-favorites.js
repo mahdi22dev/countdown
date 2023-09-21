@@ -58,6 +58,8 @@ export async function addtoFavorites(userCountdownId) {
       return updatedFavorites;
     }
   } catch (error) {
-    throw new Error(`Failed to add favorite: ${error.message}`);
+    return error;
+  } finally {
+    await prisma.$disconnect();
   }
 }
