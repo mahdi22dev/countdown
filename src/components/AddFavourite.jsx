@@ -15,7 +15,7 @@ const AddFavourite = ({ countdown }) => {
     if (countdown.Favourite.length) {
       setFavorite(true);
     }
-  }, []);
+  });
 
   const addToFavourutes = async () => {
     try {
