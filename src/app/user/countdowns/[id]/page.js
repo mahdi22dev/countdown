@@ -44,6 +44,7 @@ export default async function Page({ params }) {
         fill
         className='-z-10 	grayscale-[70%]'
         src={`/themes/${imageId}.jpg`}
+        alt={title}
       />
     </main>
   );
