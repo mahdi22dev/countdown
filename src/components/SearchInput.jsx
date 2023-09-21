@@ -5,7 +5,6 @@ const SearchInput = ({ value, handleonChnage }) => {
   return (
     <div className='relative input input-bordered input-primary	md:input-lg w-full min-w-full max-w-xs flex items-center'>
       <input
-        aria-autoComplete=''
         type='text'
         placeholder='Search for a countdown'
         className='bg-base-100 h-full ml-3 outline-0 border-0'
