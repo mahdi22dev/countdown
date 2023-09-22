@@ -23,7 +23,11 @@ const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
             </h2>
           </div>
 
-          <EditingButtons countdown={countdown} setReFetch={setReFetch} />
+          <EditingButtons
+            countdown={countdown}
+            setReFetch={setReFetch}
+            className={"w-2/4"}
+          />
         </div>
         <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />
       </div>
