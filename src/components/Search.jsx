@@ -49,7 +49,7 @@ const Search = ({ data }) => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    if (value.length > 2) {
+    if (value.length > 1) {
       fetchSearch();
     }
   };
