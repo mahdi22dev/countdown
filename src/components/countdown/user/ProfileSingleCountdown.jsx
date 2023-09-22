@@ -6,7 +6,10 @@ import EditingButtons from "@/components/EditingButtons";
 
 const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
   return (
-    <div className='card h-56 bg-base-100 shadow-xl image-full relative m-3'>
+    <div
+      onClick={() => {}}
+      className='card h-56 bg-base-100 shadow-xl image-full relative m-3 hover:shadow-primary hover:shadow-md duration-500 hover:-translate-y-1 cursor-pointer'
+    >
       <figure className='relative '>
         <Image
           className=''
