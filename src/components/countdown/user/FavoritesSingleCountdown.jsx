@@ -3,10 +3,20 @@ import Image from "next/image";
 import CountdownUi from "../general/CountdownUi";
 import AddFavourite from "@/components/AddFavourite";
 import NavigationLink from "@/components/NavigationLink";
+import { useRouter } from "next/navigation";
 
 const FavoritesSingleCountdown = ({ countdown }) => {
+  const router = useRouter();
+  const redirectToCountdown = () => {
+    router.push(`/user/countdowns/${countdown.id}`);
+  };
   return (
-    <div className='card h-56 bg-base-100 shadow-xl image-full relative m-3'>
+    <div
+      onClick={() => {
+        redirectToCountdown();
+      }}
+      className='card h-56 bg-base-100 shadow-xl image-full relative m-3 hover:shadow-primary hover:shadow-md duration-500 hover:-translate-y-1 cursor-pointer'
+    >
       <figure className='relative '>
         <Image
           className=''

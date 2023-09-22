@@ -3,14 +3,21 @@ import Image from "next/image";
 import React from "react";
 import CountdownUi from "../general/CountdownUi";
 import EditingButtons from "@/components/EditingButtons";
+import { useRouter } from "next/navigation";
 
 const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
+  const router = useRouter();
+  const redirectToCountdown = () => {
+    router.push(`/user/countdowns/${countdown.id}`);
+  };
   return (
     <div
-      onClick={() => {}}
+      onClick={() => {
+        redirectToCountdown();
+      }}
       className='card h-56 bg-base-100 shadow-xl image-full relative m-3 hover:shadow-primary hover:shadow-md duration-500 hover:-translate-y-1 cursor-pointer'
     >
-      <figure className='relative '>
+      <figure className='relative'>
         <Image
           className=''
           src={`/themes/${countdown.imageId}.jpg`}
