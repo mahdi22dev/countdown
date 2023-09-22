@@ -21,7 +21,7 @@ export default function Favorites({ data }) {
           <h1>
             Create new countdown or
             <span>
-              <Link href={"/user/profile"} className='link link-primary'>
+              <Link href={"/user/profile"} className='link link-primary ml-1'>
                 add favorites
               </Link>
             </span>

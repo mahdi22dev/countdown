@@ -6,6 +6,10 @@ import { notifyError } from "@/lib/Toast";
 import { addtoFavorites } from "@/server-actions/addto-favorites";
 
 const AddFavourite = ({ countdown }) => {
+  const redirectToCountdown = (event) => {
+    event.stopPropagation(); // Stop the click event propagation
+  };
+
   const [isFavorite, setFavorite] = useState(
     countdown.Favourite.length ? true : false
   );
@@ -30,8 +34,10 @@ const AddFavourite = ({ countdown }) => {
   if (isError) {
     notifyError("an error occurred when adding your favorite");
   }
+
   return (
     <div
+      onClick={(event) => redirectToCountdown(event)}
       className='tooltip cursor-pointer'
       data-tip={`${
         isFavorite ? "remove from to Favorites" : "add to Favorites"
