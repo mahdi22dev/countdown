@@ -17,22 +17,28 @@ export const navlinks = [
   },
   {
     id: 4,
+    name: "Trending",
+    path: "/user/trending",
+  },
+
+  {
+    id: 5,
     name: "Movies",
     path: "/movies",
   },
 
   {
-    id: 5,
+    id: 6,
     name: "TV",
     path: "/tv",
   },
   {
-    id: 6,
+    id: 7,
     name: "Anime",
     path: "/anime",
   },
   {
-    id: 7,
+    id: 8,
     name: "Games",
     path: "/game",
   },
