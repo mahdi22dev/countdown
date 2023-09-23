@@ -7,7 +7,7 @@ export const test = async (id) => {
   try {
     await prisma.$transaction(async (tx) => {
       const countdowns = [];
-      for (let i = 1; i <= 2000; i++) {
+      for (let i = 1; i <= 100; i++) {
         const title = `Countdown ${i}`;
         const currentDate = new Date();
         const minDays = 1;
