@@ -21,12 +21,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const id = params.id;
-
-  console.log(id);
-
   const countdown = await getSllSingleCountdown(id);
-  console.log(countdown);
-
   const date = formatDate();
   return (
     <main className='w-full min-h-screen relative'>
