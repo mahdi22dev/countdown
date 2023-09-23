@@ -26,20 +26,9 @@ export const navlinks = [
     name: "Movies",
     path: "/movies",
   },
-
   {
     id: 6,
     name: "TV",
     path: "/tv",
-  },
-  {
-    id: 7,
-    name: "Anime",
-    path: "/anime",
-  },
-  {
-    id: 8,
-    name: "Games",
-    path: "/game",
   },
 ];
