@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prismaClient";
 const apiKey =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZGU4NmFlNWYzMmEzYjVjYzdlOGZlYjQwZGUwNDJhMSIsInN1YiI6IjY0YTEyNTcxNGE1MmY4MDBhZjEyN2I2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbYwtxSpkX8VkKoghnxMD7rlXZiSFV6oFwd5iYwvBIY";
 // Replace with your API key
-const totalPages = 10; // Total number of pages to fetch
+const totalPages = 100; // Total number of pages to fetch
 const Data = [];
 
 export const getAllCountdowns = async () => {
@@ -16,7 +16,6 @@ export const getAllCountdowns = async () => {
     });
 
     //first
-    const all = await getTrendings("all");
     const movies = await getTrendings("movie");
     const tvs = await getTrendings("tv");
 
@@ -45,16 +44,17 @@ export const getAllCountdowns = async () => {
 
     tvs.map(mapTrendingObject);
     movies.map(mapTrendingObject);
-    all.map(mapTrendingObject);
+
     console.log(allCountdownsArray);
 
+    // Insert filtered data into the database
     const dataCreated = await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
+
     console.log(dataCreated);
-
     const AllCountdowns = await prisma.AllCountdowns.findMany();
-
+    console.log(AllCountdowns);
     return AllCountdowns;
   } catch (error) {
     console.error("Error: ", error);
