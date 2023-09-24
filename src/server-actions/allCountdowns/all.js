@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prismaClient";
 const apiKey =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZGU4NmFlNWYzMmEzYjVjYzdlOGZlYjQwZGUwNDJhMSIsInN1YiI6IjY0YTEyNTcxNGE1MmY4MDBhZjEyN2I2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbYwtxSpkX8VkKoghnxMD7rlXZiSFV6oFwd5iYwvBIY";
 // Replace with your API key
-const totalPages = 1000; // Total number of pages to fetch
-const moviesData = [];
+const totalPages = 10; // Total number of pages to fetch
+const Data = [];
 
 export const getAllCountdowns = async () => {
   try {
@@ -16,10 +16,11 @@ export const getAllCountdowns = async () => {
     });
 
     //first
-    const result = await getTrendingMovies();
-    // second games anime ...
+    const all = await getTrendings("all");
+    const movies = await getTrendings("movie");
+    const tvs = await getTrendings("tv");
 
-    result.map((trending) => {
+    const mapTrendingObject = (trending) => {
       const {
         id,
         original_title,
@@ -39,17 +40,21 @@ export const getAllCountdowns = async () => {
         popularity: popularity,
         type: media_type,
       };
-
       allCountdownsArray.push(trendingObject);
-    });
+    };
+
+    tvs.map(mapTrendingObject);
+    movies.map(mapTrendingObject);
+    all.map(mapTrendingObject);
+    console.log(allCountdownsArray);
 
     const dataCreated = await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
-
     console.log(dataCreated);
 
     const AllCountdowns = await prisma.AllCountdowns.findMany();
+
     return AllCountdowns;
   } catch (error) {
     console.error("Error: ", error);
@@ -60,9 +65,9 @@ export const getAllCountdowns = async () => {
 };
 
 // trending functions
+const fetchTrendings = async (page, type) => {
+  const url = `https://api.themoviedb.org/3/trending/${type}/day?language=en-US&page=${page}`;
 
-const fetchTrendingMovies = async (page) => {
-  const url = `https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -81,19 +86,32 @@ const fetchTrendingMovies = async (page) => {
   }
 };
 
-const getTrendingMovies = async () => {
+const getTrendings = async (type) => {
   for (let page = 1; page <= totalPages; page++) {
-    const movies = await fetchTrendingMovies(page);
-    console.log("fetching page N: " + page);
+    const movies = await fetchTrendings(page, type);
+
     if (movies) {
-      moviesData.push(...movies);
+      Data.push(...movies);
     }
   }
   const currentDate = new Date();
-  const unreleasedMovies = moviesData.filter((movie) => {
-    const releaseDate = new Date(movie.release_date);
-    return releaseDate > currentDate;
-  });
+  const lastWeek = new Date();
+  lastWeek.setDate(lastWeek.getDate() - 7); // Calculate the date 7 days ago
 
-  return unreleasedMovies;
+  const countdowns = Data.map((movie) => {
+    const releaseDate = new Date(movie.release_date);
+    const isReleasedLongAgo = releaseDate < currentDate;
+    const isUpcoming = releaseDate > currentDate;
+    const isReleasedLastWeek =
+      releaseDate <= currentDate && releaseDate > lastWeek;
+
+    return {
+      ...movie,
+      isUpcoming,
+      isReleasedLastWeek,
+      isReleasedLongAgo,
+    };
+  });
+  console.log(countdowns);
+  return countdowns;
 };
