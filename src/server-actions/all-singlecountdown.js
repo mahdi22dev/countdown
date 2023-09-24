@@ -5,6 +5,7 @@ export const getSllSingleCountdown = async (countdownId) => {
     const countdown = await prisma.UserCountdown.findUnique({
       where: { id: countdownId },
     });
+
     return countdown;
   } catch (error) {
     return error;

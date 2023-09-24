@@ -22,18 +22,19 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const id = params.id;
   const countdown = await getSllSingleCountdown(id);
-  const date = formatDate();
+  const { createdAt, imageId, title } = countdown;
+  const date = formatDate(createdAt);
   return (
     <main className='w-full min-h-screen relative'>
-      <p>{countdown.title}</p>
-      {/* <div className='center-item z-30 w-full '>
+      <p>{title}</p>
+      <div className='center-item z-30 w-full '>
         <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto'>
           {title}
         </p>
 
         <Divider date={date} />
         <CountdownUi
-          countdown={user.countdowns[0]}
+          countdown={countdown}
           className={"mx-auto mt-3 justify-center items-center"}
           ChildclassName={
             "justify-center items-center w-24 h-16 md:w-40 md:h-24"
@@ -47,7 +48,7 @@ export default async function Page({ params }) {
         className='-z-10 	grayscale-[70%]'
         src={`/themes/${imageId}.jpg`}
         alt={title}
-      /> */}
+      />
     </main>
   );
 }
