@@ -45,16 +45,12 @@ export const getAllCountdowns = async () => {
     tvs.map(mapTrendingObject);
     movies.map(mapTrendingObject);
 
-    console.log(allCountdownsArray);
-
     // Insert filtered data into the database
-    const dataCreated = await prisma.AllCountdowns.createMany({
+    await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
 
-    console.log(dataCreated);
     const AllCountdowns = await prisma.AllCountdowns.findMany();
-    console.log(AllCountdowns);
     return AllCountdowns;
   } catch (error) {
     console.error("Error: ", error);
