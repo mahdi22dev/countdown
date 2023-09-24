@@ -94,24 +94,12 @@ const getTrendings = async (type) => {
       Data.push(...movies);
     }
   }
+
   const currentDate = new Date();
-  const lastWeek = new Date();
-  lastWeek.setDate(lastWeek.getDate() - 7); // Calculate the date 7 days ago
-
-  const countdowns = Data.map((movie) => {
+  const trendings = Data.filter((movie) => {
     const releaseDate = new Date(movie.release_date);
-    const isReleasedLongAgo = releaseDate < currentDate;
-    const isUpcoming = releaseDate > currentDate;
-    const isReleasedLastWeek =
-      releaseDate <= currentDate && releaseDate > lastWeek;
-
-    return {
-      ...movie,
-      isUpcoming,
-      isReleasedLastWeek,
-      isReleasedLongAgo,
-    };
+    return releaseDate > currentDate;
   });
-  console.log(countdowns);
-  return countdowns;
+
+  return trendings;
 };
