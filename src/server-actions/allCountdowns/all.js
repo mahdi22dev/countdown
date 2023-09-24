@@ -30,6 +30,7 @@ export const getAllCountdowns = async () => {
         media_type,
       } = trending;
 
+      const encodedTitle = encodeURIComponent(original_title);
       const trendingObject = {
         trendingId: id,
         title: original_title,
@@ -38,6 +39,7 @@ export const getAllCountdowns = async () => {
         description: overview,
         popularity: popularity,
         type: media_type,
+        slug: encodedTitle,
       };
       allCountdownsArray.push(trendingObject);
     };

@@ -5,7 +5,7 @@ import { getAllCountdowns } from "@/server-actions/allCountdowns/all";
 import { getSllSingleCountdown } from "@/server-actions/allCountdowns/all-singlecountdown";
 import Image from "next/image";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   // first step add all countdowns to mongodb
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   const allCountdowns = await getAllCountdowns();
   const result = allCountdowns.map((countdown) => {
     return {
-      id: countdown.id,
+      slug: countdown.title,
     };
   });
 
@@ -22,8 +22,12 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const id = params.id;
+  console.log(id);
   const countdown = await getSllSingleCountdown(id);
-  const { createdAt, imageId, title } = countdown;
+  console.log(countdown);
+  const { createdAt, imageUrl, title } = countdown;
+  const backgroundImage = `https://image.tmdb.org/t/p/w3840_and_h2160_bestv2${imageUrl}`;
+  console.log(backgroundImage);
   const date = formatDate(createdAt);
   return (
     <main className='w-full min-h-screen relative'>
@@ -45,8 +49,8 @@ export default async function Page({ params }) {
 
       <Image
         fill
-        className='-z-10 	grayscale-[70%]'
-        src={`/themes/${imageId}.jpg`}
+        className='-z-10 grayscale-[70%]'
+        src={backgroundImage}
         alt={title}
       />
     </main>
