@@ -84,10 +84,10 @@ const fetchTrendings = async (page, type) => {
 
 const getTrendings = async (type) => {
   for (let page = 1; page <= totalPages; page++) {
-    const movies = await fetchTrendings(page, type);
+    const results = await fetchTrendings(page, type);
 
-    if (movies) {
-      Data.push(...movies);
+    if (results) {
+      Data.push(...results);
     }
   }
 
