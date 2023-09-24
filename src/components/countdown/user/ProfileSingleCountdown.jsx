@@ -38,7 +38,7 @@ const ProfileSingleCountdown = ({ countdown, setReFetch }) => {
             className={"w-2/4"}
           />
         </div>
-        <CountdownUi eventtime={countdown.targetDate} ChildclassName={"w-16"} />
+        <CountdownUi countdown={countdown} ChildclassName={"w-16"} />
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ export default async function Page({ params }) {
 
         <Divider date={date} />
         <CountdownUi
-          eventtime={targetDate}
+          countdown={user.countdowns[0]}
           className={"mx-auto mt-3 justify-center items-center"}
           ChildclassName={
             "justify-center items-center w-24 h-16 md:w-40 md:h-24"

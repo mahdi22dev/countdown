@@ -1,35 +1,53 @@
 "use client";
-import { calculateTime } from "@/lib/utils";
+import { calculateTime, formatDate } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import MotionAnimateTime from "./MotionAnimateTime";
 
 const CountdownUi = ({
-  eventtime,
+  countdown,
   ChildclassName,
   className,
   animateClass,
+  endedClassname,
 }) => {
-  const [remainingTime, setRemainingTime] = useState(calculateTime(eventtime));
+  const [remainingTime, setRemainingTime] = useState(
+    calculateTime(countdown.targetDate)
+  );
+  const [Ended, IsEnded] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const newRemainingTime = calculateTime(eventtime);
+      const newRemainingTime = calculateTime(countdown.targetDate);
       setRemainingTime(newRemainingTime);
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [eventtime]);
+  }, [countdown.targetDate]);
 
   let { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
 
   let date1 = new Date();
-  if (eventtime < date1) {
+  if (countdown.targetDate < date1) {
     days = 0;
     hours = 0;
     seconds = 0;
     minutes = 0;
+    IsEnded(true);
+  }
+  if (Ended) {
+    return (
+      <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2'>
+        <p className='bg-primary text-3xl w-3/6 rounded-3xl p-3'>Ended</p>
+        <p>
+          Created at :{" "}
+          <span className='text-primary'>
+            {formatDate(countdown.createdAt)}
+          </span>
+        </p>
+      </div>
+    );
   }
   return (
     <>
