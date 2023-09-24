@@ -15,7 +15,6 @@ export async function grabUserFavorites() {
       },
       include: {
         countdowns: true,
-        allcountdowns: true,
       },
     });
 

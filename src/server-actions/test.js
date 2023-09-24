@@ -40,23 +40,4 @@ export const test = async (id) => {
   } finally {
     await prisma.$disconnect();
   }
-
-  // for (let i = 1; i <= 5000; i++) {
-  //   console.log(i);
-  //   const title = `Countdown ${i}`;
-  //   const currentDate = new Date();
-  //   const targetDate = new Date(currentDate.getTime() + i * 20 * 60000);
-  //   const min = 1;
-  //   const max = 10;
-  //   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  //   const imageId = randomNumber;
-  //   const countdownobject = { title, targetDate, imageId, imageId };
-  //   const newCountdown = await prisma.userCountdown.create({
-  //     data: {
-  //       ...countdownobject,
-  //       userId: id,
-  //     },
-  //   });
-  //   console.log("countdown created =>" + newCountdown);
-  // }
 };

@@ -1,15 +1,16 @@
 import Divider from "@/components/Divider";
 import CountdownUi from "@/components/countdown/general/CountdownUi";
 import { formatDate } from "@/lib/utils";
-import { getAllCountdowns } from "@/server-actions/all";
-import { getSllSingleCountdown } from "@/server-actions/all-singlecountdown";
+import { getAllCountdowns } from "@/server-actions/allCountdowns/all";
+import { getSllSingleCountdown } from "@/server-actions/allCountdowns/all-singlecountdown";
 import Image from "next/image";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
+  // first step add all countdowns to mongodb
+  // second step fetch countdowns
   const allCountdowns = await getAllCountdowns();
-
   const result = allCountdowns.map((countdown) => {
     return {
       id: countdown.id,
@@ -26,7 +27,6 @@ export default async function Page({ params }) {
   const date = formatDate(createdAt);
   return (
     <main className='w-full min-h-screen relative'>
-      <p>{title}</p>
       <div className='center-item z-30 w-full '>
         <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto'>
           {title}

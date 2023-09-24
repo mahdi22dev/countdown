@@ -2,7 +2,9 @@
 import { prisma } from "@/lib/prismaClient";
 export const getSllSingleCountdown = async (countdownId) => {
   try {
-    const countdown = await prisma.UserCountdown.findUnique({
+    // fetch trending
+
+    const countdown = await prisma.AllCountdowns.findUnique({
       where: { id: countdownId },
     });
 
