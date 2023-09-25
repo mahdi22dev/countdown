@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { getAllCountdowns } from "@/server-actions/allCountdowns/all";
 import { getSllSingleCountdown } from "@/server-actions/allCountdowns/all-singlecountdown";
 import Image from "next/image";
+import NotFound from "../not-found";
 
 export const dynamicParams = false;
 
@@ -23,6 +24,9 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const id = params.id;
   const countdown = await getSllSingleCountdown(id);
+  if (!countdown) {
+    return NotFound();
+  }
   const { targetDate, imageUrl, title } = countdown;
   const backgroundImage = `https://image.tmdb.org/t/p/w3840_and_h2160_bestv2${imageUrl}`;
   const date = formatDate(targetDate);
