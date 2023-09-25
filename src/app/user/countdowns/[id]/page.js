@@ -29,7 +29,7 @@ export default async function Page({ params }) {
           {title}
         </p>
 
-        <Divider date={date} />
+        <Divider date={date} text={"Countdown to"} />
         <CountdownUi
           countdown={user.countdowns[0]}
           className={"mx-auto mt-3 justify-center items-center"}

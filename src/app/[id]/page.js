@@ -22,12 +22,9 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const id = params.id;
-  console.log(id);
   const countdown = await getSllSingleCountdown(id);
-  console.log(countdown);
   const { createdAt, imageUrl, title } = countdown;
   const backgroundImage = `https://image.tmdb.org/t/p/w3840_and_h2160_bestv2${imageUrl}`;
-  console.log(backgroundImage);
   const date = formatDate(createdAt);
   return (
     <main className='w-full min-h-screen relative'>
@@ -36,7 +33,7 @@ export default async function Page({ params }) {
           {title}
         </p>
 
-        <Divider date={date} />
+        <Divider date={date} text={"Release in"} />
         <CountdownUi
           countdown={countdown}
           className={"mx-auto mt-3 justify-center items-center"}

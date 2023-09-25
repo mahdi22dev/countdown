@@ -41,7 +41,7 @@ const CountdownUi = ({
       <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2'>
         <p className='bg-primary text-3xl w-3/6 rounded-3xl p-3'>Ended</p>
         <p>
-          Created at :{" "}
+          Created at :
           <span className='text-primary'>
             {formatDate(countdown.createdAt)}
           </span>
