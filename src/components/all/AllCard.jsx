@@ -41,7 +41,11 @@ const AllCard = ({ countdown }) => {
             </div>
           </div>
         </div>
-        <CountdownUi countdown={countdown} ChildclassName={"w-13"} />
+        <CountdownUi
+          countdown={countdown}
+          ChildclassName={"w-13"}
+          isAll={true}
+        />
       </div>
     </div>
   );

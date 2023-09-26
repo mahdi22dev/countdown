@@ -36,7 +36,11 @@ const FavoritesSingleCountdown = ({ countdown }) => {
             <NavigationLink id={countdown.id} />
           </div>
         </div>
-        <CountdownUi countdown={countdown} ChildclassName={"w-16"} />
+        <CountdownUi
+          countdown={countdown}
+          ChildclassName={"w-16"}
+          isAll={false}
+        />
       </div>
     </div>
   );

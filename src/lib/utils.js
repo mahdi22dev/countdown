@@ -40,3 +40,25 @@ export const filter = (countdowns, filterOp) => {
   }
   return null;
 };
+
+// trending functions
+export const fetchTrendings = async (page, type) => {
+  const url = `https://api.themoviedb.org/3/trending/${type}/day?language=en-US&page=${page}`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+};

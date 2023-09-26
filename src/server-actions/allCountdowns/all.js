@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
+import { fetchTrendings } from "@/lib/utils";
 const totalPages = 10;
 const Data = [];
 
@@ -54,28 +55,6 @@ export const getAllCountdowns = async () => {
     throw error;
   } finally {
     await prisma.$disconnect();
-  }
-};
-
-// trending functions
-const fetchTrendings = async (page, type) => {
-  const url = `https://api.themoviedb.org/3/trending/${type}/day?language=en-US&page=${page}`;
-
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-    },
-  };
-
-  try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return [];
   }
 };
 

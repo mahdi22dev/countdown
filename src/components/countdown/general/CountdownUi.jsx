@@ -11,11 +11,14 @@ const CountdownUi = ({
   endedClassname,
   isAll,
 }) => {
-  const [remainingTime, setRemainingTime] = useState(
-    calculateTime(countdown.targetDate)
-  );
-  const [Ended, IsEnded] = useState(false);
-  const [isAllNessage, setIsAllNessage] = useState(isAll || false);
+  const [remainingTime, setRemainingTime] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const [isEnded, setIsEnded] = useState(false);
+  const [isAllmessage, setIsAllmessage] = useState(isAll || false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,43 +26,39 @@ const CountdownUi = ({
       setRemainingTime(newRemainingTime);
     }, 1000);
 
+    if (countdown.targetDate < new Date()) {
+      setIsEnded(true);
+    }
+
     return () => {
       clearInterval(interval);
     };
   }, [countdown.targetDate]);
 
-  let { days, hours, minutes, seconds } = remainingTime ?? "2023-09-06";
-
-  let date1 = new Date();
-  if (countdown.targetDate < date1) {
-    days = 0;
-    hours = 0;
-    seconds = 0;
-    minutes = 0;
-    IsEnded(true);
-  }
-  if (Ended) {
+  if (isEnded) {
     return (
       <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2'>
-        <p className='bg-primary text-3xl w-3/6 rounded-3xl p-3'>Ended</p>
-        {isAllNessage ? (
-          <p>
-            Released at :
-            <span className='text-primary'>
-              {formatDate(countdown.targetDate)}
-            </span>
-          </p>
+        {isAllmessage ? (
+          <>
+            <p className='bg-primary text-xl w-3/6 rounded-3xl p-3'>Released</p>
+          </>
         ) : (
-          <p>
-            Created at :
-            <span className='text-primary'>
-              {formatDate(countdown.createdAt)}
-            </span>
-          </p>
+          <>
+            <p className='bg-primary text-xl w-3/6 rounded-3xl p-3'>Ended</p>
+            <p>
+              Created at :
+              <span className='text-primary'>
+                {formatDate(countdown.createdAt)}
+              </span>
+            </p>
+          </>
         )}
       </div>
     );
   }
+
+  let { days, hours, minutes, seconds } = remainingTime;
+
   return (
     <>
       <div
