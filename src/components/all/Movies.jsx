@@ -1,80 +1,42 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { getAllUserCountdowns } from "@/server-actions/getuser-countdowns";
-import { MyDrawer } from "../../Mydrawer";
-import Tabs from "../../Tabs";
-import ProfileSingleCountdown from "./ProfileSingleCountdown";
-import FilterLoading from "../../loading/FilterLoading";
+import { useEffect, useState } from "react";
 
-let PaginationSkip = 20;
-let GlobalfilterOption = "all";
-const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
+import { getAllWithType } from "@/server-actions/allCountdowns/get-all";
+import AllCard from "./AllCard";
+import FilterLoading from "../loading/FilterLoading";
+let PaginationSkip = 10;
+
+const Movies = ({ data, showSeeMorebtn }) => {
   const [isPending, setIspending] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
-  const [refetch, setReFetch] = useState(false);
   const [isError, setIsError] = useState(false);
   const [countdowns, setCountdowns] = useState(data || []);
   const [showSeeBtn, setShowSeeBtn] = useState(showSeeMorebtn);
-  const [showcreate, setShowCreate] = useState(showCreateBtn);
-  const isInitialRender = useRef(true);
-
-  const refetchAfterdelete = async () => {
-    try {
-      setFilterLoading(true);
-      const skip = 0;
-      const size = 20;
-      const data = await getAllUserCountdowns(skip, size, GlobalfilterOption);
-      setCountdowns(data);
-      return data;
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setFilterLoading(false);
-    }
-  };
-  useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-      return;
-    }
-    refetchAfterdelete();
-  }, [refetch]);
 
   useEffect(() => {
     if (countdowns.length == 0) {
       setShowSeeBtn(false);
-      setShowCreate(true);
     }
-    PaginationSkip = 20;
+    PaginationSkip = 10;
     // grabAllcountdowns();
   }, []);
 
   useEffect(() => {
     if (countdowns.length == 0) {
       setShowSeeBtn(false);
-      setShowCreate(true);
     } else {
       setShowSeeBtn(true);
-      setShowCreate(false);
     }
   }, [countdowns]);
 
   const userPagination = async () => {
-    if (countdowns.length == count) {
-      //testing
-      setShowSeeBtn(false);
-      return;
-    }
     try {
       setIspending(true);
-      PaginationSkip = PaginationSkip + 20;
-      const size = 20;
-      const data = await getAllUserCountdowns(
-        PaginationSkip,
-        size,
-        GlobalfilterOption
-      );
+      PaginationSkip = PaginationSkip + 10;
+      const size = 10;
+      const type = "movie";
+      const data = await getAllWithType(type, size, PaginationSkip);
 
       if (data.length > 0) {
         const allCountdowns = [...countdowns, ...data];
@@ -84,13 +46,15 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
       }
       return data;
     } catch (error) {
-      setIsError(true);
       throw new Error(error);
     } finally {
       setIspending(false);
     }
   };
 
+  if (isError) {
+    return <div>Error</div>;
+  }
   return (
     <section className='w-full h-full'>
       {filterLoading ? (
@@ -99,13 +63,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
         <>
           <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
             {countdowns?.map((countdown) => {
-              return (
-                <ProfileSingleCountdown
-                  setReFetch={setReFetch}
-                  countdown={countdown}
-                  key={countdown.id}
-                />
-              );
+              return <AllCard countdown={countdown} key={countdown.id} />;
             })}
           </div>
 
@@ -126,11 +84,10 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
               see more
             </button>
           )}
-          {showcreate && <MyDrawer />}
         </>
       )}
     </section>
   );
 };
 
-export default ProfileCountdowns;
+export default Movies;
