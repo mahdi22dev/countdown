@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
-const totalPages = 1000;
+const totalPages = 10;
 const Data = [];
 
 export const getAllCountdowns = async () => {
@@ -46,6 +46,7 @@ export const getAllCountdowns = async () => {
       data: allCountdownsArray,
     });
     console.log(createdCountdowns);
+
     const AllCountdowns = await prisma.AllCountdowns.findMany();
     return AllCountdowns;
   } catch (error) {

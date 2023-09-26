@@ -4,7 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { getAllCountdowns } from "@/server-actions/allCountdowns/all";
 import { getSllSingleCountdown } from "@/server-actions/allCountdowns/all-singlecountdown";
 import Image from "next/image";
-import NotFound from "../not-found";
+import { notFound } from "next/navigation";
 
 export const dynamicParams = false;
 
@@ -23,7 +23,7 @@ export default async function Page({ params }) {
   const id = params.id;
   const countdown = await getSllSingleCountdown(id);
   if (!countdown) {
-    return NotFound();
+    return notFound();
   }
   const { targetDate, imageUrl, title } = countdown;
 
