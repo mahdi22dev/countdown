@@ -42,10 +42,10 @@ export const getAllCountdowns = async () => {
     movies.map(mapMoviegObject);
 
     // Insert filtered data into the database
-    await prisma.AllCountdowns.createMany({
+    const createdCountdowns = await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
-
+    console.log(createdCountdowns);
     const AllCountdowns = await prisma.AllCountdowns.findMany();
     return AllCountdowns;
   } catch (error) {
