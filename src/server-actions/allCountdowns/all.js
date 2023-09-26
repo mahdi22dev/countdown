@@ -13,7 +13,6 @@ export const getAllCountdowns = async () => {
     });
 
     const movies = await getTrendings("movie");
-    const tvs = await getTrendings("tv");
 
     const mapMoviegObject = (trending) => {
       const {
@@ -42,7 +41,6 @@ export const getAllCountdowns = async () => {
     };
 
     movies.map(mapMoviegObject);
-    tvs.map(mapMoviegObject);
 
     // Insert filtered data into the database
     const createdCountdowns = await prisma.AllCountdowns.createMany({
