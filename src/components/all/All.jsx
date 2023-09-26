@@ -23,7 +23,7 @@ const All = ({ data }) => {
       <div className='w-full flex justify-center items-center max-w-7xl cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-0 '>
         <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
           {countdowns.map((countdown) => {
-            return <AllCard countdown={countdown} />;
+            return <AllCard key={countdown.id} countdown={countdown} />;
           })}
         </div>
       </div>
