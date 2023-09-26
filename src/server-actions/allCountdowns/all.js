@@ -69,7 +69,7 @@ const fetchTrendings = async (page, type) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
     },
   };
 
