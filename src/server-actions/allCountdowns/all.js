@@ -17,9 +17,8 @@ export const getAllCountdowns = async () => {
 
     //first
     const movies = await getTrendings("movie");
-    const tvs = await getTrendings("tv");
 
-    const mapTrendingObject = (trending) => {
+    const mapMoviegObject = (trending) => {
       const {
         id,
         original_title,
@@ -31,21 +30,21 @@ export const getAllCountdowns = async () => {
       } = trending;
 
       const encodedTitle = encodeURIComponent(original_title);
-      const trendingObject = {
+
+      const MovieObject = {
         trendingId: id,
         title: original_title,
         targetDate: `${release_date}T12:00:00Z`,
-        imageUrl: poster_path,
+        imageUrl: `https://image.tmdb.org/t/p/w3840_and_h2160_bestv2${poster_path}`,
         description: overview,
         popularity: popularity,
         type: media_type,
         slug: encodedTitle,
       };
-      allCountdownsArray.push(trendingObject);
+      allCountdownsArray.push(MovieObject);
     };
 
-    tvs.map(mapTrendingObject);
-    movies.map(mapTrendingObject);
+    movies.map(mapMoviegObject);
 
     // Insert filtered data into the database
     await prisma.AllCountdowns.createMany({
@@ -87,7 +86,7 @@ const fetchTrendings = async (page, type) => {
 const getTrendings = async (type) => {
   for (let page = 1; page <= totalPages; page++) {
     const results = await fetchTrendings(page, type);
-
+    console.log("fetch page: " + page + " type: " + type);
     if (results) {
       Data.push(...results);
     }

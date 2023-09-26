@@ -5,7 +5,6 @@ export const getSllSingleCountdown = async (slug) => {
     const countdown = await prisma.AllCountdowns.findUnique({
       where: { slug: slug },
     });
-    console.log(countdown);
     return countdown;
   } catch (error) {
     console.error("Error while fetching countdown:", error);

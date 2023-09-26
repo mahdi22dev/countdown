@@ -9,8 +9,6 @@ import NotFound from "../not-found";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  // first step add all countdowns to mongodb
-  // second step fetch countdowns
   const allCountdowns = await getAllCountdowns();
   const result = allCountdowns.map((countdown) => {
     return {
@@ -28,7 +26,7 @@ export default async function Page({ params }) {
     return NotFound();
   }
   const { targetDate, imageUrl, title } = countdown;
-  const backgroundImage = `https://image.tmdb.org/t/p/w3840_and_h2160_bestv2${imageUrl}`;
+
   const date = formatDate(targetDate);
   return (
     <main className='w-full min-h-screen relative'>
@@ -51,7 +49,7 @@ export default async function Page({ params }) {
       <Image
         fill
         className='-z-10 grayscale-[70%]'
-        src={backgroundImage}
+        src={imageUrl}
         alt={title}
       />
     </main>
