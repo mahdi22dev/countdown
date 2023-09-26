@@ -13,6 +13,7 @@ export const getAllCountdowns = async () => {
     });
 
     const movies = await getTrendings("movie");
+    const tvs = await getTrendings("tv");
 
     const mapMoviegObject = (trending) => {
       const {
@@ -41,6 +42,7 @@ export const getAllCountdowns = async () => {
     };
 
     movies.map(mapMoviegObject);
+    tvs.map(mapMoviegObject);
 
     // Insert filtered data into the database
     const createdCountdowns = await prisma.AllCountdowns.createMany({
@@ -68,10 +70,24 @@ const getTrendings = async (type) => {
   }
 
   const currentDate = new Date();
+  const sevenDaysAgo = new Date(currentDate);
+  sevenDaysAgo.setDate(currentDate.getDate() - 7);
+
   const trendings = Data.filter((movie) => {
     const releaseDate = new Date(movie.release_date);
-    return releaseDate > currentDate;
-  });
 
+    // Check if the release date is in the future (not released yet)
+    if (releaseDate > currentDate) {
+      return true;
+    }
+
+    // Check if the release date is in the past but within the last 7 days
+    if (releaseDate >= sevenDaysAgo) {
+      return true;
+    }
+
+    return false;
+  });
+  console.log(trendings);
   return trendings;
 };
