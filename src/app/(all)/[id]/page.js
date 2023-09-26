@@ -43,6 +43,7 @@ export default async function Page({ params }) {
             "justify-center items-center w-24 h-16 md:w-40 md:h-24"
           }
           animateClass={"md:text-2xl text-base"}
+          isAll={true}
         />
       </div>
 

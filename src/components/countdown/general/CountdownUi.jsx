@@ -18,7 +18,7 @@ const CountdownUi = ({
     seconds: 0,
   });
   const [isEnded, setIsEnded] = useState(false);
-  const [isAllmessage, setIsAllmessage] = useState(isAll || false);
+  const [isAllmessage, setIsAllmessage] = useState(isAll);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,7 +38,7 @@ const CountdownUi = ({
   if (isEnded) {
     return (
       <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2'>
-        {isAllmessage ? (
+        {isAll ? (
           <>
             <p className='bg-primary text-xl w-3/6 rounded-3xl p-3'>Released</p>
           </>

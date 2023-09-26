@@ -6,7 +6,7 @@ import AddFavourite from "../AddFavourite";
 import CountdownUi from "../countdown/general/CountdownUi";
 import Link from "next/link";
 
-const AllCard = ({ countdown }) => {
+const AllCard = ({ countdown, CountdownSize }) => {
   const router = useRouter();
 
   const redirectToCountdown = () => {
@@ -43,7 +43,7 @@ const AllCard = ({ countdown }) => {
         </div>
         <CountdownUi
           countdown={countdown}
-          ChildclassName={"w-13"}
+          ChildclassName={CountdownSize || "w-13"}
           isAll={true}
         />
       </div>

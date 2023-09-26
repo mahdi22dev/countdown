@@ -63,7 +63,13 @@ const Movies = ({ data, showSeeMorebtn }) => {
         <>
           <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
             {countdowns?.map((countdown) => {
-              return <AllCard countdown={countdown} key={countdown.id} />;
+              return (
+                <AllCard
+                  countdown={countdown}
+                  key={countdown.id}
+                  CountdownSize={"w-16"}
+                />
+              );
             })}
           </div>
 
