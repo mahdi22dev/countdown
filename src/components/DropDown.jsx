@@ -1,3 +1,4 @@
+"use client";
 import UserCard from "./UserCard";
 import Image from "next/image";
 const DropDown = ({ className, childClass, session }) => {

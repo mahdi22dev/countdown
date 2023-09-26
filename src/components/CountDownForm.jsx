@@ -99,30 +99,7 @@ const CountDownForm = () => {
             </p>
           )}
         </div>
-        {/* descreption */}
-        {/* <div className=' mb-2'>
-          <div className='mb-1'>
-            <label
-              htmlFor={"description"}
-              className='capitalize text-primary-content'
-            >
-              {"Descreition"}
-            </label>
-          </div>
-          <Controller
-            name={"description"}
-            control={control}
-            render={({ field }) => (
-              <textarea
-                placeholder='describe your countdown'
-                className='textarea textarea-bordered textarea-lg w-full max-w-xs'
-                {...field}
-              ></textarea>
-            )}
-          />
-        </div> */}
-        {/* form inputs */}
-        {/* Theme Picker */}
+
         <p className='mb-2 text-primary-content'>Pick a Theme</p>
         <ImageGrid
           setSelectedImage={setSelectedImage}

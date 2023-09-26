@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import Provider from "@/context/session/Provider";
 import NextTopLoader from "nextjs-toploader";
 import { ToastContainer } from "react-toastify";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,13 +14,14 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang='en' data-theme='dracula'>
       <body className={inter.className}>
         <NextTopLoader color='#9fc78e' showSpinner={false} />
         <ToastContainer />
         <Provider>
-          <Navbar />
+          <Navbar session={session} />
           {children}
         </Provider>
       </body>

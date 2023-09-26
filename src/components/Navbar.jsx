@@ -1,11 +1,18 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+"use client";
 import { SlMenu, SlClose } from "react-icons/sl";
 import NavAuthLinks from "./NavAuthLinks";
 import NavLinks from "./NavLinks";
 import DropDown from "./DropDown";
-export default async function Navbar() {
-  const session = await getServerSession(authOptions);
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+export default function Navbar({ usersession }) {
+  const [session, setSession] = useState(usersession);
+  const clientSession = useSession();
+  useEffect(() => {
+    if (clientSession.status == "authenticated") {
+      setSession(clientSession.data);
+    }
+  }, [clientSession]);
   return (
     <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 z-50'>
       <div>
