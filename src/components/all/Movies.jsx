@@ -7,7 +7,7 @@ import AllCard from "./AllCard";
 import FilterLoading from "../loading/FilterLoading";
 let PaginationSkip = 10;
 
-const Movies = ({ data, showSeeMorebtn }) => {
+const Movies = ({ data, showSeeMorebtn, session }) => {
   const [isPending, setIspending] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -68,6 +68,7 @@ const Movies = ({ data, showSeeMorebtn }) => {
                   countdown={countdown}
                   key={countdown.id}
                   CountdownSize={"w-16"}
+                  session={session}
                 />
               );
             })}

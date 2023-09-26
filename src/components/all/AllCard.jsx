@@ -6,9 +6,9 @@ import AddFavourite from "../AddFavourite";
 import CountdownUi from "../countdown/general/CountdownUi";
 import Link from "next/link";
 
-const AllCard = ({ countdown, CountdownSize }) => {
+const AllCard = ({ countdown, CountdownSize, session }) => {
+  console.log(session);
   const router = useRouter();
-
   const redirectToCountdown = () => {
     router.push(`/${countdown.slug}`);
   };
@@ -33,7 +33,7 @@ const AllCard = ({ countdown, CountdownSize }) => {
             </h2>
           </div>
           <div className='flex justify-end items-center w-full z-10 relative'>
-            <AddFavourite countdown={countdown} />
+            {session?.user && <AddFavourite countdown={countdown} />}
             <div className='tooltip' data-tip='view countdown'>
               <Link href={`/${countdown.slug}`}>
                 <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />
