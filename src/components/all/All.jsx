@@ -11,7 +11,7 @@ const All = ({ data }) => {
     <section className='w-full p-5 '>
       <div className='max-w-7xl h-20 mb-2 flex justify-between mx-auto items-end gap-2 '>
         <p className='text-primary text-2xl'>Upcoming Movies</p>
-        <Link href={"/user/profile"}>
+        <Link href={"/movies"}>
           <Button
             text={"View All"}
             variant={"primary"}
