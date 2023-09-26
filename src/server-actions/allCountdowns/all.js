@@ -1,10 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
-
-const apiKey =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZGU4NmFlNWYzMmEzYjVjYzdlOGZlYjQwZGUwNDJhMSIsInN1YiI6IjY0YTEyNTcxNGE1MmY4MDBhZjEyN2I2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbYwtxSpkX8VkKoghnxMD7rlXZiSFV6oFwd5iYwvBIY";
-// Replace with your API key
-const totalPages = 100; // Total number of pages to fetch
+const totalPages = 1000;
 const Data = [];
 
 export const getAllCountdowns = async () => {
@@ -15,7 +11,6 @@ export const getAllCountdowns = async () => {
       where: {},
     });
 
-    //first
     const movies = await getTrendings("movie");
 
     const mapMoviegObject = (trending) => {
