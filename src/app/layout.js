@@ -6,6 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 import { ToastContainer } from "react-toastify";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import ClientSessionProvider from "@/context/client-session";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,15 +15,16 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession(authOptions);
   return (
     <html lang='en' data-theme='dracula'>
       <body className={inter.className}>
         <NextTopLoader color='#9fc78e' showSpinner={false} />
         <ToastContainer />
         <Provider>
-          <Navbar session={session} />
-          {children}
+          <ClientSessionProvider>
+            <Navbar />
+            {children}
+          </ClientSessionProvider>
         </Provider>
       </body>
     </html>

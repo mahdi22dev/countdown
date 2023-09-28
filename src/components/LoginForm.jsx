@@ -29,7 +29,7 @@ const LoginForm = () => {
       if (callback?.ok && !callback?.error) {
         setMessage("redirect...");
         setTimeout(() => {
-          router.push("/");
+          window.location.href = "/";
         }, 2000);
       }
     });
