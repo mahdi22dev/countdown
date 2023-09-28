@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Controller, useForm } from "react-hook-form";
@@ -8,7 +7,6 @@ import { SignInschema } from "@/lib/validaion";
 const LoginForm = () => {
   const [Loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
-  const router = useRouter();
   const [message, setMessage] = useState("");
 
   const {
