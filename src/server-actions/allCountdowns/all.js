@@ -1,7 +1,7 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
 import { fetchTrendings } from "@/lib/utils";
-const totalPages = 20;
+const totalPages = 1000;
 const Data = [];
 
 export const getAllCountdowns = async () => {
