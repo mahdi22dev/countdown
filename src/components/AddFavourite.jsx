@@ -7,7 +7,7 @@ import { addtoFavorites } from "@/server-actions/addto-favorites";
 
 const AddFavourite = ({ countdown }) => {
   const redirectToCountdown = (event) => {
-    event.stopPropagation(); // Stop the click event propagation
+    event.stopPropagation();
   };
 
   const [isFavorite, setFavorite] = useState(
