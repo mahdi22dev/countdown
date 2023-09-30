@@ -4,8 +4,6 @@ import { Inter } from "next/font/google";
 import Provider from "@/context/session/Provider";
 import NextTopLoader from "nextjs-toploader";
 import { ToastContainer } from "react-toastify";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import ClientSessionProvider from "@/context/client-session";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,18 +13,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  function checkInternetConnection() {
-    const online = navigator.onLine; // Check if the browser reports an internet connection
-
-    if (online) {
-      // User is connected to the internet
-      return true;
-    } else {
-      // User is not connected to the internet
-      return false;
-    }
-  }
-  console.log(checkInternetConnection);
   return (
     <html lang='en' data-theme='dracula'>
       <body className={inter.className}>

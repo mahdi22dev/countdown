@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SignInschema } from "@/lib/validaion";
 const LoginForm = () => {
   const [Loading, setLoading] = useState(false);
+  const [GuestLoading, setQuastLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -17,12 +18,31 @@ const LoginForm = () => {
 
   // handlesumbit
   const onSubmit = (data) => {
+    console.log(data);
     setMessage("");
     setLoading(true);
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
       if (callback?.error) {
         setMessage("Password wrong or the email doesn't exist");
         setLoading(false);
+      }
+      if (callback?.ok && !callback?.error) {
+        setMessage("redirect...");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      }
+    });
+  };
+  // handleGuastSumbit
+  const onGuestsSubmit = () => {
+    const data = { email: "test3@gmail.com", password: "12345" };
+    setMessage("");
+    setQuastLoading(true);
+    signIn("credentials", { ...data, redirect: false }).then((callback) => {
+      if (callback?.error) {
+        setMessage("Password wrong or the email doesn't exist");
+        setQuastLoading(false);
       }
       if (callback?.ok && !callback?.error) {
         setMessage("redirect...");
@@ -71,6 +91,7 @@ const LoginForm = () => {
                   <input
                     className='input input-accent w-full rounded-sm'
                     {...field}
+                    disabled={Loading || GuestLoading}
                   />
                 )}
               />
@@ -84,7 +105,6 @@ const LoginForm = () => {
             <div>
               <div className='flex items-center justify-between'>
                 <label className='mb-1'>Password</label>
-
                 <div className='text-sm'>
                   <a href='#' className='link hover:link-primary link-hover'>
                     Forgot password?
@@ -103,6 +123,7 @@ const LoginForm = () => {
                       autoComplete='current-password'
                       className='input input-accent w-full rounded-sm'
                       {...field}
+                      disabled={Loading || GuestLoading}
                     />
                   )}
                 />
@@ -121,13 +142,28 @@ const LoginForm = () => {
                   Loading
                     ? " btn-disabled btn-primary btn-outline"
                     : "btn-primary"
-                } btn min-h-[40px] h-3 max-h-3 rounded-sm w-full text-white flex justify-center items-center`}
+                } btn min-h-[40px] h-3 max-h-3 rounded-sm w-full text-white flex justify-center items-center mb-2`}
+                disabled={Loading}
               >
                 {Loading && (
                   <span className='loading loading-spinner text-primary'></span>
                 )}
                 Sign in
               </button>
+              <div
+                onClick={onGuestsSubmit}
+                className={`${
+                  GuestLoading
+                    ? " btn-disabled btn-primary btn-outline"
+                    : "btn-secondary"
+                } btn min-h-[40px] h-3 max-h-3 rounded-sm w-full text-white flex justify-center items-center`}
+                disabled={GuestLoading}
+              >
+                {GuestLoading && (
+                  <span className='loading loading-spinner text-secondary'></span>
+                )}
+                Guest Sign in
+              </div>
             </div>
           </form>
           <div className='divider'>OR</div>
