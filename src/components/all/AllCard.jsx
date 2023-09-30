@@ -32,7 +32,6 @@ const AllCard = ({ countdown, CountdownSize, session }) => {
             </h2>
           </div>
           <div className='flex justify-end items-center w-full z-10 relative'>
-            {session?.user && <AddFavourite countdown={countdown} />}
             <div className='tooltip' data-tip='view countdown'>
               <Link href={`/${countdown.slug}`}>
                 <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />
