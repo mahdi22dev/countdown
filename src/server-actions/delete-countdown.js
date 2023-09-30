@@ -5,8 +5,6 @@ import { getServerSession } from "next-auth";
 
 export const deleteCountdown = async (countdownId) => {
   try {
-    console.log("deleted id: " + countdownId);
-
     const deletedCountdown = await prisma.UserCountdown.delete({
       where: { id: countdownId },
     });

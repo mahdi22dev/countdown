@@ -26,7 +26,7 @@ export async function searchCountdownsByTitle(value) {
         },
       },
     });
-    console.log(user);
+
     return user;
   } catch (error) {
     console.error("Error searching countdowns:", error);

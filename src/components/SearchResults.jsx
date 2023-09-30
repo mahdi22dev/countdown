@@ -2,7 +2,6 @@ import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
 const SearchResults = ({ countdowns, isPending }) => {
-  console.log(session);
   return (
     <div className='min-h-[200px] max-h-[200px] overflow-y-visible w-full flex flex-col gap-1'>
       {isPending ? (

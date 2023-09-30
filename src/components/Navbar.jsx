@@ -30,18 +30,14 @@ export default async function Navbar() {
               <SlClose className='text-3xl text-primary hover:text-secondary duration-200 hover:scale-125' />
             </label>
             {session ? (
-              <DropDown
-                session={session}
-                childClass={"mt-5"}
-                className={" md:hidden  "}
-              />
+              <DropDown childClass={"mt-5"} className={"md:hidden"} />
             ) : (
               <NavAuthLinks
                 className={"flex md:hidden justify-center w-full mb-5"}
               />
             )}
 
-            <NavLinks className={"flex flex-col gap-2 md:hidden  w-[100%]"} />
+            <NavLinks className={"flex flex-col gap-2 md:hidden w-[100%]"} />
           </ul>
         </div>
       </div>
@@ -49,11 +45,7 @@ export default async function Navbar() {
       <NavLinks className={"hidden md:flex"} />
 
       {session ? (
-        <DropDown
-          session={session}
-          childClass={"mt-72"}
-          className={"hidden md:flex"}
-        />
+        <DropDown childClass={"mt-72"} className={"hidden md:flex"} />
       ) : (
         <NavAuthLinks className={"hidden md:flex"} />
       )}

@@ -29,7 +29,7 @@ export const test = async (id) => {
       const newCountdown = await tx.userCountdown.createMany({
         data: countdowns,
       });
-      // console.log("countdown created N*:" + id + newCountdown);
+
       const endTime = new Date(); // Record the end time
       const executionTime = endTime - startTime;
       console.log("creation completed", newCountdown);

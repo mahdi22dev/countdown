@@ -1,7 +1,7 @@
 "use client";
 import UserCard from "./UserCard";
 import Image from "next/image";
-const DropDown = ({ className, childClass, session }) => {
+const DropDown = ({ className, childClass }) => {
   return (
     <div className={`dropdown dropdown-end ${className}`}>
       <label
@@ -11,7 +11,7 @@ const DropDown = ({ className, childClass, session }) => {
         <Image fill src={"/profile.png"} alt={"user image"}></Image>
       </label>
       <div tabIndex={0} className='dropdown-content mr-3  w-52'>
-        <UserCard session={session} childClass={childClass} />
+        <UserCard childClass={childClass} />
       </div>
     </div>
   );

@@ -15,6 +15,18 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  function checkInternetConnection() {
+    const online = navigator.onLine; // Check if the browser reports an internet connection
+
+    if (online) {
+      // User is connected to the internet
+      return true;
+    } else {
+      // User is not connected to the internet
+      return false;
+    }
+  }
+  console.log(checkInternetConnection);
   return (
     <html lang='en' data-theme='dracula'>
       <body className={inter.className}>

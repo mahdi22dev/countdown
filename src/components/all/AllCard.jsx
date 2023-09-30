@@ -7,7 +7,6 @@ import CountdownUi from "../countdown/general/CountdownUi";
 import Link from "next/link";
 
 const AllCard = ({ countdown, CountdownSize, session }) => {
-  console.log(session);
   const router = useRouter();
   const redirectToCountdown = () => {
     router.push(`/${countdown.slug}`);

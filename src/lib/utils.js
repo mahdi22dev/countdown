@@ -32,10 +32,8 @@ export const formatDate = (date) => {
 //filters:
 export const filter = (countdowns, filterOp) => {
   if (filterOp === "all") {
-    console.log("filter option is all");
     return countdowns.sort((a, b) => b.targetDate - a.targetDate);
   } else if (filterOp === "soon") {
-    console.log("filter option is soon");
     return countdowns.sort((a, b) => a.targetDate - b.targetDate);
   }
   return null;

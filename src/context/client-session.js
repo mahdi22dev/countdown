@@ -22,6 +22,5 @@ export default function ClientSessionProvider({ children }) {
 
 export function useClientSessionContext() {
   const context = useContext(ClientSessionContext);
-  console.log(context);
   return context;
 }

@@ -7,7 +7,6 @@ export const getAllWithType = async (type, size, skip) => {
       take: size,
       skip: skip,
     });
-    console.log(countdown);
 
     return countdown;
   } catch (error) {
