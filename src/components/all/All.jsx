@@ -3,11 +3,9 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Button from "../ui/Button";
 import AllCard from "./AllCard";
-import { useSession } from "next-auth/react";
 
 const All = ({ data, session }) => {
   const [countdowns, setCountdown] = useState(data);
-  // const session = useSession();
 
   return (
     <section className='w-full p-5 '>
