@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoEye } from "react-icons/io5";
-import AddFavourite from "../AddFavourite";
 import CountdownUi from "../countdown/general/CountdownUi";
 import Link from "next/link";
+import AlladdFavorite from "./AlladdFavorite";
 
 const AllCard = ({ countdown, CountdownSize, session }) => {
   const router = useRouter();
@@ -24,6 +24,7 @@ const AllCard = ({ countdown, CountdownSize, session }) => {
           fill
         />
       </figure>
+
       <div className='card-body justify-between flex-col'>
         <div className='card-title justify-between'>
           <div className='tooltip w-2/4' data-tip={countdown.title}>
@@ -32,17 +33,17 @@ const AllCard = ({ countdown, CountdownSize, session }) => {
             </h2>
           </div>
           <div className='flex justify-end items-center w-full z-10 relative'>
-            {/* {session?.user && <AddFavourite countdown={countdown} />} */}
+            {/* {session?.user && <AlladdFavorite countdown={countdown} />} */}
             <div className='tooltip' data-tip='view countdown'>
               <Link href={`/${countdown.slug}`}>
-                <IoEye className='hover:text-primary duration-300 text-2xl mr-1' />
+                <IoEye className='hover:text-primary duration-300 text-2xl mr-1 ' />
               </Link>
             </div>
           </div>
         </div>
         <CountdownUi
           countdown={countdown}
-          ChildclassName={CountdownSize || "w-13"}
+          ChildclassName={CountdownSize || "w-[59px]"}
           isAll={true}
         />
       </div>

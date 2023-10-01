@@ -3,7 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth";
 
-export async function addalltoFavorites(userCountdownId) {
+export async function addalltoFavorites(slug) {
+  console.log(slug);
   try {
     const session = await getServerSession(authOptions);
 
@@ -16,29 +17,29 @@ export async function addalltoFavorites(userCountdownId) {
         userId: session?.user?.id,
       },
     });
+    console.log(existingFavorites);
 
     if (!existingFavorites) {
       const newFavorites = await prisma.Favorites.create({
         data: {
           userId: session?.user?.id,
-          countdowns: { connect: { id: userCountdownId } },
+          AllCountdowns: { connect: { slug: slug } },
         },
       });
       return newFavorites;
     }
 
     const isCountdownInFavorites =
-      existingFavorites.UserCountdowns &&
-      existingFavorites.UserCountdowns.some(
-        (countdown) => countdown === userCountdownId
-      );
+      existingFavorites.AllCountdowns &&
+      existingFavorites.AllCountdowns.some((countdown) => countdown === slug);
+    console.log(isCountdownInFavorites);
 
     if (isCountdownInFavorites) {
       const updatedFavorites = await prisma.Favorites.update({
         where: { id: existingFavorites.id },
         data: {
-          countdowns: {
-            disconnect: { id: userCountdownId },
+          AllCountdowns: {
+            disconnect: { slug: slug },
           },
         },
       });
@@ -48,8 +49,8 @@ export async function addalltoFavorites(userCountdownId) {
       const updatedFavorites = await prisma.Favorites.update({
         where: { id: existingFavorites.id },
         data: {
-          countdowns: {
-            connect: { id: userCountdownId },
+          AllCountdowns: {
+            connect: { slug: slug },
           },
         },
       });

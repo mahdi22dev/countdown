@@ -8,7 +8,6 @@ const CountdownUi = ({
   ChildclassName,
   className,
   animateClass,
-  endedClassname,
   isAll,
 }) => {
   const [remainingTime, setRemainingTime] = useState({
@@ -17,6 +16,7 @@ const CountdownUi = ({
     minutes: 0,
     seconds: 0,
   });
+
   const [isEnded, setIsEnded] = useState(false);
   const [isAllmessage, setIsAllmessage] = useState(isAll);
 
@@ -37,14 +37,14 @@ const CountdownUi = ({
 
   if (isEnded) {
     return (
-      <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2'>
+      <div className='text-center mx-auto w-full flex items-center justify-center flex-col gap-2 z-50'>
         {isAll ? (
           <>
-            <p className='bg-primary text-xl w-3/6 rounded-3xl p-3'>Released</p>
+            <p className='bg-primary text-xl w-4/6 rounded-3xl p-3'>Released</p>
           </>
         ) : (
           <>
-            <p className='bg-primary text-xl w-3/6 rounded-3xl p-3'>Ended</p>
+            <p className='bg-primary text-xl w-4/6 rounded-3xl p-3'>Ended</p>
             <p className=''>
               Created at :
               <span className='text-primary ml-1'>

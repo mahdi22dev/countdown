@@ -78,17 +78,17 @@ const UserCountdown = () => {
     return <div>Error</div>;
   }
   return (
-    <section className='w-full p-5'>
+    <section className='w-full p-5 max-w-[90rem]'>
       <UserCountdownButtons />
       {isPending ? (
         <>
-          <div className='w-full flex justify-center items-center max-w-7xl h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-0'>
+          <div className='w-full flex justify-center items-center  h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-0'>
             <span className='loading loading-spinner loading-md text-primary'></span>
           </div>
         </>
       ) : countdowns.length == 0 ? (
         <>
-          <div className='w-full max-w-7xl h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-[0] flex justify-center items-center flex-col gap-4'>
+          <div className='w-full h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-[0] flex justify-center items-center flex-col gap-4'>
             {" "}
             <p>Create New Countdown</p>
             <MyDrawer />
@@ -98,7 +98,7 @@ const UserCountdown = () => {
         <Carousel
           responsive={responsive}
           renderButtonGroupOutside={true}
-          className='w-full max-w-7xl h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-[0]'
+          className='w-full h-[340px] cursor-pointer mx-auto bg-base-100 border border-primary p-1 rounded-md -z-[0]'
           sliderClass='w-full h-full scroll-smooth flex justify-start items-start overflow-hidden p-2 gap-2'
           itemClass=' w-full h-full m-2 flex flex-col justify-between px-2 py-4 '
         >

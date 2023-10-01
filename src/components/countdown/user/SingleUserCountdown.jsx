@@ -21,7 +21,11 @@ const SingleUserCountdown = ({ countdown, setReFetch }) => {
             {countdown.title}
           </p>
         </Link>
-        <CountdownUi countdown={countdown} ChildclassName={"w-16"} />
+        <CountdownUi
+          countdown={countdown}
+          ChildclassName={"w-16"}
+          isAll={false}
+        />
       </div>
     </>
   );
