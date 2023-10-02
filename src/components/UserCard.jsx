@@ -9,7 +9,7 @@ import { BiLogOutCircle } from "react-icons/bi";
 const UserCard = ({ childClass }) => {
   const { ClientSession } = useClientSessionContext();
 
-  const { name, email } = ClientSession;
+  console.log(ClientSession);
   return (
     <div
       className={`${childClass} w-full text-sm h-full p-3 bg-base-200 border border-primary border-opacity-10 rounded-xl`}
@@ -18,10 +18,10 @@ const UserCard = ({ childClass }) => {
         <>
           <div className='px-2'>
             <p className='text-secondary text-[15px] font-bold'>
-              {name ?? "user"}
+              {ClientSession?.data?.user?.name ?? "user"}
             </p>
             <p className='text-[10px] opacity-60'>
-              {email ?? "email@gmail.com"}
+              {ClientSession?.data?.user?.email ?? "email@gmail.com"}
             </p>
           </div>
           <div className='divider m-0'></div>

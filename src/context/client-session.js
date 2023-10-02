@@ -8,6 +8,7 @@ export const ClientSessionContext = createContext();
 export default function ClientSessionProvider({ children }) {
   const session = useSession();
   const [ClientSession, setClientSession] = useState(session);
+  console.log(ClientSession);
 
   useEffect(() => {
     setClientSession(session);
