@@ -31,9 +31,6 @@ const DropDown = ({ className, childClass }) => {
           src={avatar}
           className='font-bold w-12 h-12 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center bg-red-500 z-50'
         />
-        {/* <p className='font-bold w-12 h-12 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center bg-red-500 z-50'>
-          {ClientSession?.data?.user?.name.charAt(0) ?? "U"}
-        </p> */}
       </label>
       <div tabIndex={0} className='dropdown-content mr-3  w-52'>
         <UserCard childClass={childClass} />
