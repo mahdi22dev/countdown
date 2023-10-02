@@ -4,15 +4,18 @@ import NavLinks from "./NavLinks";
 import DropDown from "./DropDown";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import Image from "next/image";
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className='navbar bg-base-200 h-[70px] sticky top-0 justify-between border-b-2 z-50'>
-      <div>
-        <p className='text-3xl'>Logo</p>
-      </div>
+    <div className='navbar bg-base-200 h-[90px] sticky top-0 justify-between border-b-2 z-50'>
+      <a href='/'>
+        <div className='w-[120px] h-[70px] relative '>
+          <Image src={"/logo.png"} fill priority />
+        </div>
+      </a>
       <div className='drawer drawer-end  w-auto flex md:hidden mr-4'>
         <input id='my-drawer' type='checkbox' className='drawer-toggle' />
         <div className='drawer-content '>

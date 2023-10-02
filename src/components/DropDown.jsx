@@ -20,6 +20,7 @@ const DropDown = ({ className, childClass }) => {
   useEffect(() => {
     GenerateAvatar();
   });
+
   return (
     <div className={`dropdown dropdown-end ${className}`}>
       <label
