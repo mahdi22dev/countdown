@@ -9,7 +9,7 @@ const DropDown = ({ className, childClass }) => {
   const { ClientSession } = useClientSessionContext();
   const [avatar, setAvatar] = useState("");
 
-  const fetchAvatar = async () => {
+  const GenerateAvatar = async () => {
     const userIdentifier = ClientSession?.data?.user?.name ?? "mahdi";
     const seed = userIdentifier;
     const avatar = createAvatar(style, { seed });
@@ -18,7 +18,7 @@ const DropDown = ({ className, childClass }) => {
   };
 
   useEffect(() => {
-    fetchAvatar();
+    GenerateAvatar();
   });
   return (
     <div className={`dropdown dropdown-end ${className}`}>
