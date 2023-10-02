@@ -1,21 +1,20 @@
 "use client";
 import { useClientSessionContext } from "@/context/client-session";
 import UserCard from "./UserCard";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createAvatar } from "@dicebear/avatars";
 import * as style from "@dicebear/avatars-identicon-sprites";
+
 const DropDown = ({ className, childClass }) => {
   const { ClientSession } = useClientSessionContext();
   const [avatar, setAvatar] = useState("");
 
   const fetchAvatar = async () => {
-    const userIdentifier = ClientSession?.data?.user?.name ?? "mahdi idrissi";
+    const userIdentifier = ClientSession?.data?.user?.name ?? "mahdi";
     const seed = userIdentifier;
     const avatar = createAvatar(style, { seed });
     const avatarSvgDataUri = `data:image/svg+xml,${encodeURIComponent(avatar)}`;
     setAvatar(avatarSvgDataUri);
-    console.log(avatarSvgDataUri);
   };
 
   useEffect(() => {
