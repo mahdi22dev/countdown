@@ -43,7 +43,7 @@ const SignupForm = () => {
     }
     setMessage(jsonResponse.message);
     if (res.status == 200) {
-      router.push("/login");
+      router.push("/auth/login");
     }
   };
   return (
