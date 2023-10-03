@@ -1,9 +1,15 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
-export const getAllWithType = async (type, size, skip) => {
+import { formatISO } from "date-fns";
+export const getAllWithType = async (type, size, skip, date) => {
   try {
     const countdown = await prisma.AllCountdowns.findMany({
-      where: { type: type },
+      where: {
+        type: type,
+        targetDate: {
+          gte: date || "", // Filter where targetDate is greater than or equal to the current date
+        },
+      },
       take: size,
       skip: skip,
     });

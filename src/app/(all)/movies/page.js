@@ -1,13 +1,16 @@
 import Movies from "@/components/all/Movies";
 import { authOptions } from "@/lib/auth";
 import { getAllWithType } from "@/server-actions/allCountdowns/get-all";
+import { formatISO } from "date-fns";
 import { getServerSession } from "next-auth";
 import React from "react";
 export default async function page() {
   const session = await getServerSession(authOptions);
   const size = 10;
   const type = "movie";
-  const data = await getAllWithType(type, size, 0);
+  const currentDate = new Date();
+  const date = formatISO(currentDate);
+  const data = await getAllWithType(type, size, 0, date);
   if (!data) {
     return <div>error</div>;
   }

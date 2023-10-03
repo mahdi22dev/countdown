@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className='footer items-center p-4 bg-neutral text-neutral-content mt-auto'>
+    <footer className='footer items-center p-4 bg-neutral/50 text-neutral-content mt-auto'>
       <aside className='items-center grid-flow-col'>
         <Image src={"/logo.png"} width={76} height={76} />
         <p>Copyright © 2023 - All right reserved</p>
