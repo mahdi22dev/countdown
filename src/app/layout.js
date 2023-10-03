@@ -5,6 +5,7 @@ import Provider from "@/context/session/Provider";
 import NextTopLoader from "nextjs-toploader";
 import { ToastContainer } from "react-toastify";
 import ClientSessionProvider from "@/context/client-session";
+import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }) {
           <ClientSessionProvider>
             <Navbar />
             {children}
+            <Footer />
           </ClientSessionProvider>
         </Provider>
       </body>

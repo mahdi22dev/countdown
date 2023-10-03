@@ -9,7 +9,7 @@ const DropDown = ({ className, childClass }) => {
   const { ClientSession } = useClientSessionContext();
   const [avatar, setAvatar] = useState("");
 
-  const GenerateAvatar = async () => {
+  const GenerateAvatar = () => {
     const userIdentifier = ClientSession?.data?.user?.name ?? "mahdi";
     const seed = userIdentifier;
     const avatar = createAvatar(style, { seed });
