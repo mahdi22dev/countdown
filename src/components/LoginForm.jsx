@@ -18,7 +18,6 @@ const LoginForm = () => {
 
   // handlesumbit
   const onSubmit = (data) => {
-    console.log(data);
     setMessage("");
     setLoading(true);
     signIn("credentials", { ...data, redirect: false }).then((callback) => {
