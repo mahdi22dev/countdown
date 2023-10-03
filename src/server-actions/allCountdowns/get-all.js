@@ -1,15 +1,24 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
-import { formatISO } from "date-fns";
 export const getAllWithType = async (type, size, skip, date) => {
+  let filter = [];
+
+  if (date) {
+    filter = {
+      type: type,
+      targetDate: {
+        gte: date,
+      },
+    };
+  } else {
+    filter = {
+      type: type,
+    };
+  }
+
   try {
     const countdown = await prisma.AllCountdowns.findMany({
-      where: {
-        type: type,
-        targetDate: {
-          gte: date || "", // Filter where targetDate is greater than or equal to the current date
-        },
-      },
+      where: filter,
       take: size,
       skip: skip,
     });
@@ -17,7 +26,7 @@ export const getAllWithType = async (type, size, skip, date) => {
     return countdown;
   } catch (error) {
     console.error("Error while fetching upcoming events countdowns:", error);
-    throw new Error("Countdown not found");
+    throw new Error(error);
   } finally {
     await prisma.$disconnect();
   }

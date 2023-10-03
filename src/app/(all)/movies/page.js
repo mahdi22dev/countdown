@@ -8,8 +8,7 @@ export default async function page() {
   const session = await getServerSession(authOptions);
   const size = 10;
   const type = "movie";
-  const currentDate = new Date();
-  const date = formatISO(currentDate);
+  const date = false;
   const data = await getAllWithType(type, size, 0, date);
   if (!data) {
     return <div>error</div>;
