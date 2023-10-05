@@ -35,7 +35,7 @@ export const getAllCountdowns = async () => {
         description: overview,
         popularity: popularity,
         type: media_type,
-        slug: encodedTitle,
+        slug: encodedTitle.substring(0, 50),
       };
       allCountdownsArray.push(MovieObject);
     };
@@ -86,6 +86,5 @@ const getTrendings = async (type) => {
 
     return false;
   });
-  console.log(trendings);
   return trendings;
 };
