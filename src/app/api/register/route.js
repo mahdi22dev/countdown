@@ -23,10 +23,7 @@ export async function POST(req) {
       { status: 401 }
     );
   }
-  //dycrpt new user pass
-  const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of rounds
-
-  // add user to database
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
     const newUser = await prisma.user.create({

@@ -5,10 +5,21 @@ import DropDown from "./DropDown";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Image from "next/image";
+import { createAvatar } from "@dicebear/avatars";
+import * as style from "@dicebear/avatars-identicon-sprites";
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
 
+  const GenerateAvatar = async () => {
+    const userIdentifier = session?.user?.name ?? "mahdi";
+    const seed = userIdentifier;
+    const avatar = createAvatar(style, { seed });
+    const avatarSvgDataUri = `data:image/svg+xml,${encodeURIComponent(avatar)}`;
+    return avatarSvgDataUri;
+  };
+
+  const avatarUrl = await GenerateAvatar();
   return (
     <div className='navbar bg-base-200 h-[90px] sticky top-0 justify-between border-b-2 z-50'>
       <a href='/'>
@@ -33,7 +44,11 @@ export default async function Navbar() {
               <SlClose className='text-3xl text-primary hover:text-secondary duration-200 hover:scale-125' />
             </label>
             {session ? (
-              <DropDown childClass={"mt-5"} className={"md:hidden"} />
+              <DropDown
+                childClass={"mt-5"}
+                className={"md:hidden"}
+                avatarUrl={avatarUrl}
+              />
             ) : (
               <NavAuthLinks
                 className={"flex md:hidden justify-center w-full mb-5"}
@@ -48,7 +63,11 @@ export default async function Navbar() {
       <NavLinks className={"hidden md:flex"} />
 
       {session ? (
-        <DropDown childClass={"mt-72"} className={"hidden md:flex"} />
+        <DropDown
+          childClass={"mt-72"}
+          className={"hidden md:flex"}
+          avatarUrl={avatarUrl}
+        />
       ) : (
         <NavAuthLinks className={"hidden md:flex"} />
       )}

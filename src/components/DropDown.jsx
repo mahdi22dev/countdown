@@ -1,25 +1,9 @@
 "use client";
-import { useClientSessionContext } from "@/context/client-session";
 import UserCard from "./UserCard";
-import { useEffect, useState } from "react";
-import { createAvatar } from "@dicebear/avatars";
-import * as style from "@dicebear/avatars-identicon-sprites";
+import { useState } from "react";
 
-const DropDown = ({ className, childClass }) => {
-  const { ClientSession } = useClientSessionContext();
-  const [avatar, setAvatar] = useState("");
-
-  const GenerateAvatar = () => {
-    const userIdentifier = ClientSession?.data?.user?.name ?? "mahdi";
-    const seed = userIdentifier;
-    const avatar = createAvatar(style, { seed });
-    const avatarSvgDataUri = `data:image/svg+xml,${encodeURIComponent(avatar)}`;
-    setAvatar(avatarSvgDataUri);
-  };
-
-  useEffect(() => {
-    GenerateAvatar();
-  });
+const DropDown = ({ className, childClass, avatarUrl }) => {
+  const [avatar, setAvatar] = useState(avatarUrl);
 
   return (
     <div className={`dropdown dropdown-end ${className}`}>
