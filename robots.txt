@@ -1,5 +1,7 @@
 User-Agent: *
 Allow: /
+Disallow: /user/profile
+Disallow: /user/favorites
 Disallow: /auth/login
 Disallow: /auth/register
-Sitemap: https://acme.com/sitemap.xml
+Sitemap: https://countdown-phi-seven.vercel.app/sitemap.xml
