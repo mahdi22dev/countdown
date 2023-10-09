@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
-
 import { notifyError } from "@/lib/Toast";
 import { addtoFavorites } from "@/server-actions/addto-favorites";
 

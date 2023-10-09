@@ -9,8 +9,11 @@ const Modal = ({ className, id, setReFetch }) => {
   const [isPending, setIsPending] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const handledelete = async () => {
-    e.stopPropagation();
+  const redirectToCountdown = (event) => {
+    event.stopPropagation();
+  };
+
+  const handledelete = async (e) => {
     try {
       setIsPending(true);
       const res = await deleteCountdown(ModalId);
@@ -26,17 +29,26 @@ const Modal = ({ className, id, setReFetch }) => {
 
   return (
     <>
-      <div className='tooltip' data-tip='delete'>
+      <div
+        className='tooltip'
+        data-tip='delete'
+        onClick={(e) => redirectToCountdown(e)}
+      >
         <FaTrash
           className={`hover:text-primary duration-300 ${className} z-50 cursor-pointer`}
-          onClick={() => {
+          onClick={(e) => {
+            redirectToCountdown(e);
             ModalId = id;
             document.getElementById("my_modal_5").showModal();
           }}
         />
       </div>
 
-      <dialog id='my_modal_5' className='modal modal-bottom sm:modal-middle'>
+      <dialog
+        id='my_modal_5'
+        className='modal modal-bottom sm:modal-middle'
+        onClick={(e) => redirectToCountdown(e)}
+      >
         <div className='modal-box'>
           <p className='py-4'>Are you sure you want to delete this countdown</p>
           <div className='modal-action'>
@@ -45,8 +57,8 @@ const Modal = ({ className, id, setReFetch }) => {
               <div className=' flex gap-2 justify-center items-center w-full'>
                 {/* delete button */}
                 <div
-                  onClick={(e) => {
-                    handledelete(e);
+                  onClick={() => {
+                    handledelete();
                   }}
                   className={` ${
                     isPending
