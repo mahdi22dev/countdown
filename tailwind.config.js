@@ -22,25 +22,12 @@ module.exports = {
       "dracula",
 
       {
-        Customdark: {
-          primary: "#9fc78e",
-          secondary: "#dfecd9",
-          accent: "#6ca752",
+        custom1: {
+          primary: "#0a757b",
+          secondary: "#d0f9fb",
+          accent: "#13e1ec",
           neutral: "#2a323c",
-          "base-100": "#0f180c",
-          info: "#3abff8",
-          success: "#36d399",
-          warning: "#fbbd23",
-          error: "#f87272",
-        },
-      },
-      {
-        Customlight: {
-          primary: "#9fc78e",
-          secondary: "#dfecd9",
-          accent: "#6ca752",
-          neutral: "#2a323c",
-          "base-100": "#f9fcf8",
+          "base-100": "#f6fefe",
           info: "#3abff8",
           success: "#36d399",
           warning: "#fbbd23",

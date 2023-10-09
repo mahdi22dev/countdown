@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' data-theme='dracula'>
       <body className={inter.className}>
-        <NextTopLoader color='#9fc78e' showSpinner={false} />
+        <NextTopLoader color='#641ae6' showSpinner={false} />
         <ToastContainer />
         <Provider>
           <ClientSessionProvider>

@@ -10,6 +10,7 @@ const Modal = ({ className, id, setReFetch }) => {
   const [isError, setIsError] = useState(false);
 
   const handledelete = async () => {
+    e.stopPropagation();
     try {
       setIsPending(true);
       const res = await deleteCountdown(ModalId);
@@ -44,8 +45,8 @@ const Modal = ({ className, id, setReFetch }) => {
               <div className=' flex gap-2 justify-center items-center w-full'>
                 {/* delete button */}
                 <div
-                  onClick={() => {
-                    handledelete();
+                  onClick={(e) => {
+                    handledelete(e);
                   }}
                   className={` ${
                     isPending
