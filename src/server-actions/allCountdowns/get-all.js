@@ -17,12 +17,19 @@ export const getAllWithType = async (type, size, skip, date) => {
   }
 
   try {
-    const countdown = await prisma.AllCountdowns.findMany({
+    let countdown;
+    countdown = await prisma.AllCountdowns.findMany({
       where: filter,
       take: size,
       skip: skip,
     });
-
+    if (countdown.lenght == 0) {
+      countdown = await prisma.BackupCountdowns.findMany({
+        where: filter,
+        take: size,
+        skip: skip,
+      });
+    }
     return countdown;
   } catch (error) {
     console.error("Error while fetching upcoming events countdowns:", error);

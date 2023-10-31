@@ -74,9 +74,21 @@ model AllCountdowns {
   imageUrl String? 
   description String?
   popularity Float?
-  Favourite String[]   @db.ObjectId
-  Favorites  Favorites[] @relation(fields: [Favourite], references: [id])
+
 }
+model BackupCountdowns {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  trendingId Int?
+  title     String
+  slug      String  @unique
+  targetDate DateTime
+  type      String
+  createdAt  DateTime? @default(now())
+  imageUrl   String?
+  description String?
+  popularity Float?
+}
+
 
 model Favorites {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -84,8 +96,6 @@ model Favorites {
   userId      String   @db.ObjectId
   UserCountdowns String[] @db.ObjectId
   countdowns    UserCountdown[]   @relation(fields: [UserCountdowns], references: [id])
-  allcountdown String[]   @db.ObjectId
-  allcountdowns  AllCountdowns[] @relation(fields: [allcountdown], references: [id])
 }
 
 

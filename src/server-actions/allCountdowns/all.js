@@ -7,6 +7,39 @@ const Data = [];
 export const getAllCountdowns = async () => {
   try {
     const allCountdownsArray = [];
+    const backupAllCountdownsArray = [];
+    // make backup and delete
+    const allCountdowns = await prisma.allCountdowns.findMany();
+    const mapbackupcountdown = (trending) => {
+      const {
+        trendingId,
+        title,
+        popularity,
+        imageUrl,
+        description,
+        targetDate,
+        type,
+        slug,
+      } = trending;
+
+      const BackupObject = {
+        trendingId: trendingId,
+        title: title,
+        targetDate: targetDate,
+        imageUrl: imageUrl,
+        description: description,
+        popularity: popularity,
+        type: type,
+        slug: slug,
+      };
+      backupAllCountdownsArray.push(BackupObject);
+    };
+
+    allCountdowns.map(mapbackupcountdown);
+    const createdBackup = await prisma.BackupCountdowns.createMany({
+      data: backupAllCountdownsArray,
+    });
+    console.log(createdBackup);
 
     await prisma.AllCountdowns.deleteMany({
       where: {},
