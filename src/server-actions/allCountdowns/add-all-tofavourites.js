@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth";
 
 export async function addalltoFavorites(slug) {
-  console.log(slug);
   try {
     const session = await getServerSession(authOptions);
 
@@ -17,7 +16,6 @@ export async function addalltoFavorites(slug) {
         userId: session?.user?.id,
       },
     });
-    console.log(existingFavorites);
 
     if (!existingFavorites) {
       const newFavorites = await prisma.Favorites.create({
@@ -32,7 +30,6 @@ export async function addalltoFavorites(slug) {
     const isCountdownInFavorites =
       existingFavorites.AllCountdowns &&
       existingFavorites.AllCountdowns.some((countdown) => countdown === slug);
-    console.log(isCountdownInFavorites);
 
     if (isCountdownInFavorites) {
       const updatedFavorites = await prisma.Favorites.update({

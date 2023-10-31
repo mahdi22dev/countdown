@@ -36,7 +36,7 @@ export const getAllCountdowns = async () => {
       backupAllCountdownsArray.push(BackupObject);
     };
     allCountdowns.map(mapbackupcountdown);
-    console.log(backupAllCountdownsArray);
+
     const createdBackup = await prisma.BackupCountdowns.createMany({
       data: backupAllCountdownsArray,
     });
@@ -80,7 +80,6 @@ export const getAllCountdowns = async () => {
     const createdCountdowns = await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
-    console.log(createdCountdowns);
 
     const AllCountdowns = await prisma.AllCountdowns.findMany();
     return AllCountdowns;
