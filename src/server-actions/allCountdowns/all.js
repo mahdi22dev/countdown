@@ -7,9 +7,10 @@ const Data = [];
 export const getAllCountdowns = async () => {
   try {
     const allCountdownsArray = [];
-    const backupAllCountdownsArray = [];
+
     // make backup and delete
     const allCountdowns = await prisma.allCountdowns.findMany();
+    const backupAllCountdownsArray = [];
     const mapbackupcountdown = (trending) => {
       const {
         trendingId,
@@ -23,23 +24,23 @@ export const getAllCountdowns = async () => {
       } = trending;
 
       const BackupObject = {
-        trendingId: trendingId,
-        title: title,
-        targetDate: targetDate,
-        imageUrl: imageUrl,
-        description: description,
-        popularity: popularity,
-        type: type,
-        slug: slug,
+        trendingId,
+        title,
+        popularity,
+        imageUrl,
+        description,
+        targetDate,
+        type,
+        slug,
       };
       backupAllCountdownsArray.push(BackupObject);
     };
-
     allCountdowns.map(mapbackupcountdown);
+    console.log(backupAllCountdownsArray);
     const createdBackup = await prisma.BackupCountdowns.createMany({
       data: backupAllCountdownsArray,
     });
-    console.log(createdBackup);
+    console.log("backup :", createdBackup);
 
     await prisma.AllCountdowns.deleteMany({
       where: {},
