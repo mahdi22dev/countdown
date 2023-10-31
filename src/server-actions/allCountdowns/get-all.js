@@ -23,7 +23,7 @@ export const getAllWithType = async (type, size, skip, date) => {
       take: size,
       skip: skip,
     });
-    if (countdown.lenght == 0) {
+    if (countdown.length == 0) {
       countdown = await prisma.BackupCountdowns.findMany({
         where: filter,
         take: size,
