@@ -10,6 +10,7 @@ export const getAllCountdowns = async () => {
 
     // make backup and delete
     const allCountdowns = await prisma.allCountdowns.findMany();
+    console.log(allCountdowns);
     const backupAllCountdownsArray = [];
     const mapbackupcountdown = (trending) => {
       const {
@@ -36,11 +37,12 @@ export const getAllCountdowns = async () => {
       backupAllCountdownsArray.push(BackupObject);
     };
     allCountdowns.map(mapbackupcountdown);
-
-    const createdBackup = await prisma.BackupCountdowns.createMany({
-      data: backupAllCountdownsArray,
-    });
-    console.log("backup :", createdBackup);
+    if (backupAllCountdownsArray == 0) {
+    } else {
+      await prisma.BackupCountdowns.createMany({
+        data: backupAllCountdownsArray,
+      });
+    }
 
     await prisma.AllCountdowns.deleteMany({
       where: {},
@@ -77,7 +79,7 @@ export const getAllCountdowns = async () => {
     movies.map(mapMoviegObject);
 
     // Insert filtered data into the database
-    const createdCountdowns = await prisma.AllCountdowns.createMany({
+    await prisma.AllCountdowns.createMany({
       data: allCountdownsArray,
     });
 
