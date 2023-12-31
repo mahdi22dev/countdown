@@ -20,10 +20,7 @@ ENV GITHUB_CLIENT_SECRET=632bc68ba66da358f1d502587d597c96254426ee
 ENV TMDB_API_KEY=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZGU4NmFlNWYzMmEzYjVjYzdlOGZlYjQwZGUwNDJhMSIsInN1YiI6IjY0YTEyNTcxNGE1MmY4MDBhZjEyN2I2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbYwtxSpkX8VkKoghnxMD7rlXZiSFV6oFwd5iYwvBIY
 
 COPY . .
-
-RUN npx prisma generate && npm run build
-
-COPY .next ./.next
+RUN npx prisma generate
 
 
 
