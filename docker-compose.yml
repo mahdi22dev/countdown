@@ -4,20 +4,7 @@ services:
   next-app:
     container_name: next-app
     image: docker.io/mahdiidrissidev/nextjs_countdown_app
-    args:
-      ENV_VARIABLE: ${ENV_VARIABLE}
-      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-    # Set envrionment variables based on the .env file
-    env_file:
-      - .env
     volumes:
-      - ./next-app/src:/app/src
-      - ./next-app/public:/app/public
+      - .:/app
+      - ./app/node_modules
     restart: always
-    ports:
-      - 3000:3000
-    networks:
-      - my_network
-networks:
-  my_network:
-    external: true
