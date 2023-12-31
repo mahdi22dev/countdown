@@ -15,7 +15,7 @@ jobs:
 
       - name: Build and push Docker image
         run:  |
-        echo "${{ secrets.DOCKERPW }}" | docker login -u "dab8106" --password-stdin
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
         docker image build -t mahdiidrissidev/nextjs_countdown_app:latest .
         docker push dab8106/pyflask:latest
 
