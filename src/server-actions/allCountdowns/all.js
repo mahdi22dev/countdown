@@ -1,7 +1,7 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
 import { fetchTrendings } from "@/lib/utils";
-const totalPages = 1000;
+const totalPages = 100;
 const Data = [];
 
 export const getAllCountdowns = async () => {
@@ -39,12 +39,12 @@ export const getAllCountdowns = async () => {
     allCountdowns.map(mapbackupcountdown);
     if (backupAllCountdownsArray == 0) {
     } else {
-      await prisma.BackupCountdowns.createMany({
+      await prisma.backupCountdowns.createMany({
         data: backupAllCountdownsArray,
       });
     }
 
-    await prisma.AllCountdowns.deleteMany({
+    await prisma.allCountdowns.deleteMany({
       where: {},
     });
 
@@ -79,11 +79,11 @@ export const getAllCountdowns = async () => {
     movies.map(mapMoviegObject);
 
     // Insert filtered data into the database
-    await prisma.AllCountdowns.createMany({
+    await prisma.allCountdowns.createMany({
       data: allCountdownsArray,
     });
 
-    const AllCountdowns = await prisma.AllCountdowns.findMany();
+    const AllCountdowns = await prisma.allCountdowns.findMany();
     return AllCountdowns;
   } catch (error) {
     console.error("Error: ", error);
