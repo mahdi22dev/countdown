@@ -4,9 +4,7 @@ services:
   next-app:
     container_name: next-app
     image: docker.io/mahdiidrissidev/nextjs_countdown_app
-    args:
-      ENV_VARIABLE: ${ENV_VARIABLE}
-      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+
     # Set envrionment variables based on the .env file
     env_file:
       - .env
