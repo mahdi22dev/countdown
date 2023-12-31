@@ -13,5 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t nextjs_countdown_app:latest .
+      - name: Build and push Docker image
+        run:  |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "dab8106" --password-stdin
+        docker image build -t mahdiidrissidev/nextjs_countdown_app:latest .
+        docker push dab8106/pyflask:latest
+
