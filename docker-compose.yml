@@ -3,7 +3,7 @@ version: "3"
 services:
   next-app:
     container_name: next-app
-    image: docker.io/mahdiidrissidev/nextjs_countdown_app
+    image: docker.io/mahdiidrissidev/nextjs_countdown_app:dev
     volumes:
       - .:/app
       - ./app/node_modules
