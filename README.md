@@ -1,8 +1,6 @@
-
 # Countdown
 
 Users Can create custom countdown, and also count days to thier favorite upcoming show.
-
 
 # Dev mode
 
@@ -14,10 +12,7 @@ npm run install
 npm run dev
 ```
 
-
-
-
-
+Open http://localhost:3000 with your browser to see the result.
 
 ## Environment Variables
 
@@ -37,19 +32,15 @@ mongodb dockerfile => ./Docker/db.Dockerfile
 
 countdown dockerfile => ./Dockerfile
 
-
-the root folder contains docker-compose.yml to build and run next js app and mongodb server in a single container , to start the build use: 
-
+the root folder contains docker-compose.yml to build and run next js app and mongodb server in a single container , to start the build use:
 
 ```bash
-docker compose -f "docker-compose.yml" up -d --build 
+docker compose -f "docker-compose.yml" up -d --build
 ```
 
-
-
 ## 🚀 About Me
-I'm a front-end junior developer , i use React js , Next js to build sample web apps 
+
+I'm a front-end junior developer , i use React js , Next js to build sample web apps
 
 check my portfolio :  
 https://mahdi22dev.vercel.app/
-
