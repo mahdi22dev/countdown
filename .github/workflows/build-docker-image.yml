@@ -29,10 +29,7 @@ jobs:
           docker-compose up -d
           docker-compose ps
 
-      - name: Install jq (if not installed)
-        run: sudo apt-get -yqq install jq
-
-      - uses: luisboto/ngrok-tunnel-action@v1
+      - uses: luisboto/ngrok-tunnel-action@v0.1.7.2
         with:
           timeout: 1h
           port: 8080
