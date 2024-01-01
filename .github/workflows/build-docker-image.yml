@@ -1,37 +1,16 @@
 name: Build and Deploy
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    services:
-      ngrok:
-        image: wernight/ngrok
-        ports:
-          - "4040:4040"
+    needs: cancel
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install ngrok
-        run: |
-          wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
-          tar -xzvf ngrok-stable-linux-amd64.tgz
-          sudo mv ngrok /usr/local/bin/ngrok
-          ngrok --version
-
-      - name: Set up ngrok
-        run: |
-          ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
-
-      - name: Set up ngrok
-        run: |
-          ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
 
       - name: Set up Docker Compose
         run: |
@@ -52,7 +31,10 @@ jobs:
       - name: Install jq (if not installed)
         run: sudo apt-get -yqq install jq
 
-      - name: Expose ngrok tunnel
-        run: |
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)
-          echo "Ngrok URL: $NGROK_URL"
+      - uses: luisboto/ngrok-tunnel-action@<VERSION>
+        with:
+          timeout: 1h
+          port: 8080
+          ngrok_authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
+          tunnel_type: http
+          save_url_to_filename: tunnelURL.md
