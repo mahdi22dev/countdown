@@ -13,8 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get -yqq install docker-compose
+          docker-compose version
+
       - name: Build and push Docker image
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
           docker image build -t mahdiidrissidev/nextjs_countdown_app_dev:latest .
           docker push mahdiidrissidev/nextjs_countdown_app_dev:latest
+
+      - name: run Docker compose
+        run: |
+          docker-compose up -d
+          docker-compose ps
