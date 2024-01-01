@@ -18,21 +18,13 @@ jobs:
           sudo apt-get -yqq install docker-compose
           docker-compose version
 
-      # - name: Build and push Docker image
-      #   run: |
-      #     echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
-      #     docker image build -t mahdiidrissidev/nextjs_countdown_app_dev:latest .
-      #     docker push mahdiidrissidev/nextjs_countdown_app_dev:latest
+      - name: Build and push Docker image
+        run: |
+          echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
+          docker image build -t mahdiidrissidev/nextjs_countdown_app_dev:latest .
+          docker push mahdiidrissidev/nextjs_countdown_app_dev:latest
 
       - name: Run Docker Compose
         run: |
           docker-compose up -d
           docker-compose ps
-
-      - uses: luisboto/ngrok-tunnel-action@v0.1.7.2
-        with:
-          timeout: 1h
-          port: 8080
-          ngrok_authtoken: ${{ secrets.NGROK_AUTH_TOKEN }}
-          tunnel_type: http
-          save_url_to_filename: tunnelURL.md
