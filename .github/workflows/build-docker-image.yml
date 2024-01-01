@@ -24,11 +24,11 @@ jobs:
           sudo apt-get -yqq install docker-compose
           docker-compose version
 
-      - name: Build and push Docker image
-        run: |
-          echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
-          docker image build -t mahdiidrissidev/nextjs_countdown_app_dev:latest .
-          docker push mahdiidrissidev/nextjs_countdown_app_dev:latest
+      # - name: Build and push Docker image
+      #   run: |
+      #     echo "${{ secrets.DOCKERPW }}" | docker login -u "mahdiidrissidev" --password-stdin
+      #     docker image build -t mahdiidrissidev/nextjs_countdown_app_dev:latest .
+      #     docker push mahdiidrissidev/nextjs_countdown_app_dev:latest
 
       - name: Run Docker Compose
         run: |
