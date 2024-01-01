@@ -4,8 +4,15 @@ services:
   next-app:
     container_name: next-app
     image: docker.io/mahdiidrissidev/nextjs_countdown_app_dev
-    env_file:
-      - .env
+    environment:
+      DATABASE_URL: "mongodb+srv://mahdi:mahdi2019@cluster0.r3loxgy.mongodb.net/countdown?retryWrites=true&w=majority"
+      NEXTAUTH_SECRET: "rgegergregegrrrrrrrrg564y76ergergeg8ow8f9w7yf9wfe"
+      GOOGLE_CLIENT_ID: "834724852705-29e7qfcb7usrsbfaiouavo7lmdiucmij.apps.googleusercontent.com"
+      GOOGLE_CLIENT_SECRET: "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"
+      NEXTAUTH_UR: "localhost:3000"
+      GITHUB_CLIENT_ID: "Iv1.f2168ff591503343"
+      GITHUB_CLIENT_SECRET: "632bc68ba66da358f1d502587d597c96254426ee"
+      TMDB_API_KEY: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZGU4NmFlNWYzMmEzYjVjYzdlOGZlYjQwZGUwNDJhMSIsInN1YiI6IjY0YTEyNTcxNGE1MmY4MDBhZjEyN2I2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TbYwtxSpkX8VkKoghnxMD7rlXZiSFV6oFwd5iYwvBIY"
     ports:
       - 3000:3000
     volumes:
