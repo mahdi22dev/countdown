@@ -2,7 +2,7 @@
 import { ImSearch } from "react-icons/im";
 import SearchInput from "./SearchInput";
 import { useEffect, useState, useRef } from "react";
-import { searchCountdownsByTitle } from "@/server-actions/db-search";
+import { searchCountdownsByTitle } from "@/server-actions/userCountdowns";
 import SearchResults from "./SearchResults";
 
 const Search = ({ data }) => {
@@ -57,20 +57,20 @@ const Search = ({ data }) => {
   return (
     <div>
       <ImSearch
-        className='cursor-pointer hover:text-primary hover:scale-125 duration-200 text-xl'
+        className="cursor-pointer hover:text-primary hover:scale-125 duration-200 text-xl"
         onClick={() => document.getElementById("my_modal_2").showModal()}
       />
-      <dialog id='my_modal_2' className='modal'>
-        <div ref={modalRef} className='modal-box'>
-          <form method='dialog'>
+      <dialog id="my_modal_2" className="modal">
+        <div ref={modalRef} className="modal-box">
+          <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>
 
           <form
-            className='w-full flex flex-col justify-center items-center mt-4 gap-3'
+            className="w-full flex flex-col justify-center items-center mt-4 gap-3"
             onSubmit={handleSumbit}
           >
             <SearchInput

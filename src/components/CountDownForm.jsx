@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ImageGrid from "./ImageGrid";
-import { onCreate } from "@/server-actions/add-countdown";
+import { onCreate } from "@/server-actions/userCountdowns";
 import { useRouter } from "next/navigation";
 import { notifySuccess } from "@/lib/Toast";
 
@@ -67,17 +67,17 @@ const CountDownForm = () => {
   return (
     <form
       onSubmit={handleSubmit(Submit)}
-      className=' w-[100%] h-full mx-auto p-2 pt-0'
+      className=" w-[100%] h-full mx-auto p-2 pt-0"
     >
       {message && notifySuccess(message)}
 
-      <div className='inputs'>
+      <div className="inputs">
         {/* form inputs */}
-        <div className=' mb-2'>
-          <div className='mb-1'>
+        <div className=" mb-2">
+          <div className="mb-1">
             <label
               htmlFor={"title"}
-              className='capitalize text-primary-content'
+              className="capitalize text-primary-content"
             >
               {"title"}
             </label>
@@ -87,27 +87,27 @@ const CountDownForm = () => {
             control={control}
             render={({ field }) => (
               <input
-                className='input input-primary w-full rounded-sm'
+                className="input input-primary w-full rounded-sm"
                 {...field}
               />
             )}
           />
           {errors.title && (
-            <p className='text-error mt-3 font-light text-sm'>
+            <p className="text-error mt-3 font-light text-sm">
               {errors.title.message}
             </p>
           )}
         </div>
 
-        <p className='mb-2 text-primary-content'>Pick a Theme</p>
+        <p className="mb-2 text-primary-content">Pick a Theme</p>
         <ImageGrid
           setSelectedImage={setSelectedImage}
           selectedImage={selectedImage}
         />
         {/* Date Picker */}
-        <div className='mb-2 mt-2'>
-          <div className='mb-1'>
-            <label htmlFor={"date"} className='capitalize text-primary-content'>
+        <div className="mb-2 mt-2">
+          <div className="mb-1">
+            <label htmlFor={"date"} className="capitalize text-primary-content">
               Pick a Date
             </label>
           </div>
@@ -116,7 +116,7 @@ const CountDownForm = () => {
             control={control}
             render={({ field }) => (
               <DatePicker
-                className='h-13 p-2 cursor-pointer input-primary input input-bordered z-50 text-primary '
+                className="h-13 p-2 cursor-pointer input-primary input input-bordered z-50 text-primary "
                 selected={targetDate}
                 onSelect={(date) => setTargetDate(date)}
                 style={{ zIndex: 1000 }}
@@ -129,7 +129,7 @@ const CountDownForm = () => {
             )}
           />
           {errors.targetDate && (
-            <p className='text-red-500 mt-3 font-light text-sm'>
+            <p className="text-red-500 mt-3 font-light text-sm">
               {errors.targetDate.message}
             </p>
           )}
@@ -137,13 +137,13 @@ const CountDownForm = () => {
       </div>
 
       <button
-        type='submit'
+        type="submit"
         className={` ${
           isPending ? "btn-disabled btn-primary btn-outline" : "btn-primary"
         } btn flex justify-center items-center mx-auto mt-2`}
       >
         {isPending && (
-          <span className='loading loading-spinner text-primary loading-xs '></span>
+          <span className="loading loading-spinner text-primary loading-xs "></span>
         )}
         add countdown
       </button>

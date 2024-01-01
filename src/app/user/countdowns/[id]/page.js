@@ -2,7 +2,7 @@ import Divider from "@/components/Divider";
 import CountdownUi from "@/components/countdown/general/CountdownUi";
 import { authOptions } from "@/lib/auth";
 import { formatDate } from "@/lib/utils";
-import { getCountdown } from "@/server-actions/get-countdown";
+import { getCountdown } from "@/server-actions/userCountdowns";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -23,9 +23,9 @@ export default async function Page({ params }) {
   const { title, targetDate, imageId } = user.countdowns[0];
   const date = formatDate(targetDate);
   return (
-    <main className='w-full min-h-screen relative'>
-      <div className='center-item z-30 w-full '>
-        <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto'>
+    <main className="w-full min-h-screen relative">
+      <div className="center-item z-30 w-full ">
+        <p className="text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto">
           {title}
         </p>
 
@@ -42,7 +42,7 @@ export default async function Page({ params }) {
 
       <Image
         fill
-        className='-z-10 	grayscale-[70%]'
+        className="-z-10 	grayscale-[70%]"
         src={`/themes/${imageId}.jpg`}
         alt={title}
       />

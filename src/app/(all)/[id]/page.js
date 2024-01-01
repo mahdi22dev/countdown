@@ -1,8 +1,8 @@
 import Divider from "@/components/Divider";
 import CountdownUi from "@/components/countdown/general/CountdownUi";
 import { formatDate } from "@/lib/utils";
-import { getAllCountdowns } from "@/server-actions/allCountdowns/all";
-import { getSllSingleCountdown } from "@/server-actions/allCountdowns/all-singlecountdown";
+import { getAllCountdowns } from "@/server-actions/allCountdowns";
+import { getSllSingleCountdown } from "@/server-actions/allCountdowns";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -29,9 +29,9 @@ export default async function Page({ params }) {
 
   const date = formatDate(targetDate);
   return (
-    <main className='w-full min-h-screen relative'>
-      <div className='center-item z-30 w-full '>
-        <p className='text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto'>
+    <main className="w-full min-h-screen relative">
+      <div className="center-item z-30 w-full ">
+        <p className="text-3xl md:text-5xl font-extrabold uppercase text-primary px-5 truncate max-w-xs sm:max-w-2xl lg:max-w-5xl   mx-auto">
           {title}
         </p>
 
@@ -49,7 +49,7 @@ export default async function Page({ params }) {
 
       <Image
         fill
-        className='-z-10 grayscale-[70%]'
+        className="-z-10 grayscale-[70%]"
         src={imageUrl}
         alt={title}
       />

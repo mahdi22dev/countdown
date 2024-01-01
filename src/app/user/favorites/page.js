@@ -1,6 +1,6 @@
 import Favorites from "@/components/countdown/user/Favorites";
 import { authOptions } from "@/lib/auth";
-import { grabUserFavorites } from "@/server-actions/getuser-favorites";
+import { grabUserFavorites } from "@/server-actions/userCountdowns";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default async function page() {
   }
 
   return (
-    <main className=' w-full min-h-[95%]'>
+    <main className=" w-full min-h-[95%]">
       <Favorites data={data} />
     </main>
   );

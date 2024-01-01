@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteCountdown } from "@/server-actions/delete-countdown";
+import { deleteCountdown } from "@/server-actions/userCountdowns";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
@@ -30,8 +30,8 @@ const Modal = ({ className, id, setReFetch }) => {
   return (
     <>
       <div
-        className='tooltip'
-        data-tip='delete'
+        className="tooltip"
+        data-tip="delete"
         onClick={(e) => redirectToCountdown(e)}
       >
         <FaTrash
@@ -45,16 +45,16 @@ const Modal = ({ className, id, setReFetch }) => {
       </div>
 
       <dialog
-        id='my_modal_5'
-        className='modal modal-bottom sm:modal-middle'
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle"
         onClick={(e) => redirectToCountdown(e)}
       >
-        <div className='modal-box'>
-          <p className='py-4'>Are you sure you want to delete this countdown</p>
-          <div className='modal-action'>
-            <form method='dialog'>
+        <div className="modal-box">
+          <p className="py-4">Are you sure you want to delete this countdown</p>
+          <div className="modal-action">
+            <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <div className=' flex gap-2 justify-center items-center w-full'>
+              <div className=" flex gap-2 justify-center items-center w-full">
                 {/* delete button */}
                 <div
                   onClick={() => {
@@ -67,13 +67,13 @@ const Modal = ({ className, id, setReFetch }) => {
                   } btn flex justify-center items-center mx-auto mb-0 mt-0`}
                 >
                   {isPending && (
-                    <span className='loading loading-spinner text-primary loading-xs'></span>
+                    <span className="loading loading-spinner text-primary loading-xs"></span>
                   )}
                   delete
                 </div>
 
                 {/* cancel button */}
-                <button className='btn btn-primary  btn-outline'>cancel</button>
+                <button className="btn btn-primary  btn-outline">cancel</button>
               </div>
             </form>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { getAllUserCountdowns } from "@/server-actions/getuser-countdowns";
+import { getAllUserCountdowns } from "@/server-actions/userCountdowns";
 import { MyDrawer } from "../../Mydrawer";
 import Tabs from "../../Tabs";
 import ProfileSingleCountdown from "./ProfileSingleCountdown";
@@ -92,13 +92,13 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
   };
 
   return (
-    <section className='w-full h-full'>
+    <section className="w-full h-full">
       <Tabs count={count} filterFetch={setReFetch} data={data} />
       {filterLoading ? (
         <FilterLoading />
       ) : (
         <>
-          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full">
             {countdowns?.map((countdown) => {
               return (
                 <ProfileSingleCountdown
@@ -122,7 +122,7 @@ const ProfileCountdowns = ({ data, showSeeMorebtn, showCreateBtn, count }) => {
               } btn flex justify-center items-center mx-auto my-2   `}
             >
               {isPending && (
-                <span className='loading loading-spinner text-primary loading-xs'></span>
+                <span className="loading loading-spinner text-primary loading-xs"></span>
               )}
               see more
             </button>

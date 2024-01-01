@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { getAllWithType } from "@/server-actions/allCountdowns/get-all";
+import { getAllWithType } from "@/server-actions/allCountdowns";
 import AllCard from "./AllCard";
 import FilterLoading from "../loading/FilterLoading";
 let PaginationSkip = 10;
@@ -56,12 +56,12 @@ const Movies = ({ data, showSeeMorebtn, session }) => {
     return <div>Error</div>;
   }
   return (
-    <section className='w-full h-full'>
+    <section className="w-full h-full">
       {filterLoading ? (
         <FilterLoading />
       ) : (
         <>
-          <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full'>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 p-3 w-full h-full">
             {countdowns?.map((countdown) => {
               return (
                 <AllCard
@@ -86,7 +86,7 @@ const Movies = ({ data, showSeeMorebtn, session }) => {
               } btn flex justify-center items-center mx-auto my-2   `}
             >
               {isPending && (
-                <span className='loading loading-spinner text-primary loading-xs'></span>
+                <span className="loading loading-spinner text-primary loading-xs"></span>
               )}
               see more
             </button>

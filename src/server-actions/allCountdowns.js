@@ -1,7 +1,9 @@
 "use server";
 import { prisma } from "@/lib/prismaClient";
 import { fetchTrendings } from "@/lib/utils";
-const totalPages = 1000;
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+const totalPages = 100;
 const Data = [];
 
 export const getAllCountdowns = async () => {
@@ -122,4 +124,114 @@ const getTrendings = async (type) => {
     return false;
   });
   return trendings;
+};
+
+export const getSllSingleCountdown = async (slug) => {
+  try {
+    const countdown = await prisma.allCountdowns.findUnique({
+      where: { slug: slug },
+    });
+    return countdown;
+  } catch (error) {
+    console.error("Error while fetching countdown:", error);
+    throw new Error("Countdown not found");
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export async function addalltoFavorites(slug) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      throw new Error("User not found");
+    }
+
+    const existingFavorites = await prisma.Favorites.findFirst({
+      where: {
+        userId: session?.user?.id,
+      },
+    });
+
+    if (!existingFavorites) {
+      const newFavorites = await prisma.Favorites.create({
+        data: {
+          userId: session?.user?.id,
+          AllCountdowns: { connect: { slug: slug } },
+        },
+      });
+      return newFavorites;
+    }
+
+    const isCountdownInFavorites =
+      existingFavorites.AllCountdowns &&
+      existingFavorites.AllCountdowns.some((countdown) => countdown === slug);
+
+    if (isCountdownInFavorites) {
+      const updatedFavorites = await prisma.Favorites.update({
+        where: { id: existingFavorites.id },
+        data: {
+          AllCountdowns: {
+            disconnect: { slug: slug },
+          },
+        },
+      });
+
+      return updatedFavorites;
+    } else {
+      const updatedFavorites = await prisma.Favorites.update({
+        where: { id: existingFavorites.id },
+        data: {
+          AllCountdowns: {
+            connect: { slug: slug },
+          },
+        },
+      });
+
+      return updatedFavorites;
+    }
+  } catch (error) {
+    return error;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+export const getAllWithType = async (type, size, skip, date) => {
+  let filter = [];
+
+  if (date) {
+    filter = {
+      type: type,
+      targetDate: {
+        gte: date,
+      },
+    };
+  } else {
+    filter = {
+      type: type,
+    };
+  }
+
+  try {
+    let countdown;
+    countdown = await prisma.AllCountdowns.findMany({
+      where: filter,
+      take: size,
+      skip: skip,
+    });
+    if (countdown.length == 0) {
+      countdown = await prisma.BackupCountdowns.findMany({
+        where: filter,
+        take: size,
+        skip: skip,
+      });
+    }
+    return countdown;
+  } catch (error) {
+    console.error("Error while fetching upcoming events countdowns:", error);
+    throw new Error(error);
+  } finally {
+    await prisma.$disconnect();
+  }
 };

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx prisma generate && next dev --turbo",
+    "dev": "npx prisma generate && next dev",
     "build": "npx prisma generate && next build",
     "start": "npx prisma generate && next start",
     "lint": "next lint"
@@ -14,7 +14,7 @@
     "@dicebear/avatars": "^4.10.8",
     "@dicebear/avatars-identicon-sprites": "^4.10.8",
     "@hookform/resolvers": "^3.2.0",
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.7.1",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
@@ -24,6 +24,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "framer-motion": "^10.16.4",
+    "fs": "^0.0.1-security",
     "moment": "^2.29.4",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
@@ -31,7 +32,6 @@
     "next-auth": "^4.23.0",
     "nextjs-toploader": "^1.4.2",
     "postcss": "8.4.27",
-    "prisma": "^5.2.0",
     "react": "18.2.0",
     "react-countdown": "^2.3.5",
     "react-datepicker": "^4.16.0",
@@ -44,5 +44,8 @@
     "tailwindcss": "3.3.3",
     "vaul": "^0.4.5",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.1"
   }
 }

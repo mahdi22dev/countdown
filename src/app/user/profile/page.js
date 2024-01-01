@@ -2,7 +2,7 @@ import ProfileCountdowns from "@/components/countdown/user/ProfileCountdowns";
 import {
   getAllUserCountdowns,
   getCountOfUserCountdowns,
-} from "@/server-actions/getuser-countdowns";
+} from "@/server-actions/userCountdowns";
 export default async function page() {
   const skip = 0;
   const size = 20;
@@ -26,7 +26,7 @@ export default async function page() {
   }
 
   return (
-    <main className=' w-full min-h-[95%]'>
+    <main className=" w-full min-h-[95%]">
       <ProfileCountdowns
         data={data}
         count={count}

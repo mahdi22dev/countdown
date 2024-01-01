@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { notifyError } from "@/lib/Toast";
-import { addtoFavorites } from "@/server-actions/addto-favorites";
+import { addtoFavorites } from "@/server-actions/userCountdowns";
 
 const AddFavourite = ({ countdown }) => {
   const redirectToCountdown = (event) => {
@@ -37,7 +37,7 @@ const AddFavourite = ({ countdown }) => {
   return (
     <div
       onClick={(event) => redirectToCountdown(event)}
-      className='tooltip cursor-pointer'
+      className="tooltip cursor-pointer"
       data-tip={`${
         isFavorite ? "remove from to Favorites" : "add to Favorites"
       }`}

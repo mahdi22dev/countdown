@@ -1,6 +1,6 @@
 import Movies from "@/components/all/Movies";
 import { authOptions } from "@/lib/auth";
-import { getAllWithType } from "@/server-actions/allCountdowns/get-all";
+import { getAllWithType } from "@/server-actions/allCountdowns";
 import { formatISO } from "date-fns";
 import { getServerSession } from "next-auth";
 import React from "react";
@@ -22,7 +22,7 @@ export default async function page() {
   }
 
   return (
-    <main className=' w-full min-h-[95%]'>
+    <main className=" w-full min-h-[95%]">
       <Movies data={data} showSeeMorebtn={showSeeMorebtn} session={session} />
     </main>
   );

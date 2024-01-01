@@ -3,8 +3,11 @@ version: "3"
 services:
   next-app:
     container_name: next-app
-    image: docker.io/mahdiidrissidev/nextjs_countdown_app:dev
+    image: docker.io/mahdiidrissidev/nextjs_countdown_app_dev
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
     volumes:
       - .:/app
-      - ./app/node_modules
     restart: always
