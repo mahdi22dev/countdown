@@ -31,7 +31,7 @@
     "next": "^13.5.2",
     "next-auth": "^4.23.0",
     "nextjs-toploader": "^1.4.2",
-    "postcss": "8.4.27",
+    "postcss": "^8.4.32",
     "react": "18.2.0",
     "react-countdown": "^2.3.5",
     "react-datepicker": "^4.16.0",
