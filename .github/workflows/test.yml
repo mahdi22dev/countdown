@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      MY_ENV_VAR: "${{ secrets.DOCKERPW }}"
+      MY_ENV_VAR: "${{ secrets.DATABASE_URL }}"
 
     steps:
       - name: Checkout
