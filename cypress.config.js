@@ -1,6 +1,7 @@
 module.exports = {
+  video: true,
+  projectId: "gc8127",
   e2e: {
-    projectId: "gc8127",
     setupNodeEvents(on, config) {
       on("before:browser:launch", (browser, launchOptions) => {
         if (browser.name === "chrome" && browser.isHeadless) {
