@@ -15,6 +15,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npx prisma generate && npm run dev
+          start: npm run dev
           # quote the url to be safe against YML parsing surprises
           wait-on: "http://localhost:3000"
