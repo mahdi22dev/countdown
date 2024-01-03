@@ -8,7 +8,7 @@ describe("countdown login tests", () => {
 
     // we should be redirected to / home page
     cy.url().should("include", "/");
-    cy.getCookie("next-auth.csrf-token").should("exist");
+    cy.getCookie("next-auth.csrf-").should("exist");
     cy.task("log", "This is console log : Navigated to login page");
   });
 });
