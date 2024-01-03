@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// In cypress/support/commands.js
+Cypress.Commands.add("login", () => {
+  cy.session(
+    () => {
+      cy.visit("http://localhost:3000/auth/login");
+      cy.get("input[name=email]").type("test@gmail.com");
+      cy.get("input[name=password]").type(`mahdi2019{enter}`);
+      cy.url().should("include", "/");
+    },
+    {
+      validate: () => {
+        cy.getCookie("next-auth.csrf-token").should("exist");
+      },
+    }
+  );
+});

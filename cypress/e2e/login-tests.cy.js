@@ -1,14 +1,26 @@
-import "cypress-xpath";
-
 describe("countdown login tests", () => {
-  it("visit url", () => {
-    cy.visit("http://localhost:3000/auth/login");
-    cy.get("input[name=email]").type("test@gmail.com");
-    cy.get("input[name=password]").type(`mahdi2019{enter}`);
+  it("visit login url and validate coockies", () => {
+    cy.login();
+  });
 
-    // we should be redirected to / home page
-    cy.url().should("include", "/");
-    cy.getCookie("next-auth.csrf-").should("exist");
-    cy.task("log", "This is console log : Navigated to login page");
+  it("should display 'Your latest countdowns'", () => {
+    // Visit the home page
+    cy.visit("http://localhost:3000");
+
+    // Use cy.contains() to check for the text
+    cy.contains("Your latest countdowns").should("be.visible");
+  });
+
+  it("should display 'Upcoming Movies'", () => {
+    // Visit the home page
+    cy.visit("http://localhost:3000");
+
+    // Use cy.contains() to check for the text
+    cy.contains("Upcoming Movies").should("be.visible");
+  });
+
+  it("should visit profile page and check for CSRF token", () => {
+    cy.visit("http://localhost:3000/user/profile");
+    cy.getCookie("next-auth.csrf-token").should("exist");
   });
 });
