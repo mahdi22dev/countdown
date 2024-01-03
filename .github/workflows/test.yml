@@ -17,4 +17,4 @@ jobs:
         with:
           start: npx prisma generate && npm run dev
           # quote the url to be safe against YML parsing surprises
-          wait-on: "http://localhost:8080"
+          wait-on: "http://localhost:3000"
