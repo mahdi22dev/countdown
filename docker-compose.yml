@@ -14,16 +14,18 @@ services:
     ports:
       - "27017:27017"
 
-  # next-app:
-  #   container_name: countdown-webapp
-  #   build: .
-  #   environment:
-  #     DATABASE_URL: mongodb://user:user@localhost:27017/mongo?authSource=admin
-  #     NEXTAUTH_SECRET: "generate sercet for nextauth "
-  #     NEXTAUTH_UR: "localhost:3000"
-  #     TMDB_API_KEY: "themoviedb.org api key"
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - .:/app
-  #   restart: always
+  next-app:
+    container_name: countdown-webapp
+    build: .
+    # environment:
+    #   DATABASE_URL: mongodb://user:user@localhost:27017/mongo?authSource=admin
+    #   NEXTAUTH_SECRET: "generate sercet for nextauth "
+    #   NEXTAUTH_UR: "localhost:3000"
+    #   TMDB_API_KEY: "themoviedb.org api key"
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    restart: always

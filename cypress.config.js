@@ -1,6 +1,6 @@
 module.exports = {
-  video: true,
-  projectId: "gc8127",
+  // video: true,
+  // projectId: "gc8127",
   e2e: {
     setupNodeEvents(on, config) {
       on("before:browser:launch", (browser, launchOptions) => {
@@ -9,20 +9,11 @@ module.exports = {
             if (arg === "--headless") {
               return "--headless=new";
             }
-
             return arg;
           });
         }
-
         return launchOptions;
-      }),
-        on("task", {
-          log(message) {
-            // Log the message to the console
-            console.log(message);
-            return null; // Return null to indicate success
-          },
-        });
+      });
     },
   },
 
