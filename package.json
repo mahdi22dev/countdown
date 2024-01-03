@@ -19,6 +19,8 @@
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "cypress": "^13.6.2",
+    "cypress-xpath": "^2.0.1",
     "daisyui": "^3.6.1",
     "date-fns": "^2.30.0",
     "eslint": "8.46.0",
