@@ -1,6 +1,5 @@
 module.exports = {
-  // video: true,
-  // projectId: "gc8127",
+  projectId: "gc8127",
   e2e: {
     setupNodeEvents(on, config) {
       on("before:browser:launch", (browser, launchOptions) => {
